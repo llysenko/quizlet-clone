@@ -1,0 +1,35 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+html, body {
+    @apply h-full m-0 p-0;
+}
+
+.wrapper {
+    @apply min-h-full flex flex-col;
+}
+
+.page-header, .page-footer {
+    @apply p-2 flex-grow-0 flex-shrink-0;
+}
+
+.page-body {
+    @apply flex-grow;
+}
+
+.light {
+    @apply bg-slate-200 text-slate-900;
+}
+
+.dark {
+    @apply bg-slate-900 text-slate-50;
+}
+
+body.dark > .wrapper > .page-header, body.dark > .wrapper > .page-footer {
+    @apply bg-slate-800;
+}
+
+body.light > .wrapper > .page-header, body.light > .wrapper > .page-footer {
+    @apply bg-slate-50;
+}
