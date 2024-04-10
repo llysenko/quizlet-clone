@@ -1,7 +1,3 @@
 export function Button() {
-  return (
-    <button className="text-center text-3xl font-bold p-4 border rounded-2xl">
-      Button
-    </button>
-  )
+  return <button className="h-full w-full rounded-2xl border p-4 text-center text-3xl underline">Button</button>;
 }
