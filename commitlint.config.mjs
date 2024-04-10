@@ -1,14 +1,12 @@
 const Configuration = {
   extends: ['@commitlint/config-conventional'],
-  // parserPreset: 'conventional-changelog-atom',
-  // formatter: '@commitlint/format',
   rules: {
     'type-enum': [
       2,
       'always',
       ['build', 'chore', 'ci', 'docs', 'feat', 'fix', 'perf', 'refactor', 'revert', 'style', 'test']
     ],
-    'scope-enum': [2, 'always', ['foo']],
+    'scope-enum': [2, 'always', ['config']],
     'subject-max-length': [2, 'always', 120]
   },
   prompt: {
