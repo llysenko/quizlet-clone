@@ -1,14 +1,16 @@
 {
-  "name": "next",
+  "name": "quizlet-clone",
   "version": "0.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "prepare": "husky"
   },
   "dependencies": {
+    "@commitlint/types": "19.0.3",
     "@formatjs/intl-localematcher": "^0.5.2",
     "@headlessui/react": "^1.7.17",
     "@heroicons/react": "^2.0.18",
@@ -21,15 +23,19 @@
     "usehooks-ts": "^3.1.0"
   },
   "devDependencies": {
+    "@commitlint/cli": "19.2.1",
+    "@commitlint/config-conventional": "19.1.0",
     "@types/negotiator": "^0.6.3",
     "@types/node": "^20.12.6",
     "@types/react": "^18.2.75",
     "@types/react-dom": "^18.2.24",
     "autoprefixer": "10.4.19",
     "concurrently": "8.2.2",
+    "conventional-changelog-atom": "4.0.0",
     "eslint": "^8.57.0",
     "eslint-config-next": "14.1.4",
     "eslint-config-prettier": "9.1.0",
+    "husky": "9.0.11",
     "postcss": "8.4.38",
     "prettier": "3.2.5",
     "prettier-plugin-tailwindcss": "0.5.13",
