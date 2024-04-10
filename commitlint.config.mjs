@@ -6,7 +6,7 @@ const Configuration = {
       'always',
       ['build', 'chore', 'ci', 'docs', 'feat', 'fix', 'perf', 'refactor', 'revert', 'style', 'test']
     ],
-    'scope-enum': [2, 'always', ['config']],
+    'scope-enum': [2, 'always', ['config', 'build']],
     'subject-max-length': [2, 'always', 120]
   },
   prompt: {
