@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html, body {
-    @apply h-full m-0 p-0;
+    @apply h-full m-0 p-0 font-sans;
 }
 
 .wrapper {
@@ -16,20 +16,4 @@ html, body {
 
 .page-body {
     @apply flex-grow;
-}
-
-.light {
-    @apply bg-slate-200 text-slate-900;
-}
-
-.dark {
-    @apply bg-slate-900 text-slate-50;
-}
-
-body.dark > .wrapper > .page-header, body.dark > .wrapper > .page-footer {
-    @apply bg-slate-800;
-}
-
-body.light > .wrapper > .page-header, body.light > .wrapper > .page-footer {
-    @apply bg-slate-50;
 }
