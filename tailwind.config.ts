@@ -21,7 +21,9 @@ export default {
         'nav-items': '#2e3856',
         grey: '#f6f7fb',
         'blue-light': '#dbdfff',
-        'gray-600': '#586380'
+        'gray-600': '#586380',
+        'grey-2': '#d9dde8',
+        'grey-3': '#edeff4'
       }
     }
   },

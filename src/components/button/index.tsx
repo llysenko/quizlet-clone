@@ -1,3 +1,4 @@
+import clsx from 'clsx';
 import Image from 'next/image';
 import React from 'react';
 
@@ -7,14 +8,26 @@ interface ButtonProps {
   backgroundColor?: string;
   iconSrc?: string;
   label: string;
-  mode?: 'primary' | 'accent' | 'borderless';
+  borderless?: boolean;
+  mode?: 'primary' | 'accent';
   size?: 'small' | 'medium' | 'large';
 }
 
-export const Button = ({ mode = 'primary', size = 'medium', backgroundColor, label, ...props }: ButtonProps) => {
+export const Button = ({
+  mode = 'primary',
+  size = 'medium',
+  backgroundColor,
+  label,
+  borderless = false,
+  iconSrc,
+  ...props
+}: ButtonProps) => {
   return (
-    <button type="button" className={['button', `button--${size}`, `button--${mode}`].join(' ')} {...props}>
-      {props.iconSrc && <Image src="/static/images/sparkles.png" height={12} width={16} alt="" className="icon" />}
+    <button
+      type="button"
+      className={clsx('button', `button--${size}`, `button--${mode}`, borderless && 'button--borderless')}
+      {...props}>
+      {iconSrc && <Image src={iconSrc} height={12} width={16} alt="" className="icon" />}
       <span>{label}</span>
     </button>
   );

@@ -37,7 +37,7 @@ export const Accent: Story = {
 export const Borderless: Story = {
   args: {
     label: 'Sign up now',
-    mode: 'borderless'
+    borderless: true
   }
 };
 
@@ -48,15 +48,17 @@ export const ButtonWithIcon: Story = {
     size: 'medium'
   }
 };
-export const Secondary: Story = {
-  args: {
-    label: 'Button'
-  }
-};
 
 export const Large: Story = {
   args: {
     size: 'large',
+    label: 'Sign up now'
+  }
+};
+
+export const Medium: Story = {
+  args: {
+    size: 'medium',
     label: 'Sign up now'
   }
 };
