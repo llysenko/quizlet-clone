@@ -1,14 +1,10 @@
 import type { Config } from 'tailwindcss';
-// import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
   darkMode: 'class',
   content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
   theme: {
     extend: {
-      // fontFamily: {
-      //   sans: ['hurme_no2-webfont, -apple-system, BlinkMacSystemFont', ...defaultTheme.fontFamily.sans]
-      // },
       colors: {
         blue: '#4255ff',
         'blue-2': '#423ed8',

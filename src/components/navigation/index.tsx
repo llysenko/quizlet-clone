@@ -1,7 +1,13 @@
-import { Route } from 'next';
-import { useTranslations } from 'next-intl';
-import Link from 'next/link';
+'use client';
+
 import React from 'react';
+import clsx from 'clsx';
+import { usePathname } from 'next/navigation';
+import { useTranslations } from 'next-intl';
+
+import { Link } from '@/navigation';
+
+import './styles.scss';
 
 const items = [
   {
@@ -20,22 +26,20 @@ const items = [
 
 export default function Navigation() {
   const t = useTranslations('Navigation');
+  const currentPath = usePathname();
   const menuList = items.map(item => (
-    <li key={item.label}>
-      <Link href={`${item.path}` as Route}>{t(item.label)}</Link>
+    <li key={item.label} className="nav-list--item">
+      <Link
+        href={item.path}
+        className={clsx('nav-list--item', 'nav-list--item--link', currentPath === item.path ? 'active-tab' : '')}>
+        <span>{t(item.label)}</span>
+      </Link>
     </li>
   ));
 
   return (
-    <nav aria-labelledby="primary-navigation">
-      <ul className="grid grid-flow-col gap-2">
-        <li>
-          <Link href="/" className="h-full w-full border font-bold text-purple-400">
-            MEMO
-          </Link>
-        </li>
-        {menuList}
-      </ul>
+    <nav aria-labelledby="primary-navigation" className="h-full">
+      <ul className="nav-list">{menuList}</ul>
     </nav>
   );
 }

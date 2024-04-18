@@ -1,0 +1,25 @@
+.header {
+  @apply sticky top-0 z-10 bg-white border-b border-grey-3;
+
+  &-container {
+    @apply flex items-center justify-between px-4 h-16;
+  }
+
+  .nav {
+    @apply flex items-center;
+
+    &--right {
+      li:not(:last-child) {
+        padding: 0 0.5rem;
+      }
+    }
+
+    &--left {
+      @apply h-full;
+
+      .logo {
+        @apply mr-5;
+      }
+    }
+  }
+}

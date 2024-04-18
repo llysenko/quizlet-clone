@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html, body {
-    @apply h-full m-0 p-0 font-sans;
+    @apply h-full m-0 p-0 font-sans text-text-color-h;
 }
 
 .wrapper {
@@ -11,7 +11,7 @@ html, body {
 }
 
 .page-header, .page-footer {
-    @apply p-2 flex-grow-0 flex-shrink-0;
+    @apply flex-grow-0 flex-shrink-0;
 }
 
 .page-body {

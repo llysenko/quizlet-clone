@@ -1,4 +1,5 @@
-import { unstable_setRequestLocale } from 'next-intl/server';
+'use client';
+
 import { useTranslations } from 'next-intl';
 
 import PageLayout from '@/components/page-layout';
@@ -9,7 +10,7 @@ type Props = {
 
 export default function PathnamesPage({ params: { locale } }: Props) {
   // Enable static rendering
-  unstable_setRequestLocale(locale);
+  // unstable_setRequestLocale(locale);
 
   const t = useTranslations('PathnamesPage');
 

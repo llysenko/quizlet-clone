@@ -1,25 +1,23 @@
 import createMiddleware from 'next-intl/middleware';
 
-import { pathnames, locales, localePrefix } from '@/config';
+import { pathnames, locales } from '@/config';
 
 export default createMiddleware({
   defaultLocale: 'en',
   locales,
-  pathnames,
-  localePrefix
+  localePrefix: 'as-needed',
+  pathnames
 });
 
 export const config = {
+  // Matcher entries are linked with a logical "or", therefore
+  // if one of them matches, the middleware will be invoked.
   matcher: [
-    // Enable a redirect to a matching locale at the root
-    '/',
-
-    // Set a cookie to remember the previous locale for
-    // all requests that have a locale prefix
-    '/(ua|en)/:path*',
-
-    // Enable redirects that add missing locales
-    // (e.g. `/pathnames` -> `/en/pathnames`)
-    '/((?!_next|_vercel|.*\\..*).*)'
+    // Match all pathnames except for
+    // - … if they start with `/api`, `/_next` or `/_vercel`
+    // - … the ones containing a dot (e.g. `favicon.ico`)
+    '/((?!api|_next|_vercel|.*\\..*).*)',
+    // However, match all pathnames within `/users`, optionally with a locale prefix
+    '/([\\w-]+)?/users/(.+)'
   ]
 };

@@ -13,7 +13,7 @@ interface ButtonProps {
   size?: 'small' | 'medium' | 'large';
 }
 
-export const Button = ({
+export default function Button({
   mode = 'primary',
   size = 'medium',
   backgroundColor,
@@ -21,7 +21,7 @@ export const Button = ({
   borderless = false,
   iconSrc,
   ...props
-}: ButtonProps) => {
+}: ButtonProps) {
   return (
     <button
       type="button"
@@ -31,4 +31,4 @@ export const Button = ({
       <span>{label}</span>
     </button>
   );
-};
+}
