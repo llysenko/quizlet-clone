@@ -1,33 +1,38 @@
-import clsx from 'clsx';
 import Image from 'next/image';
 import React from 'react';
+import clsx from 'clsx';
 
-import './styles.scss';
+import styles from './styles.module.scss';
 
 interface ButtonProps {
-  backgroundColor?: string;
-  iconSrc?: string;
   label: string;
+  backgroundColor?: string;
   borderless?: boolean;
+  iconSrc?: string;
   mode?: 'primary' | 'accent';
   size?: 'small' | 'medium' | 'large';
 }
 
 export default function Button({
-  mode = 'primary',
-  size = 'medium',
-  backgroundColor,
   label,
+  backgroundColor,
   borderless = false,
   iconSrc,
+  mode = 'primary',
+  size = 'medium',
   ...props
 }: ButtonProps) {
   return (
     <button
       type="button"
-      className={clsx('button', `button--${size}`, `button--${mode}`, borderless && 'button--borderless')}
+      className={clsx(
+        styles.button,
+        styles[`button_${mode}`],
+        styles[`button_${size}`],
+        borderless && styles.button_borderless
+      )}
       {...props}>
-      {iconSrc && <Image src={iconSrc} height={12} width={16} alt="" className="icon" />}
+      {iconSrc && <Image src={iconSrc} height={16} width={16} alt="" className={styles.button__icon} />}
       <span>{label}</span>
     </button>
   );

@@ -1,19 +1,15 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import clsx from 'clsx';
 import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
 
+import IconButton from '@/components/icon-button';
+import styles from './styles.module.scss';
 import { Link } from '@/navigation';
 
-import './styles.scss';
-
 const items = [
-  {
-    label: 'home',
-    path: '/'
-  },
   {
     label: 'about',
     path: '/about'
@@ -27,19 +23,56 @@ const items = [
 export default function Navigation() {
   const t = useTranslations('Navigation');
   const currentPath = usePathname();
+  const [open, setOpen] = useState(false);
   const menuList = items.map(item => (
-    <li key={item.label} className="nav-list--item">
+    <li
+      key={item.label}
+      className={clsx(styles.nav__item, item.label === 'home' && !open && styles.nav__item_xl_hidden)}>
       <Link
         href={item.path}
-        className={clsx('nav-list--item', 'nav-list--item--link', currentPath === item.path ? 'active-tab' : '')}>
+        className={clsx(
+          styles.nav__item,
+          styles.nav__link,
+          currentPath === item.path && open && styles.nav__link_active && styles.nav__link_active_horizontal,
+          currentPath === item.path && !open && styles.nav__link_active,
+          styles.nav__link_active_vertical
+        )}>
         <span>{t(item.label)}</span>
       </Link>
     </li>
   ));
 
+  function toggleMenu() {
+    setOpen(!open);
+  }
+
   return (
-    <nav aria-labelledby="primary-navigation" className="h-full">
-      <ul className="nav-list">{menuList}</ul>
-    </nav>
+    <div className={styles.nav}>
+      <div aria-labelledby="primary-navigation" className="flex h-full items-center">
+        <ul className={clsx(styles.nav__list, !open && 'hidden')}>{menuList}</ul>
+        <IconButton
+          className="lg:invisible"
+          size="medium"
+          borderless={true}
+          iconSrc="/static/images/menu.svg"
+          title="Menu"
+          onClick={toggleMenu}
+        />
+      </div>
+      {open && (
+        <div className={styles.nav_mobile}>
+          <div className="m-4 flex justify-end">
+            <IconButton
+              className={clsx(styles.nav__menu__button, 'rotate-45')}
+              size="medium"
+              iconSrc="/static/images/plus.svg"
+              title="Close menu"
+              onClick={toggleMenu}
+            />
+          </div>
+          <ul className={styles.nav__list}>{menuList}</ul>
+        </div>
+      )}
+    </div>
   );
 }

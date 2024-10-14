@@ -1,9 +1,10 @@
-import Footer from '@/components/footer';
-import Header from '@/components/header';
 import clsx from 'clsx';
 import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { Prompt } from 'next/font/google';
 import { ReactNode } from 'react';
+
+import Footer from '@/components/footer';
+import Header from '@/components/header';
 
 const prompt = Prompt({
   subsets: ['latin'],
@@ -14,18 +15,6 @@ type Props = {
   children: ReactNode;
   params: { locale: string };
 };
-
-// export function generateStaticParams() {
-//   return locales.map(locale => ({ locale }));
-// }
-//
-// export async function generateMetadata({ params: { locale } }: Omit<Props, 'children'>) {
-//   const t = await getTranslations({ locale, namespace: 'LocaleLayout' });
-//
-//   return {
-//     title: t('title')
-//   };
-// }
 
 export default function LocaleLayout({ children, params: { locale } }: Props) {
   const messages = useMessages();

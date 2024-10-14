@@ -1,7 +1,7 @@
 {
   "IndexPage": {
-    "title": "Home page",
-    "description": "This is random text on the Home page."
+    "headingOne": "How do you want to study?",
+    "descriptionOne": "Master whatever you’re learning with Quizlet’s interactive flashcards, practice tests, and study activities."
   },
   "AboutPage": {
     "title": "About Page"

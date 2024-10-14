@@ -1,0 +1,10 @@
+.navigation {
+  &__link:hover {
+    &:hover {
+      .icon {
+        filter: brightness(0) saturate(100%) invert(23%) sepia(74%) saturate(2182%) hue-rotate(231deg) brightness(93%) contrast(107%);
+      }
+    }
+  }
+}
+

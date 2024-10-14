@@ -1,0 +1,34 @@
+.header {
+  @apply z-10 border-b border-grey-3 bg-white;
+
+  &__container {
+    @apply flex h-16 items-center justify-between px-4;
+  }
+}
+
+.nav {
+  @apply flex items-center;
+
+  &_right {
+    li:not(:last-child) {
+      padding: 0 0.5rem;
+    }
+  }
+
+  &_left {
+    @apply h-full;
+  }
+}
+
+.logo {
+  @apply order-2
+  mr-5
+  size-[24px]
+  bg-cover
+  bg-no-repeat
+  lg:order-1
+  lg:h-[22px]
+  lg:w-[95px]
+  bg-[url('/static/images/logo-mobile.svg')]
+  lg:bg-[url('/static/images/logo.svg')];
+}

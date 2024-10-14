@@ -25,13 +25,9 @@ export default function LocaleSwitcherSelect({ children, defaultValue }: Props) 
   }
 
   return (
-    <label
-      className={clsx(
-        'relative',
-        isPending && 'transition-opacity [&:disabled]:opacity-30'
-      )}>
+    <label className={clsx('relative', isPending && 'transition-opacity [&:disabled]:opacity-30')}>
       <select
-        className='inline-flex appearance-none bg-transparent pl-2 outline-0'
+        className="inline-flex appearance-none bg-transparent text-sm outline-0"
         defaultValue={defaultValue}
         disabled={isPending}
         onChange={onSelectChange}>

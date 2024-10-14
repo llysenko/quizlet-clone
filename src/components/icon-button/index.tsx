@@ -1,31 +1,34 @@
-import clsx from 'clsx';
 import Image from 'next/image';
 import React from 'react';
+import clsx from 'clsx';
 
-import './styles.scss';
+import styles from './styles.module.scss';
 
 interface IconButtonProps {
-  backgroundColor?: string;
   iconSrc: string;
-  title?: string;
+  bgColor?: string;
   borderless?: boolean;
+  className?: string;
   size?: 'small' | 'medium' | 'large';
+  title?: string;
+  onClick?: () => void;
 }
 
 export default function IconButton({
-  size = 'medium',
-  backgroundColor,
-  borderless = false,
   iconSrc,
+  bgColor,
+  borderless = false,
+  className,
+  size = 'medium',
   ...props
 }: IconButtonProps) {
   return (
     <button
       type="button"
       title={props.title}
-      className={clsx('icon-button', `icon-button--${size}`, borderless && 'icon-button--borderless')}
+      className={clsx(className, styles.button, styles[`button_${size}`], borderless && styles.button_borderless)}
       {...props}>
-      <Image src={iconSrc} height={24} width={24} alt="" />
+      <Image src={iconSrc} height={24} width={24} alt="" className="h-6 w-6" />
     </button>
   );
 }

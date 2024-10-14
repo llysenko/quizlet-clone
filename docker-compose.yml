@@ -1,0 +1,14 @@
+version: '4.34'
+
+services:
+  db:
+    image: postgres:17-alpine
+    restart: always
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./.docker/postgres-volume:/var/lib/postgresql/data
+    environment:
+      - POSTGRES_PASSWORD=${DATABASE_PASSWORD}
+      - POSTGRES_USER=${DATABASE_USER}
+      - POSTGRES_DB=${DATABASE_NAME}
