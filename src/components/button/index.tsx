@@ -9,8 +9,10 @@ interface ButtonProps {
   backgroundColor?: string;
   borderless?: boolean;
   iconSrc?: string;
-  mode?: 'primary' | 'accent';
-  size?: 'small' | 'medium' | 'large';
+  mode?: 'primary' | 'accent' | 'outlined';
+  size?: 'small' | 'medium' | 'large' | 'full';
+  width?: 'full' | 'fit';
+  onClick?: () => void;
 }
 
 export default function Button({
@@ -20,6 +22,7 @@ export default function Button({
   iconSrc,
   mode = 'primary',
   size = 'medium',
+  width = 'fit',
   ...props
 }: ButtonProps) {
   return (
@@ -29,6 +32,7 @@ export default function Button({
         styles.button,
         styles[`button_${mode}`],
         styles[`button_${size}`],
+        styles[`button_${width}`],
         borderless && styles.button_borderless
       )}
       {...props}>

@@ -1,13 +1,11 @@
 import Link from 'next/link';
-import React from 'react';
 import clsx from 'clsx';
 
-import styles from './styles.module.scss';
 import Button from '@/components/button';
 import Navigation from '@/components/navigation';
-import Search from '@/components/search';
+import styles from './styles.module.scss';
 
-export default function Header() {
+export default function Header({ toggleMenu }: { toggleMenu: any }) {
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>
@@ -25,7 +23,7 @@ export default function Header() {
             <Button iconSrc="/static/images/plus.svg" label="Create" size="medium" borderless={true} />
           </li>
           <li>
-            <Button label="Log in" size="medium" />
+            <Button label="Log in" size="medium" onClick={toggleMenu} />
           </li>
         </ul>
       </div>

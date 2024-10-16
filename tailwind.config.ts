@@ -30,7 +30,9 @@ export default {
         'blue-4': '#98E3FF',
         pink: '#EEAAFF',
         orange: '#FFC38C',
-        green: '#98F1D1'
+        green: '#98F1D1',
+        magenta: '#d908f8',
+        'dark-grey': '#1a1d28'
       }
     }
   },

@@ -1,0 +1,9 @@
+.select {
+  @apply appearance-none outline-0 min-h-10 cursor-pointer rounded-lg border-2 border-grey-2 bg-transparent text-sm font-semibold text-gray-600 hover:bg-grey-3;
+  padding: 0.625rem calc(1rem + 1.375rem + 0.5rem) 0.625rem 1.375rem;
+}
+
+.icon {
+  @apply absolute top-1/2 right-[22px];
+  transform: translateY(-50%) rotate(-90deg);
+}

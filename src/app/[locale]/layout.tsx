@@ -3,8 +3,7 @@ import { NextIntlClientProvider, useMessages } from 'next-intl';
 import { Prompt } from 'next/font/google';
 import { ReactNode } from 'react';
 
-import Footer from '@/components/footer';
-import Header from '@/components/header';
+import PageLayout from '@/components/page-layout/page-layout';
 
 const prompt = Prompt({
   subsets: ['latin'],
@@ -23,15 +22,7 @@ export default function LocaleLayout({ children, params: { locale } }: Props) {
     <html lang={locale}>
       <body className={clsx(prompt.className)}>
         <NextIntlClientProvider locale={locale} messages={messages}>
-          <div className="wrapper">
-            <div className="page-header">
-              <Header />
-            </div>
-            <main className="page-body">{children}</main>
-            <div className="page-footer">
-              <Footer />
-            </div>
-          </div>
+          <PageLayout>{children}</PageLayout>
         </NextIntlClientProvider>
       </body>
     </html>

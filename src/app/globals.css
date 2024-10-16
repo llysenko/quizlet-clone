@@ -21,3 +21,23 @@ html, body {
 .page-body {
     @apply flex-grow;
 }
+
+/* Scroll */
+/* width */
+::-webkit-scrollbar {
+    @apply h-2 w-2;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    @apply bg-white;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    @apply bg-grey-2 rounded-2xl;
+}
+
+input:-webkit-autofill {
+    -webkit-box-shadow: 0 0 0 50px #f6f7fb inset; /* Change the color to your own background color */
+}

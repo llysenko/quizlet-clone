@@ -1,8 +1,16 @@
 .button {
-  @apply relative flex w-fit items-center justify-center rounded-lg leading-none;
+  @apply relative flex items-center justify-center rounded-lg leading-none;
 
   border: 0.125rem solid #0000;
   transition: all 0.12s cubic-bezier(0.47, 0, 0.745, 0.715);
+
+  &_fit {
+    @apply w-fit;
+  }
+
+  &_full {
+    @apply w-full;
+  }
 
   &_primary {
     @apply bg-blue text-white hover:bg-blue-2;
@@ -10,6 +18,10 @@
 
   &_accent {
     @apply bg-yellow text-text-color-h hover:bg-yellow-light;
+  }
+
+  &_outlined {
+    @apply bg-transparent border-2 border-grey-2 text-gray-600 hover:bg-grey-3;
   }
 
   &_borderless {
@@ -24,7 +36,11 @@
     @apply min-h-16 px-[1.875rem] py-[1.125rem] text-base font-semibold leading-none;
   }
 
+  &_large>&__icon {
+    @apply w-6;
+  }
+
   &__icon {
-    @apply mr-2;
+    @apply mr-2 w-4;
   }
 }

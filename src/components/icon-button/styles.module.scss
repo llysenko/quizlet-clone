@@ -4,7 +4,7 @@
   transition: all .12s cubic-bezier(.47, 0, .745, .715);
 
   &_borderless {
-    @apply border-0 text-gray-600 hover:bg-grey;
+    @apply border-0 text-gray-600 hover:bg-grey-3;
   }
 
   &_small {
