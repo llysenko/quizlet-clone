@@ -1,23 +1,46 @@
 import createMiddleware from 'next-intl/middleware';
+import { NextRequest, NextResponse } from 'next/server';
 
-import { pathnames, locales } from '@/config';
+import { signToken, verifyToken } from '@/features/auth/lib/session';
 
-export default createMiddleware({
-  defaultLocale: 'en',
-  locales,
-  localePrefix: 'as-needed',
-  pathnames
-});
+import { locales, pathnames } from './config';
+
+const protectedRoutes = ['/about'];
+
+const nextIntlMiddleware = createMiddleware({ defaultLocale: 'en', locales, localePrefix: 'never', pathnames });
+
+export async function middleware(req: NextRequest) {
+  const { pathname } = req.nextUrl;
+  const sessionCookie = req.cookies.get('session');
+  const isProtectedRoute = protectedRoutes.includes(pathname);
+
+  if (isProtectedRoute && !sessionCookie) return NextResponse.redirect(new URL('/', req.url));
+
+  let res = NextResponse.next();
+
+  if (sessionCookie) {
+    try {
+      const parsed = await verifyToken(sessionCookie.value);
+      const expiresInOneDay = new Date(Date.now() + 24 * 60 * 60 * 1000);
+
+      res.cookies.set({
+        name: 'session',
+        value: await signToken({ ...parsed, expires: expiresInOneDay.toISOString() }),
+        httpOnly: true,
+        secure: true,
+        sameSite: 'lax',
+        expires: expiresInOneDay
+      });
+    } catch (error: any) {
+      res.cookies.delete('session');
+
+      if (isProtectedRoute) return NextResponse.redirect(new URL('/', req.url));
+    }
+  }
+
+  return nextIntlMiddleware(req);
+}
 
 export const config = {
-  // Matcher entries are linked with a logical "or", therefore
-  // if one of them matches, the middleware will be invoked.
-  matcher: [
-    // Match all pathnames except for
-    // - … if they start with `/api`, `/_next` or `/_vercel`
-    // - … the ones containing a dot (e.g. `favicon.ico`)
-    '/((?!api|_next|_vercel|.*\\..*).*)',
-    // However, match all pathnames within `/users`, optionally with a locale prefix
-    '/([\\w-]+)?/users/(.+)'
-  ]
+  matcher: ['/((?!api|_next|_vercel|.*\\..*).*)']
 };

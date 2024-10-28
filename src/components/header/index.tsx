@@ -1,8 +1,9 @@
-import Link from 'next/link';
 import clsx from 'clsx';
+import Link from 'next/link';
 
-import Button from '@/components/button';
+import Button from '@/components/buttons';
 import Navigation from '@/components/navigation';
+
 import styles from './styles.module.scss';
 
 export default function Header({ toggleMenu }: { toggleMenu: any }) {

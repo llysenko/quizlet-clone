@@ -2,14 +2,7 @@
 
 import { useTranslations } from 'next-intl';
 
-type Props = {
-  params: { locale: string };
-};
-
-export default function PathnamesPage({ params: { locale } }: Props) {
-  // Enable static rendering
-  // unstable_setRequestLocale(locale);
-
+export default function PathnamesPage() {
   const t = useTranslations('PathnamesPage');
 
   return (

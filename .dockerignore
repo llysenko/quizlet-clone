@@ -1,0 +1,4 @@
+.docker
+.next
+dist
+node_modules

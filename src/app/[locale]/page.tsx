@@ -1,10 +1,10 @@
-import React from 'react';
 import { useTranslations } from 'next-intl';
-
-import Button from '@/components/button';
-import Carousel from '@/components/carousel';
 import Image from 'next/image';
 import Link from 'next/link';
+import React from 'react';
+
+import Button from '@/components/buttons';
+import Carousel from '@/components/carousel';
 
 // import { getPosts } from '@/actions/posts';
 

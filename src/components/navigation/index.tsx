@@ -1,13 +1,15 @@
 'use client';
 
-import React, { useState } from 'react';
 import clsx from 'clsx';
-import { usePathname } from 'next/navigation';
 import { useTranslations } from 'next-intl';
+import { usePathname } from 'next/navigation';
+import React, { useState } from 'react';
+
+import { Link } from '@/navigation';
 
 import IconButton from '@/components/icon-button';
+
 import styles from './styles.module.scss';
-import { Link } from '@/navigation';
 
 const items = [
   {

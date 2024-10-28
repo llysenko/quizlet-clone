@@ -1,7 +1,13 @@
 import InputLabel from '@/components/input-label';
 import Select from '@/components/select';
 
-export default function BirthdayDateSelect() {
+export default function BirthdayDateSelect({
+  onInputChange,
+  error
+}: {
+  onInputChange: (date: any) => void;
+  error: any;
+}) {
   const months = {
     id: 'months',
     name: 'months',
@@ -102,11 +108,16 @@ export default function BirthdayDateSelect() {
 
   return (
     <div className="mb-6">
-      <InputLabel label="Birthday" tooltipIconSrc="/static/images/icon__info.svg" tooltipHtml={tooltipHtml} />
+      <InputLabel
+        label="Birthday"
+        tooltipIconSrc="/static/images/icon__info.svg"
+        tooltipHtml={tooltipHtml}
+        error={error?.length ? { name: 'birthday', message: 'Please enter your birthday' } : undefined}
+      />
       <div className="flex gap-4">
-        <Select data={months} />
-        <Select data={days} />
-        <Select data={years} />
+        <Select data={months} onInputChange={onInputChange} error={error} />
+        <Select data={days} onInputChange={onInputChange} error={error} />
+        <Select data={years} onInputChange={onInputChange} error={error} />
       </div>
     </div>
   );

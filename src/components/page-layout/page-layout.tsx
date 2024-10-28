@@ -1,16 +1,17 @@
 'use client';
 
-import Image from 'next/image';
 import clsx from 'clsx';
-import { useState } from 'react';
+import Image from 'next/image';
+import { ReactNode, useState } from 'react';
 
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 import IconButton from '@/components/icon-button';
-import LogIn from '@/components/log-in';
-import SignUp from '@/components/sign-up';
 
-export default function PageLayout({ children }: any) {
+import SignIn from '@/features/auth/components/sign-in';
+import SignUp from '@/features/auth/components/sign-up';
+
+export default function PageLayout({ user, children }: { user: any; children: ReactNode }) {
   const [open, setOpen] = useState(false);
   const [activeTab, setActiveTab] = useState('login');
 
@@ -44,7 +45,7 @@ export default function PageLayout({ children }: any) {
                 </h1>
               </div>
               <div className="p-11">
-                <Image src="/static/images/logo-full.svg" alt="Quizlet" width={160} height={37} />
+                <Image src="/static/images/logo-full.svg" alt="Quizlet" width={160} height={37} quality={75} />
               </div>
             </div>
             <div className="h-screen shrink grow basis-1/2 overflow-y-auto">
@@ -84,8 +85,8 @@ export default function PageLayout({ children }: any) {
                     Log in
                   </h3>
                 </div>
-                {activeTab === 'signup' && <SignUp />}
-                {activeTab === 'login' && <LogIn />}
+                {activeTab === 'signup' && <SignUp switchTab={switchTab} />}
+                {activeTab === 'login' && <SignIn switchTab={switchTab} />}
               </div>
             </div>
           </div>

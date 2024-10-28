@@ -1,20 +1,25 @@
 import Image from 'next/image';
 import { useState } from 'react';
+import clsx from 'clsx';
 
 export default function InputLabel({
   label,
   tooltipIconSrc,
-  tooltipHtml
+  tooltipHtml,
+  error
 }: {
   label: string;
   tooltipIconSrc?: string;
   tooltipHtml?: string;
+  error?: { name: string; message: string };
 }) {
   const [tooltipVisible, setTooltipVisible] = useState(false);
 
   return (
     <div className="mb-2 flex items-center">
-      <p className="text-sm font-semibold text-gray-600">{label}</p>
+      <p className={clsx('text-sm font-semibold', error && 'text-error', !error && 'capitalize text-gray-600')}>
+        {error ? error.message : label}
+      </p>
       <div className="relative">
         {tooltipIconSrc && (
           <Image
@@ -23,6 +28,11 @@ export default function InputLabel({
             width={24}
             height={24}
             className="ml-2"
+            style={{
+              filter: error
+                ? 'brightness(0) saturate(100%) invert(20%) sepia(30%) saturate(7028%) hue-rotate(333deg) brightness(76%) contrast(123%)'
+                : ''
+            }}
             onMouseOver={() => setTooltipVisible(true)}
             onMouseLeave={() => setTooltipVisible(false)}
           />
@@ -30,7 +40,7 @@ export default function InputLabel({
         {tooltipVisible && tooltipHtml && (
           <div
             dangerouslySetInnerHTML={{ __html: tooltipHtml }}
-            className="bg-dark-grey absolute right-[-255px] top-[-20px] z-10 w-[246px] rounded p-2 text-xs text-white"></div>
+            className="absolute right-[-255px] top-[-20px] z-10 w-[246px] rounded bg-dark-grey p-2 text-xs text-white"></div>
         )}
       </div>
     </div>
