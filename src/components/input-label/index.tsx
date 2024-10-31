@@ -1,6 +1,6 @@
+import clsx from 'clsx';
 import Image from 'next/image';
 import { useState } from 'react';
-import clsx from 'clsx';
 
 export default function InputLabel({
   label,
@@ -11,14 +11,14 @@ export default function InputLabel({
   label: string;
   tooltipIconSrc?: string;
   tooltipHtml?: string;
-  error?: { name: string; message: string };
+  error?: boolean;
 }) {
   const [tooltipVisible, setTooltipVisible] = useState(false);
 
   return (
     <div className="mb-2 flex items-center">
       <p className={clsx('text-sm font-semibold', error && 'text-error', !error && 'capitalize text-gray-600')}>
-        {error ? error.message : label}
+        {label}
       </p>
       <div className="relative">
         {tooltipIconSrc && (

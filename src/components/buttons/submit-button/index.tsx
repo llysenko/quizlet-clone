@@ -19,7 +19,7 @@ export default function SubmitButton({
 
   return (
     <Button
-      label={label}
+      label={pending ? 'Submitting...' : label}
       backgroundColor={backgroundColor}
       borderless={borderless}
       iconSrc={iconSrc}

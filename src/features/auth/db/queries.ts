@@ -9,5 +9,6 @@ export async function getUser() {
 
   if (new Date(sessionData.expires) < new Date()) return null;
 
-  return db.user.findUnique({ where: { id: sessionData.user.id } });
+  // @ts-ignore
+  return db.user.findUnique({ omit: { password: true }, where: { id: sessionData.user.id } });
 }

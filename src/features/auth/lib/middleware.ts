@@ -1,9 +1,11 @@
 import { z } from 'zod';
 
+import transformZodErrors from '@/utils/transform-zod-errors';
+
 type ValidatedActionFunction<S extends z.ZodType<any, any>, T> = (data: z.infer<S>, formData: FormData) => Promise<T>;
 
 export type ActionState = {
-  error?: string;
+  errors?: string;
   success?: string;
   [key: string]: any;
 };
@@ -13,7 +15,9 @@ export function validateAction<S extends z.ZodType<any, any>, T>(schema: S, acti
     const result = schema.safeParse(Object.fromEntries(formData));
 
     if (!result.success) {
-      return { error: result.error.errors.at(0)?.message } as T;
+      const errors = transformZodErrors(result.error);
+
+      return { errors, data: result.data } as T;
     }
 
     return action(result.data, formData);

@@ -7,30 +7,27 @@ export const PasswordSchema = z
     message: 'Password should include at least 6 characters, 1 uppercase letter, 1 number, 1 character'
   })
   .trim();
-export const UsernameSchema = z.string().min(1).trim();
+export const UsernameSchema = z.string().min(1, { message: 'Your username cannot be blank' }).trim();
+const isoDateSchema = z.string({ message: 'Please enter your birthday' }).refine(
+  dateStr => {
+    const date = new Date(dateStr);
+
+    return !isNaN(date.getTime()) && dateStr === date.toISOString();
+  },
+  { message: 'Invalid date format. Must be an ISO string (e.g., 2024-10-31T23:59:59.000Z).' }
+);
 export const SignUpFormSchema = z
   .object({
     email: EmailSchema,
     username: UsernameSchema,
     password: PasswordSchema,
-    policyAccepted: z.literal<boolean>(true),
-    remindersAccepted: z.boolean().default(false),
-    month: z
-      .string()
-      .regex(/^[1-9]\d*$/)
-      .refine(value => Number(value) >= 1 && Number(value) <= 12),
-    day: z
-      .string()
-      .regex(/^[1-9]\d*$/)
-      .refine(value => Number(value) >= 1 && Number(value) <= 31),
-    year: z
-      .string()
-      .regex(/^[1-9]\d*$/)
-      .refine(value => Number(value) >= 1895)
+    policyAccepted: z.coerce.boolean().refine(value => value, {
+      message: 'You must accept the policy'
+    }),
+    remindersAccepted: z.coerce.boolean().default(false),
+    birthday: isoDateSchema
   })
   .required();
-
-export type User = z.infer<typeof SignUpFormSchema>;
 
 export const UserUniqueIdentifierSchema = z.string().min(1, { message: 'Your username cannot be blank.' }).trim();
 export const PasswordSignInSchema = z.string().min(1, { message: 'Your password cannot be blank.' }).trim();
@@ -40,3 +37,17 @@ export const SignInFormSchema = z
     password: PasswordSignInSchema
   })
   .required();
+
+export const UserDataSchema = z
+  .object({
+    email: EmailSchema,
+    username: UsernameSchema,
+    password: PasswordSignInSchema,
+    policyAccepted: z.literal<boolean>(true),
+    remindersAccepted: z.boolean(),
+    birthday: z.date(),
+    createdAt: z.date(),
+    updatedAt: z.date()
+  })
+  .required();
+export type UserData = z.infer<typeof UserDataSchema>;

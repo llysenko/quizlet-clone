@@ -30,12 +30,12 @@ export default function Input({
 
   return (
     <div>
-      <InputLabel label={data.label} error={error?.name === data.name ? error : null} />
+      <InputLabel label={error ? error : data.label} error={!!error} />
       <label
         htmlFor={data.id}
         className={clsx(
           'relative flex h-[3rem] flex-col justify-center overflow-hidden rounded-lg bg-grey px-4 py-1',
-          error?.name === data.name && 'border-b-2 border-error'
+          error && 'border-b-2 border-error'
         )}>
         <div className="flex items-center justify-between">
           <input

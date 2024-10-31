@@ -7,47 +7,43 @@ import Checkbox from '@/components/checkbox';
 import Divider from '@/components/divider';
 import Input, { InputType } from '@/components/input';
 
-import { signup } from '@/features/auth/actions/auth';
 import BirthdayDateSelect from '@/features/auth/components/sign-up/birthday-date-select';
-import { EmailSchema, PasswordSchema, SignUpFormSchema, User, UsernameSchema } from '@/features/auth/lib/definitions';
 
-export default function SignUp({ switchTab }: { switchTab: (chosenTab: 'login' | 'signup') => void }) {
-  const [error, setError] = useState<{ name: string; message?: string } | null>(null);
-  const [errors, setErrors] = useState<(string | number | undefined | unknown)[]>([]);
+export default function SignUp({ switchTab, formAction, formState }: any) {
   const [birthdayErrors, setBirthdayErrors] = useState<string[]>([]);
   const formRef = useRef<HTMLFormElement | null>(null);
   const controls = [
     {
-      id: 'user-email',
+      id: 'userEmail',
       type: 'email' as InputType,
       name: 'email',
       label: 'email',
       placeholder: 'user@email.com'
     },
     {
-      id: 'user-name',
+      id: 'userName',
       type: 'text' as InputType,
       name: 'username',
       label: 'username',
       placeholder: 'andrew123'
     },
     {
-      id: 'user-password',
+      id: 'userPassword',
       type: 'password' as InputType,
       name: 'password',
       label: 'password',
       placeholder: '••••••••'
     }
   ];
-  const acceptData = [
+  const checkboxes = [
     {
-      id: 'accept-reminders',
-      name: 'accept-reminders',
+      id: 'remindersAccepted',
+      name: 'remindersAccepted',
       label: 'I want to receive personalized study reminders and gain access to exclusive discounts and giveaways'
     },
     {
-      id: 'accept-policy',
-      name: 'accept-policy',
+      id: 'policyAccepted',
+      name: 'policyAccepted',
       label: "I accept Quizlet's Terms of Service and Privacy Policy"
     }
   ];
@@ -64,48 +60,12 @@ export default function SignUp({ switchTab }: { switchTab: (chosenTab: 'login' |
     }
   ];
 
-  async function signUp(formData: FormData) {
-    setErrors([]);
-
-    const validatedFields = SignUpFormSchema.safeParse({
-      email: formData.get('email'),
-      username: formData.get('username'),
-      password: formData.get('password'),
-      policyAccepted: !!formData.get('accept-policy'),
-      remindersAccepted: !!formData.get('accept-reminders'),
-      month: formData.get('months'),
-      day: formData.get('days'),
-      year: formData.get('years')
-    });
-
-    if (!validatedFields.success) {
-      setErrors(Object.keys(validatedFields.error.flatten().fieldErrors));
-
-      return;
-    }
-
-    const response = await signup(validatedFields.data as User);
-
-    if (response?.errors) {
-      setErrors(Array.isArray(response.errors) ? Object.keys(errors) : [response.errors]);
-
-      return;
-    }
-  }
-
-  function validate({ name, value }: { name: string; value: string }) {
-    const validateSchema = name === 'email' ? EmailSchema : name === 'password' ? PasswordSchema : UsernameSchema;
-    const result = validateSchema.safeParse(value);
-
-    setError(result.success ? null : { name, message: result.error?.issues?.at(0)?.message });
-  }
-
   function validateBirthday() {
     if (formRef.current) {
       const emptyFields = [
-        { name: 'months', value: formRef.current['months'].value },
-        { name: 'days', value: formRef.current['days'].value },
-        { name: 'years', value: formRef.current['years'].value }
+        { name: 'month', value: formRef.current['month'].value },
+        { name: 'day', value: formRef.current['day'].value },
+        { name: 'year', value: formRef.current['year'].value }
       ]
         .filter(item => Number(item.value) === -1)
         .map(item => item.name);
@@ -114,8 +74,23 @@ export default function SignUp({ switchTab }: { switchTab: (chosenTab: 'login' |
     }
   }
 
+  function handleFormData(formData: FormData) {
+    const day = formData.get('day');
+    const month = formData.get('month');
+    const year = formData.get('year');
+    const birthday = day !== '-1' && month !== '-1' && year !== '-1' ? new Date(`${day}-${month}-${year}`) : null;
+
+    const modifiedFormData = new FormData();
+
+    formData.forEach((value, key) => modifiedFormData.append(key, value));
+
+    if (birthday) modifiedFormData.set('birthday', birthday.toISOString());
+
+    formAction(modifiedFormData);
+  }
+
   return (
-    <div>
+    <>
       <div className="mb-4 flex flex-col gap-4">
         {authProviders.map(provider => (
           <Button
@@ -129,26 +104,39 @@ export default function SignUp({ switchTab }: { switchTab: (chosenTab: 'login' |
         ))}
       </div>
       <Divider text="or email" />
-      <form ref={formRef} className="mt-4" action={signUp}>
-        <BirthdayDateSelect onInputChange={validateBirthday} error={birthdayErrors} />
+      <form ref={formRef} className="mt-4" action={formData => handleFormData(formData)}>
+        <BirthdayDateSelect
+          onInputChange={validateBirthday}
+          error={birthdayErrors}
+          errorMsg={formState.errors?.birthday}
+        />
         <div className="flex flex-col gap-8">
-          {controls.map(control => (
-            <Input data={control} key={control.id} onInputBlur={validate} error={error} />
+          {controls.map(controlData => (
+            <Input
+              key={controlData.id}
+              data={controlData}
+              error={formState.errors ? formState.errors[controlData.name] : null}
+            />
           ))}
         </div>
         <div className="mt-8 flex flex-col gap-6">
-          {acceptData.map(data => (
-            <Checkbox data={data} key={data.id} />
+          {checkboxes.map(checkboxData => (
+            <Checkbox
+              data={checkboxData}
+              key={checkboxData.id}
+              error={formState.errors ? formState.errors[checkboxData.name] : null}
+            />
           ))}
         </div>
-        {errors.length > 0 && (
+        {formState.errors && (
           <div className="mt-8">
             <div className="rounded-lg border-2 border-error p-4 font-semibold text-error">
-              <ul className={clsx(errors.length >= 2 && 'list-disc', 'ml-6')}>
-                {errors.includes('policyAccepted') && (
+              <ul className={clsx(typeof formState.errors !== 'string' && 'list-disc', 'ml-6')}>
+                {formState.errors.policyAccepted && (
                   <li>PLEASE ACCEPT QUIZLET&apos;S TERMS OF SERVICE AND PRIVACY POLICY TO CONTINUE.</li>
                 )}
-                {((errors.length === 1 && errors.at(0) !== 'policyAccepted') || errors.length >= 2) && (
+                {((Object.keys(formState.errors).length === 1 && !formState.errors.policyAccepted) ||
+                  Object.keys(formState.errors).length >= 2) && (
                   <li>Oops, something went wrong 😅. Please try again.</li>
                 )}
               </ul>
@@ -166,6 +154,6 @@ export default function SignUp({ switchTab }: { switchTab: (chosenTab: 'login' |
           />
         </div>
       </form>
-    </div>
+    </>
   );
 }

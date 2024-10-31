@@ -3,14 +3,16 @@ import Select from '@/components/select';
 
 export default function BirthdayDateSelect({
   onInputChange,
-  error
+  error,
+  errorMsg
 }: {
   onInputChange: (date: any) => void;
-  error: any;
+  error?: any;
+  errorMsg?: string;
 }) {
   const months = {
-    id: 'months',
-    name: 'months',
+    id: 'month',
+    name: 'month',
     options: [
       {
         name: 'Month',
@@ -69,8 +71,8 @@ export default function BirthdayDateSelect({
 
   function generateDays() {
     return {
-      id: 'days',
-      name: 'days',
+      id: 'day',
+      name: 'day',
       options: [
         {
           name: 'Day',
@@ -88,8 +90,8 @@ export default function BirthdayDateSelect({
     const toPastYear = 1895;
 
     return {
-      id: 'years',
-      name: 'years',
+      id: 'year',
+      name: 'year',
       options: [
         {
           name: 'Year',
@@ -109,10 +111,10 @@ export default function BirthdayDateSelect({
   return (
     <div className="mb-6">
       <InputLabel
-        label="Birthday"
+        label={errorMsg ? errorMsg : 'Birthday'}
         tooltipIconSrc="/static/images/icon__info.svg"
         tooltipHtml={tooltipHtml}
-        error={error?.length ? { name: 'birthday', message: 'Please enter your birthday' } : undefined}
+        error={!!errorMsg}
       />
       <div className="flex gap-4">
         <Select data={months} onInputChange={onInputChange} error={error} />

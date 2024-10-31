@@ -1,18 +1,11 @@
 'use client';
 
-import { useFormState, useFormStatus } from 'react-dom';
-
 import Button from '@/components/buttons';
 import SubmitButton from '@/components/buttons/submit-button';
 import Divider from '@/components/divider';
 import Input, { InputType } from '@/components/input';
 
-import { signIn } from '@/features/auth/actions/auth';
-import { ActionState } from '@/features/auth/lib/middleware';
-
-export default function SignIn({ switchTab }: any) {
-  const [state, formAction] = useFormState<ActionState, FormData>(signIn, { error: '' });
-  const { pending } = useFormStatus();
+export default function SignIn({ switchTab, formState, formAction }: any) {
   const controls = [
     {
       id: 'userUniqueIdentifier',
@@ -48,7 +41,7 @@ export default function SignIn({ switchTab }: any) {
   ];
 
   return (
-    <div>
+    <>
       <div className="mb-4 flex flex-col gap-4">
         {authProviders.map(provider => (
           <Button
@@ -62,7 +55,7 @@ export default function SignIn({ switchTab }: any) {
         ))}
       </div>
       <Divider text="or email" />
-      <form action={formAction}>
+      <form action={formData => formAction(formData)}>
         <div className="mt-6 flex flex-col gap-8">
           {controls.map(control => (
             <Input data={control} key={control.id} />
@@ -71,15 +64,19 @@ export default function SignIn({ switchTab }: any) {
         <p className="mt-6 text-sm text-gray-600">
           By clicking Log in, you accept Quizlet&apos;s <b>Terms of Service</b> and <b>Privacy Policy</b>
         </p>
-        {state?.error && (
+        {formState.errors && (
           <div className="mt-8">
             <div className="rounded-lg border-2 border-error p-4 font-semibold text-error">
-              <p>{state.error}</p>
+              <p>
+                {typeof formState.errors === 'string'
+                  ? Object.values(formState.errors)
+                  : (Object.values(formState.errors).at(0) as string)}
+              </p>
             </div>
           </div>
         )}
         <div className="mt-6 flex flex-col gap-4">
-          <SubmitButton label="Log in" size="large" width="full" disabled={pending} />
+          <SubmitButton label="Log in" size="large" width="full" />
           <Button
             label="New to Quizlet? Create an account"
             size="large"
@@ -90,6 +87,6 @@ export default function SignIn({ switchTab }: any) {
           <Button label="Log in with magic link" size="large" width="full" borderless={true} />
         </div>
       </form>
-    </div>
+    </>
   );
 }

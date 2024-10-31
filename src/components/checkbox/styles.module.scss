@@ -62,3 +62,10 @@
   transition: all .12s cubic-bezier(.47,0,.745,.715);
   width: 70%;
 }
+
+.label {
+  @apply ml-4 text-sm font-semibold leading-[1.4rem] text-text-color-h;
+  &_error {
+    @apply text-error;
+  }
+}

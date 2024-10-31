@@ -1,12 +1,18 @@
 import clsx from 'clsx';
 import Link from 'next/link';
+import { useContext } from 'react';
 
 import Button from '@/components/buttons';
 import Navigation from '@/components/navigation';
+import { UserContext } from '@/components/page-layout/page-layout';
+
+import { UserData } from '@/features/auth/lib/definitions';
 
 import styles from './styles.module.scss';
 
-export default function Header({ toggleMenu }: { toggleMenu: any }) {
+export default function Header({ toggleMenu, signOut }: { toggleMenu: any; signOut: any }) {
+  const user: UserData | null = useContext(UserContext);
+
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>
@@ -24,7 +30,11 @@ export default function Header({ toggleMenu }: { toggleMenu: any }) {
             <Button iconSrc="/static/images/plus.svg" label="Create" size="medium" borderless={true} />
           </li>
           <li>
-            <Button label="Log in" size="medium" onClick={toggleMenu} />
+            {user ? (
+              <Button label="Log out" size="medium" onClick={signOut} />
+            ) : (
+              <Button label="Log in" size="medium" onClick={toggleMenu} />
+            )}
           </li>
         </ul>
       </div>
