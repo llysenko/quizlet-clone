@@ -1,22 +1,25 @@
+'use client';
+
 import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
+import { useAuthDialogStore } from '@/state';
+
 import Button from '@/components/buttons';
 import Carousel from '@/components/carousel';
 
-// import { getPosts } from '@/actions/posts';
-
-// type Post = {
-//   id: number;
-//   title: string;
-//   content: string;
-//   published: boolean;
-// };
 export default function IndexPage() {
   const t = useTranslations('IndexPage');
-  // const posts: Post[] | { error: any } = await getPosts();
+  const { open, setOpen } = useAuthDialogStore();
+
+  function toggleMenu() {
+    setOpen(!open);
+
+    document.body.classList.remove(open ? 'overflow-hidden' : 'overflow-auto');
+    document.body.classList.add(open ? 'overflow-auto' : 'overflow-hidden');
+  }
 
   return (
     <>
@@ -24,7 +27,7 @@ export default function IndexPage() {
         <div className="m-auto flex max-w-[52.5rem] flex-col items-center gap-4 px-8 pb-8 pt-0 text-center">
           <h1 className="text-heading-1 font-bold">{t('headingOne')}</h1>
           <p className="min-h-[1.5rem] text-xl leading-[1.4]">{t('descriptionOne')}</p>
-          <Button label="Sign up for free" size="medium" />
+          <Button label="Sign up for free" size="medium" onClick={toggleMenu} />
           <Button label="I'm a teacher" size="medium" borderless={true} mode="accent" />
         </div>
         <Carousel />
@@ -78,7 +81,7 @@ export default function IndexPage() {
                   Turn your slides, videos, and notes into flashcard sets, practice tests, and study guides.
                 </p>
               </div>
-              <Button label="Try it out" size="large" />
+              <Button label="Try it out" size="large" onClick={toggleMenu} />
             </div>
           </div>
         </div>
@@ -94,7 +97,7 @@ export default function IndexPage() {
                   Quizlet has improved their understanding.
                 </p>
               </div>
-              <Button label="Get started" size="large" />
+              <Button label="Get started" size="large" onClick={toggleMenu} />
             </div>
             <div className="mb-20 ml-0 flex w-full shrink-0 grow-[1.12] justify-center lg:mb-0 lg:ml-20 lg:w-1/2">
               <Image src="/static/images/ZpWfEx5LeNNTxK_U_learn-image.avif" alt="Flashcards" width={461} height={357} />
@@ -114,7 +117,7 @@ export default function IndexPage() {
                   games like Quizlet Live, you can instantly create a more engaged classroom.
                 </p>
               </div>
-              <Button label="Sign up as a teacher" size="large" />
+              <Button label="Sign up as a teacher" size="large" onClick={toggleMenu} />
               <div className="mt-8">
                 <Link href="#" className="text-xl text-blue hover:text-blue-2">
                   See how teachers use Quizlet

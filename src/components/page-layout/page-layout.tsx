@@ -5,6 +5,8 @@ import Image from 'next/image';
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
 
+import { useAuthDialogStore } from '@/state';
+
 import Footer from '@/components/footer';
 import Header from '@/components/header';
 import IconButton from '@/components/icon-button';
@@ -17,7 +19,7 @@ import { ActionState } from '@/features/auth/lib/middleware';
 export const UserContext = createContext(null);
 
 export default function PageLayout({ user, children }: { user: any; children: ReactNode }) {
-  const [open, setOpen] = useState(false);
+  const { open, setOpen } = useAuthDialogStore();
   const [activeTab, setActiveTab] = useState('login');
   const [signInFormState, signInFormAction] = useFormState<ActionState, FormData>(signIn, { error: '' });
   const [signUpFormState, signUpFormAction] = useFormState<ActionState, FormData>(signUp, { error: '' });
