@@ -1,305 +1,75 @@
+import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
 
+import { useAuthDialogStore } from '@/store';
+
+import { COUNTRIES, LINKS, SOCIAL_LINKS } from '@/components/footer/constants';
 import LocaleSwitcher from '@/components/locale-switcher';
+
 import styles from './styles.module.scss';
-import clsx from 'clsx';
 
 export default function Footer() {
-  const links = [
-    {
-      title: 'About us',
-      items: [
-        {
-          name: 'About Quizlet',
-          link: ''
-        },
-        {
-          name: 'How Quizlet works',
-          link: ''
-        },
-        {
-          name: 'Careers',
-          link: ''
-        },
-        {
-          name: 'Advertise with us',
-          link: ''
-        },
-        {
-          name: 'Get the app',
-          link: ''
-        }
-      ]
-    },
-    {
-      title: 'For students',
-      items: [
-        {
-          name: 'Flashcards',
-          link: ''
-        },
-        {
-          name: 'Test',
-          link: ''
-        },
-        {
-          name: 'Learn',
-          link: ''
-        },
-        {
-          name: 'Solutions',
-          link: ''
-        },
-        {
-          name: 'Q-Chat: your AI tutor',
-          link: ''
-        },
-        {
-          name: 'Modern Learning Lab',
-          link: ''
-        },
-        {
-          name: 'Quizlet Plus',
-          link: ''
-        },
-        {
-          name: 'Study Guides',
-          link: ''
-        }
-      ]
-    },
-    {
-      title: 'For teachers',
-      items: [
-        {
-          name: 'Live',
-          link: ''
-        },
-        {
-          name: 'Checkpoint',
-          link: ''
-        },
-        {
-          name: 'Blog',
-          link: ''
-        },
-        {
-          name: 'Be the Change',
-          link: ''
-        },
-        {
-          name: 'Quizlet Plus for teachers',
-          link: ''
-        }
-      ]
-    },
-    {
-      title: 'Resources',
-      items: [
-        {
-          name: 'Help center',
-          link: ''
-        },
-        {
-          name: 'Sign up',
-          link: ''
-        },
-        {
-          name: 'Honor code',
-          link: ''
-        },
-        {
-          name: 'Community guidelines',
-          link: ''
-        },
-        {
-          name: 'Privacy',
-          link: ''
-        },
-        {
-          name: 'Terms',
-          link: ''
-        },
-        {
-          name: 'Ads and Cookie Settings',
-          link: ''
-        },
-        {
-          name: 'Quizlet for Schools',
-          link: ''
-        },
-        {
-          name: 'Parents',
-          link: ''
-        }
-      ]
-    }
-  ];
-  const countries = [
-    {
-      name: 'United States',
-      link: ''
-    },
-    {
-      name: 'Canada',
-      link: ''
-    },
-    {
-      name: 'United Kingdom',
-      link: ''
-    },
-    {
-      name: 'Australia',
-      link: ''
-    },
-    {
-      name: 'New Zealand',
-      link: ''
-    },
-    {
-      name: 'Germany',
-      link: ''
-    },
-    {
-      name: 'France',
-      link: ''
-    },
-    {
-      name: 'Spain',
-      link: ''
-    },
-    {
-      name: 'Italy',
-      link: ''
-    },
-    {
-      name: 'Japan',
-      link: ''
-    },
-    {
-      name: 'South Korea',
-      link: ''
-    },
-    {
-      name: 'India',
-      link: ''
-    },
-    {
-      name: 'China',
-      link: ''
-    },
-    {
-      name: 'Mexico',
-      link: ''
-    },
-    {
-      name: 'Sweden',
-      link: ''
-    },
-    {
-      name: 'Netherlands',
-      link: ''
-    },
-    {
-      name: 'Switzerland',
-      link: ''
-    },
-    {
-      name: 'Brazil',
-      link: ''
-    },
-    {
-      name: 'Poland',
-      link: ''
-    },
-    {
-      name: 'Turkey',
-      link: ''
-    },
-    {
-      name: 'Ukraine',
-      link: ''
-    },
-    {
-      name: 'Taiwan',
-      link: ''
-    },
-    {
-      name: 'Vietnam',
-      link: ''
-    },
-    {
-      name: 'Indonesia',
-      link: ''
-    },
-    {
-      name: 'Philippines',
-      link: ''
-    }
-  ];
+  const { open, setOpen } = useAuthDialogStore();
 
-  const socialLinks = [
-    {
-      name: 'TikTok',
-      imageSrc: '/static/images/icon__tiktok.svg',
-      url: ''
-    },
-    {
-      name: 'Twitter',
-      imageSrc: '/static/images/icon__twitter.svg',
-      url: ''
-    },
-    {
-      name: 'Facebook',
-      imageSrc: '/static/images/icon__facebook.svg',
-      url: ''
-    },
-    {
-      name: 'Instagram',
-      imageSrc: '/static/images/icon__instagram.svg',
-      url: ''
-    },
-    {
-      name: 'YouTube',
-      imageSrc: '/static/images/icon__youtube.svg',
-      url: ''
-    }
-  ];
+  function toggleMenu() {
+    setOpen(!open);
+
+    document.body.classList.remove(open ? 'overflow-hidden' : 'overflow-auto');
+    document.body.classList.add(open ? 'overflow-auto' : 'overflow-hidden');
+  }
 
   return (
     <footer>
       <nav aria-labelledby="footer-navigation" className="m-auto max-w-[76.25rem] px-8 py-16">
         <div className="flex flex-wrap">
-          {links.map(item => (
+          {LINKS.map(item => (
             <div key={item.title} className="shrink grow">
               <h5 className="mb-6 font-bold">{item.title}</h5>
               <ul className={clsx(styles.navigation, 'flex', 'flex-col')}>
-                {item.items.map(link => (
-                  <Link
-                    href="#"
-                    key={link.name}
-                    className={clsx(
-                      styles.navigation,
-                      styles.navigation__link,
-                      'mb-4',
-                      'flex',
-                      'text-sm',
-                      'text-text-color-h',
-                      'hover:text-blue-2'
-                    )}>
-                    <span>{link.name}</span>
-                    {link.name === 'Privacy' && (
-                      <Image
-                        src="/static/images/icon__shield.svg"
-                        alt="Privacy"
-                        width={16}
-                        height={16}
-                        className={clsx(styles.icon, 'ml-2')}
-                      />
-                    )}
-                  </Link>
-                ))}
+                {item.items.map(link =>
+                  link.name === 'Sign up' ? (
+                    <button
+                      type="button"
+                      key={link.name}
+                      onClick={toggleMenu}
+                      className={clsx(
+                        styles.navigation,
+                        styles.navigation__link,
+                        'mb-4',
+                        'flex',
+                        'text-sm',
+                        'text-text-color-h',
+                        'hover:text-blue-2'
+                      )}>
+                      Sign up
+                    </button>
+                  ) : (
+                    <Link
+                      href="#"
+                      key={link.name}
+                      className={clsx(
+                        styles.navigation,
+                        styles.navigation__link,
+                        'mb-4',
+                        'flex',
+                        'text-sm',
+                        'text-text-color-h',
+                        'hover:text-blue-2'
+                      )}>
+                      <span>{link.name}</span>
+                      {link.name === 'Privacy' && (
+                        <Image
+                          src="/static/images/icon__shield.svg"
+                          alt="Privacy"
+                          width={16}
+                          height={16}
+                          className={clsx(styles.icon, 'ml-2')}
+                        />
+                      )}
+                    </Link>
+                  )
+                )}
               </ul>
             </div>
           ))}
@@ -320,7 +90,7 @@ export default function Footer() {
         <div className="mb-2.5 mt-[2rem] flex flex-col gap-6">
           <h5 className="font-bold">Country</h5>
           <ul className="flex flex-wrap gap-[1.5rem]">
-            {countries.map(country => (
+            {COUNTRIES.map(country => (
               <li key={country.name}>
                 <Link href="#" className="mb-4 text-sm text-text-color-h hover:text-blue-2">
                   {country.name}
@@ -336,7 +106,7 @@ export default function Footer() {
           <div className="flex flex-wrap items-center justify-between">
             <div>
               <ul className="flex gap-4">
-                {socialLinks.map(link => (
+                {SOCIAL_LINKS.map(link => (
                   <li key={link.url} className="flex items-center justify-center">
                     <Link href="#" className="rounded-full p-2 hover:bg-grey-3">
                       <Image src={link.imageSrc} alt={link.name} width={16} height={16} />

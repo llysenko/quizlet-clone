@@ -5,7 +5,7 @@ import Image from 'next/image';
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
 
-import { useAuthDialogStore } from '@/state';
+import { useAuthDialogStore } from '@/store';
 
 import Footer from '@/components/footer';
 import Header from '@/components/header';
@@ -14,15 +14,17 @@ import IconButton from '@/components/icon-button';
 import { signIn, signOut, signUp } from '@/features/auth/actions/auth';
 import SignIn from '@/features/auth/components/sign-in';
 import SignUp from '@/features/auth/components/sign-up';
+import { AUTH_TABS } from '@/features/auth/lib/constants';
 import { ActionState } from '@/features/auth/lib/middleware';
+import { AuthTab } from '@/features/auth/lib/types';
 
 export const UserContext = createContext(null);
 
 export default function PageLayout({ user, children }: { user: any; children: ReactNode }) {
   const { open, setOpen } = useAuthDialogStore();
-  const [activeTab, setActiveTab] = useState('login');
-  const [signInFormState, signInFormAction] = useFormState<ActionState, FormData>(signIn, { error: '' });
-  const [signUpFormState, signUpFormAction] = useFormState<ActionState, FormData>(signUp, { error: '' });
+  const [activeTab, setActiveTab] = useState(AUTH_TABS.SIGN_IN);
+  const [signInFormState, signInFormAction] = useFormState<ActionState, FormData>(signIn, { errors: '' });
+  const [signUpFormState, signUpFormAction] = useFormState<ActionState, FormData>(signUp, { errors: '' });
 
   function toggleMenu() {
     setOpen(!open);
@@ -31,7 +33,7 @@ export default function PageLayout({ user, children }: { user: any; children: Re
     document.body.classList.add(open ? 'overflow-auto' : 'overflow-hidden');
   }
 
-  function switchTab(chosenTab: 'signup' | 'login') {
+  function switchTab(chosenTab: AuthTab) {
     setActiveTab(chosenTab);
   }
 
@@ -40,12 +42,12 @@ export default function PageLayout({ user, children }: { user: any; children: Re
   }
 
   useEffect(() => {
-    if (signInFormState.success) toggleMenu();
-  }, [signInFormState.success]);
+    if (signInFormState.token) toggleMenu();
+  }, [signInFormState.token]);
 
   useEffect(() => {
-    if (signUpFormState.success) toggleMenu();
-  }, [signUpFormState.success]);
+    if (signUpFormState.token) toggleMenu();
+  }, [signUpFormState.token]);
 
   return (
     <UserContext.Provider value={user}>
@@ -61,9 +63,11 @@ export default function PageLayout({ user, children }: { user: any; children: Re
           <div className="fixed inset-0 z-[1000] flex h-full w-full flex-col items-stretch overflow-auto bg-white">
             <div className="flex">
               <div className="background hidden h-screen flex-col justify-between lg:flex">
-                <div className={clsx(activeTab === 'login' && 'w-[18.75rem]', 'm-11')}>
+                <div className={clsx(activeTab === AUTH_TABS.SIGN_IN && 'w-[18.75rem]', 'm-11')}>
                   <h1 className="text-heading-1 font-bold">
-                    {activeTab === 'login' ? 'Smash sets in your sweats.' : 'The best way to study. Sign up for free.'}
+                    {activeTab === AUTH_TABS.SIGN_IN
+                      ? 'Smash sets in your sweats.'
+                      : 'The best way to study. Sign up for free.'}
                   </h1>
                 </div>
                 <div className="p-11">
@@ -84,33 +88,33 @@ export default function PageLayout({ user, children }: { user: any; children: Re
                   <div className="mb-6 flex gap-8">
                     <h3
                       className={clsx(
-                        activeTab === 'signup' &&
+                        activeTab === AUTH_TABS.SIGN_UP &&
                           'text-text-color-h underline decoration-magenta decoration-wavy underline-offset-8',
-                        activeTab !== 'signup' && 'text-gray-600',
+                        activeTab !== AUTH_TABS.SIGN_UP && 'text-gray-600',
                         'cursor-pointer',
                         'text-2xl',
                         'font-bold'
                       )}
-                      onClick={() => switchTab('signup')}>
+                      onClick={() => switchTab(AUTH_TABS.SIGN_UP)}>
                       Sign up
                     </h3>
                     <h3
                       className={clsx(
-                        activeTab === 'login' &&
+                        activeTab === AUTH_TABS.SIGN_IN &&
                           'text-text-color-h underline decoration-magenta decoration-wavy underline-offset-8',
-                        activeTab !== 'login' && 'text-gray-600',
+                        activeTab !== AUTH_TABS.SIGN_IN && 'text-gray-600',
                         'cursor-pointer',
                         'text-2xl',
                         'font-bold'
                       )}
-                      onClick={() => switchTab('login')}>
+                      onClick={() => switchTab(AUTH_TABS.SIGN_IN)}>
                       Log in
                     </h3>
                   </div>
-                  {activeTab === 'signup' && (
+                  {activeTab === AUTH_TABS.SIGN_UP && (
                     <SignUp switchTab={switchTab} formAction={signUpFormAction} formState={signUpFormState} />
                   )}
-                  {activeTab === 'login' && (
+                  {activeTab === AUTH_TABS.SIGN_IN && (
                     <SignIn switchTab={switchTab} formAction={signInFormAction} formState={signInFormState} />
                   )}
                 </div>

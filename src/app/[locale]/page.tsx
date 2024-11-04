@@ -5,7 +5,7 @@ import Image from 'next/image';
 import Link from 'next/link';
 import React from 'react';
 
-import { useAuthDialogStore } from '@/state';
+import { useAuthDialogStore } from '@/store';
 
 import Button from '@/components/buttons';
 import Carousel from '@/components/carousel';
@@ -28,7 +28,13 @@ export default function IndexPage() {
           <h1 className="text-heading-1 font-bold">{t('headingOne')}</h1>
           <p className="min-h-[1.5rem] text-xl leading-[1.4]">{t('descriptionOne')}</p>
           <Button label="Sign up for free" size="medium" onClick={toggleMenu} />
-          <Button label="I'm a teacher" size="medium" borderless={true} mode="accent" />
+          <Button
+            label="I'm a teacher"
+            size="medium"
+            borderless={true}
+            mode="accent"
+            onClick={() => alert('Not implemented')}
+          />
         </div>
         <Carousel />
       </section>

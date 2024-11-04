@@ -24,11 +24,9 @@ export const signUp = validateAction(SignUpFormSchema, async (data, formData) =>
   });
 
   try {
-    const newUser = await prisma.user.create({ data, select: { id: true } });
+    const newUser = await prisma.user.create({ data, select: { id: true, role: true } });
 
-    await createSession(newUser.id);
-
-    return { success: 'Sign up successful!' };
+    return { token: await createSession(newUser) };
   } catch (error: any) {
     return { errors: error.message };
   }
@@ -39,7 +37,8 @@ export const signIn = validateAction(SignInFormSchema, async (data, formData) =>
   const foundUser = await db.user.findFirst({
     where: {
       OR: [{ email: userUniqueIdentifier }, { username: userUniqueIdentifier }]
-    }
+    },
+    select: { id: true, role: true, password: true }
   });
 
   if (!foundUser) return { errors: 'Invalid credentials. Please try again.' };
@@ -48,9 +47,7 @@ export const signIn = validateAction(SignInFormSchema, async (data, formData) =>
 
   if (!isPasswordValid) return { errors: 'Invalid credentials. Please try again.' };
 
-  await createSession(foundUser.id);
-
-  return { success: 'Sign in successful!' };
+  return { token: await createSession(foundUser) };
 });
 
 export async function signOut() {

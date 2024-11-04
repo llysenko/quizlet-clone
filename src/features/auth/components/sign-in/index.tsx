@@ -1,49 +1,16 @@
-'use client';
-
 import Button from '@/components/buttons';
 import SubmitButton from '@/components/buttons/submit-button';
 import Divider from '@/components/divider';
-import Input, { InputType } from '@/components/input';
+import Input from '@/components/input';
 
-export default function SignIn({ switchTab, formState, formAction }: any) {
-  const controls = [
-    {
-      id: 'userUniqueIdentifier',
-      type: 'text' as InputType,
-      name: 'userUniqueIdentifier',
-      label: 'email',
-      placeholder: 'Enter your email address or username'
-    },
-    {
-      id: 'userPassword',
-      type: 'password' as InputType,
-      name: 'password',
-      label: 'password',
-      placeholder: 'Enter your password'
-    }
-  ];
-  const authProviders = [
-    {
-      name: 'google',
-      label: 'Continue with Google',
-      iconSrc: 'icon__google.svg'
-    },
-    {
-      name: 'facebook',
-      label: 'Continue with Facebook',
-      iconSrc: 'icon__facebook_color.svg'
-    },
-    {
-      name: 'apple',
-      label: 'Continue with Apple',
-      iconSrc: 'icon__apple.svg'
-    }
-  ];
+import { AUTH_TABS, SIGN_IN_AUTH_PROVIDERS, SIGN_IN_CONTROLS } from '@/features/auth/lib/constants';
+import { AuthProps } from '@/features/auth/lib/types';
 
+export default function SignIn({ switchTab, formState, formAction }: AuthProps) {
   return (
     <>
       <div className="mb-4 flex flex-col gap-4">
-        {authProviders.map(provider => (
+        {SIGN_IN_AUTH_PROVIDERS.map(provider => (
           <Button
             key={provider.name}
             label={provider.label}
@@ -54,10 +21,10 @@ export default function SignIn({ switchTab, formState, formAction }: any) {
           />
         ))}
       </div>
-      <Divider text="or email" />
+      <Divider text="or email" className="mt-6" />
       <form action={formData => formAction(formData)}>
         <div className="mt-6 flex flex-col gap-8">
-          {controls.map(control => (
+          {SIGN_IN_CONTROLS.map(control => (
             <Input data={control} key={control.id} />
           ))}
         </div>
@@ -82,7 +49,7 @@ export default function SignIn({ switchTab, formState, formAction }: any) {
             size="large"
             width="full"
             mode="outlined"
-            onClick={() => switchTab('signup')}
+            onClick={() => switchTab(AUTH_TABS.SIGN_UP)}
           />
           <Button label="Log in with magic link" size="large" width="full" borderless={true} />
         </div>

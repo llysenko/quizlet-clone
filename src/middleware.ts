@@ -1,17 +1,18 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
 
-import { signToken, verifyToken } from '@/features/auth/lib/session';
+import { USER_SESSION_NAME } from '@/features/auth/lib/constants';
+import { deleteSession, signToken, verifyToken } from '@/features/auth/lib/session';
 
 import { locales, pathnames } from './config';
 
-const protectedRoutes = ['/about'];
+const protectedRoutes = ['/about', '/pathnames'];
 
 const nextIntlMiddleware = createMiddleware({ defaultLocale: 'en', locales, localePrefix: 'never', pathnames });
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
-  const sessionCookie = req.cookies.get('session');
+  const sessionCookie = req.cookies.get(USER_SESSION_NAME);
   const isProtectedRoute = protectedRoutes.includes(pathname);
 
   if (isProtectedRoute && !sessionCookie) return NextResponse.redirect(new URL('/', req.url));
@@ -24,7 +25,7 @@ export async function middleware(req: NextRequest) {
       const expiresInOneDay = new Date(Date.now() + 24 * 60 * 60 * 1000);
 
       res.cookies.set({
-        name: 'session',
+        name: USER_SESSION_NAME,
         value: await signToken({ ...parsed, expires: expiresInOneDay.toISOString() }),
         httpOnly: true,
         secure: true,
@@ -32,7 +33,7 @@ export async function middleware(req: NextRequest) {
         expires: expiresInOneDay
       });
     } catch (error: any) {
-      res.cookies.delete('session');
+      await deleteSession();
 
       if (isProtectedRoute) return NextResponse.redirect(new URL('/', req.url));
     }

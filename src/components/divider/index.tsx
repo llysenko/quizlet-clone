@@ -1,7 +1,10 @@
-export default function Divider({ text }: { text: string }) {
+import clsx from 'clsx';
+
+export default function Divider({ text, className }: { text: string; className?: string }) {
   return (
-    <div className="divider mt-6 flex items-center justify-center">
+    <div className={clsx('divider flex items-center justify-center', className)}>
       <div className="relative text-sm font-semibold text-gray-600">{text}</div>
+
       <style jsx>{`
         .divider::after,
         .divider::before {

@@ -1,3 +1,4 @@
+import { UserRole } from '@prisma/client';
 import { z } from 'zod';
 
 export const EmailSchema = z.string().email({ message: 'Invalid email address' }).max(256).trim();
@@ -40,14 +41,15 @@ export const SignInFormSchema = z
 
 export const UserDataSchema = z
   .object({
+    id: z.number().positive(),
     email: EmailSchema,
     username: UsernameSchema,
     password: PasswordSignInSchema,
     policyAccepted: z.literal<boolean>(true),
     remindersAccepted: z.boolean(),
     birthday: z.date(),
+    role: z.enum(['student', 'teacher']),
     createdAt: z.date(),
     updatedAt: z.date()
   })
   .required();
-export type UserData = z.infer<typeof UserDataSchema>;

@@ -2,47 +2,48 @@
 
 import { useState } from 'react';
 
-import CarouselCard from '@/components/carousel-card';
-import CarouselNavigation from '@/components/carousel-navigation';
+import CarouselCard from '@/components/carousel/carousel-card';
+import CarouselNavigation from '@/components/carousel/carousel-navigation';
+
 import styles from './styles.module.scss';
 
+const imagesPath = '/static/images/';
+const carouselData = [
+  {
+    title: 'Learn',
+    bgColor: '#98E3FF',
+    textColor: '#000',
+    imageSrc: `${imagesPath}learn@2x.avif`
+  },
+  {
+    title: 'Study Guides',
+    bgColor: '#EEAAFF',
+    textColor: '#000',
+    imageSrc: `${imagesPath}study_guides@2x.avif`
+  },
+  {
+    title: 'Flashcards',
+    bgColor: '#423ed8',
+    textColor: '#fff',
+    imageSrc: `${imagesPath}flashcards@2x.avif`
+  },
+  {
+    title: 'Practice Tests',
+    bgColor: '#FFC38C',
+    textColor: '#000',
+    imageSrc: `${imagesPath}practice_tests@2x.avif`
+  },
+  {
+    title: 'Expert Solutions',
+    bgColor: '#98F1D1',
+    textColor: '#000',
+    imageSrc: `${imagesPath}expert_solutions@2x.avif`
+  }
+];
+
 export default function Carousel() {
-  const imagesPath = '/static/images/';
-  const carouselData = [
-    {
-      title: 'Learn',
-      bgColor: '#98E3FF',
-      textColor: '#000',
-      imageSrc: `${imagesPath}learn@2x.avif`
-    },
-    {
-      title: 'Study Guides',
-      bgColor: '#EEAAFF',
-      textColor: '#000',
-      imageSrc: `${imagesPath}study_guides@2x.avif`
-    },
-    {
-      title: 'Flashcards',
-      bgColor: '#423ed8',
-      textColor: '#fff',
-      imageSrc: `${imagesPath}flashcards@2x.avif`
-    },
-    {
-      title: 'Practice Tests',
-      bgColor: '#FFC38C',
-      textColor: '#000',
-      imageSrc: `${imagesPath}practice_tests@2x.avif`
-    },
-    {
-      title: 'Expert Solutions',
-      bgColor: '#98F1D1',
-      textColor: '#000',
-      imageSrc: `${imagesPath}expert_solutions@2x.avif`
-    }
-  ];
   const totalPerPage = 4;
   const [carouselItems, setCarouselItems] = useState(carouselData.slice(0, totalPerPage));
-  const [currentPage, setCurrentPage] = useState(0);
 
   const movePrev = () => {
     const firstCarouselItemIndex = carouselData.findIndex(el => el.imageSrc === carouselItems.at(0)?.imageSrc);

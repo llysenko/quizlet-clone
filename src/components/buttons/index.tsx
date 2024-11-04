@@ -5,29 +5,27 @@ import React from 'react';
 import styles from './styles.module.scss';
 
 export interface ButtonProps {
-  label: string;
-  backgroundColor?: string;
   borderless?: boolean;
   disabled?: boolean;
   iconSrc?: string;
+  label: string;
   mode?: 'primary' | 'accent' | 'outlined';
   size?: 'small' | 'medium' | 'large' | 'full';
   type?: 'button' | 'submit';
   width?: 'full' | 'fit';
-  onClick?: () => void;
+  onClick: (event?: any) => void;
 }
 
 export default function Button({
-  label,
-  backgroundColor,
   borderless = false,
   disabled = false,
   iconSrc,
+  label,
   mode = 'primary',
   size = 'medium',
   type = 'button',
   width = 'fit',
-  ...props
+  onClick
 }: ButtonProps) {
   return (
     <button
@@ -40,7 +38,7 @@ export default function Button({
         borderless && styles.button_borderless,
         disabled && 'cursor-not-allowed opacity-50'
       )}
-      {...props}>
+      onClick={onClick}>
       {iconSrc && <Image src={iconSrc} height={16} width={16} alt="" className={styles.button__icon} />}
       <span>{label}</span>
     </button>

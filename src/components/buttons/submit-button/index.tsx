@@ -5,22 +5,23 @@ import { useFormStatus } from 'react-dom';
 import Button, { ButtonProps } from '@/components/buttons';
 
 export default function SubmitButton({
-  label,
-  backgroundColor,
   borderless = false,
   iconSrc,
+  label,
   mode = 'primary',
   size = 'medium',
-  type = 'button',
-  width = 'fit',
-  ...props
+  width = 'fit'
 }: ButtonProps) {
   const { pending } = useFormStatus();
 
+  function handleClick(event: Event) {
+    if (pending) event.preventDefault();
+  }
+
   return (
     <Button
+      aria-disabled={pending}
       label={pending ? 'Submitting...' : label}
-      backgroundColor={backgroundColor}
       borderless={borderless}
       iconSrc={iconSrc}
       mode={mode}
@@ -28,7 +29,7 @@ export default function SubmitButton({
       type="submit"
       width={width}
       disabled={pending}
-      {...props}
+      onClick={handleClick}
     />
   );
 }

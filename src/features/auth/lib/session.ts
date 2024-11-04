@@ -2,12 +2,10 @@ import { compare } from 'bcryptjs';
 import { jwtVerify, SignJWT } from 'jose';
 import { cookies } from 'next/headers';
 
-const secretKey = new TextEncoder().encode(process.env.AUTH_SECRET);
+import { USER_SESSION_NAME } from '@/features/auth/lib/constants';
+import { SessionData, User } from '@/features/auth/lib/types';
 
-export type SessionData = {
-  user: { id: number };
-  expires: string;
-};
+const secretKey = new TextEncoder().encode(process.env.AUTH_SECRET);
 
 export async function comparePasswords(plainTextPassword: string, hashedPassword: string) {
   return compare(plainTextPassword, hashedPassword);
@@ -22,7 +20,7 @@ export async function signToken(payload: SessionData) {
 }
 
 export function getSession() {
-  const session = cookies().get('session')?.value;
+  const session = cookies().get(USER_SESSION_NAME)?.value;
 
   if (!session) return null;
 
@@ -35,22 +33,24 @@ export async function verifyToken(input: string) {
   return payload as SessionData;
 }
 
-export async function createSession(userId: number) {
+export async function createSession(user: Partial<User>) {
   const expiresInOneDay = new Date(Date.now() + 24 * 60 * 60 * 1000);
   const session: SessionData = {
-    user: { id: userId! },
+    user: { id: user.id!, role: user.role! },
     expires: expiresInOneDay.toISOString()
   };
   const encryptedSession = await signToken(session);
 
-  cookies().set('session', encryptedSession, {
+  cookies().set(USER_SESSION_NAME, encryptedSession, {
     expires: expiresInOneDay,
     httpOnly: true,
     secure: true,
     sameSite: 'lax'
   });
+
+  return encryptedSession;
 }
 
 export async function deleteSession() {
-  cookies().delete('session');
+  cookies().delete(USER_SESSION_NAME);
 }
