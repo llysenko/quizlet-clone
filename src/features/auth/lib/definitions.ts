@@ -42,6 +42,7 @@ export const SignInFormSchema = z
 export const UserDataSchema = z
   .object({
     id: z.number().positive(),
+    avatar: z.string().optional(),
     email: EmailSchema,
     username: UsernameSchema,
     password: PasswordSignInSchema,

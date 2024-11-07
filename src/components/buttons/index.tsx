@@ -13,7 +13,7 @@ export interface ButtonProps {
   size?: 'small' | 'medium' | 'large' | 'full';
   type?: 'button' | 'submit';
   width?: 'full' | 'fit';
-  onClick: (event?: any) => void;
+  onClick?: (event?: any) => void;
 }
 
 export default function Button({

@@ -3,21 +3,28 @@ import Link from 'next/link';
 import { useContext } from 'react';
 
 import Button from '@/components/buttons';
-import Navigation from '@/components/navigation';
-import { UserContext } from '@/components/page-layout/page-layout';
+import CreateDropdown from '@/components/header/create-dropdown';
+import Navigation from '@/components/header/navigation';
+import UserDropdown from '@/components/header/user-dropdown';
+import { UserContext } from '@/components/page-layout';
 
-import { UserData } from '@/features/auth/lib/definitions';
+import { User } from '@/features/auth/lib/types';
 
 import styles from './styles.module.scss';
 
-export default function Header({ toggleMenu, signOut }: { toggleMenu: any; signOut: any }) {
-  const user: UserData | null = useContext(UserContext);
+type HeaderProps = {
+  toggleMenu?: () => void;
+  signOut?: () => void;
+};
+
+export default function Header({ toggleMenu, signOut }: HeaderProps) {
+  const user: User | null = useContext(UserContext);
 
   return (
     <header className={styles.header}>
       <div className={styles.header__container}>
         <div className={clsx(styles.nav, styles.nav_left)}>
-          <Link href="/" className={styles.logo} title="Quizlet"></Link>
+          <Link href={user ? '/latest' : '/'} className={styles.logo} title="Quizlet"></Link>
           <Navigation />
         </div>
 
@@ -26,14 +33,15 @@ export default function Header({ toggleMenu, signOut }: { toggleMenu: any; signO
         {/*</div>*/}
 
         <ul className={clsx(styles.nav, styles.nav_right)}>
-          <li>
-            <Button iconSrc="/static/images/plus.svg" label="Create" size="medium" borderless={true} />
+          <li className="flex">
+            <CreateDropdown user={user} />
           </li>
+          {user && <Button label="Upgrade: free 7-day trial" onClick={() => alert('Not implemented')} mode="accent" />}
           <li>
             {user ? (
-              <Button label="Log out" size="medium" onClick={signOut} />
+              <UserDropdown user={user} signOut={signOut} />
             ) : (
-              <Button label="Log in" size="medium" onClick={toggleMenu} />
+              <Button label="Log in" size="medium" onClick={() => toggleMenu?.()} />
             )}
           </li>
         </ul>

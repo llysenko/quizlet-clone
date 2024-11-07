@@ -11,16 +11,19 @@ type InputProps = {
   name: string;
   label: string;
   placeholder: string;
+  inputBg?: string;
 };
 
 export default function Input({
   data,
   onInputBlur,
-  error
+  error,
+  inputBg = 'bg-grey'
 }: {
   data: InputProps;
   onInputBlur?: (target: any) => void;
   error?: any;
+  inputBg?: string;
 }) {
   const [type, setType] = useState<InputType>(data.type);
 
@@ -34,7 +37,8 @@ export default function Input({
       <label
         htmlFor={data.id}
         className={clsx(
-          'relative flex h-[3rem] flex-col justify-center overflow-hidden rounded-lg bg-grey px-4 py-1',
+          'relative flex h-[3rem] flex-col justify-center overflow-hidden rounded-lg px-4 py-1',
+          inputBg,
           error && 'border-b-2 border-error'
         )}>
         <div className="flex items-center justify-between">

@@ -1,9 +1,10 @@
+import { nextui } from '@nextui-org/react';
+
 import type { Config } from 'tailwindcss';
-import { rgb } from 'polished';
 
 export default {
   darkMode: 'class',
-  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}'],
+  content: ['./src/**/*.{js,ts,jsx,tsx,mdx}', './node_modules/@nextui-org/theme/dist/**/*.{js,ts,jsx,tsx}'],
   theme: {
     extend: {
       fontSize: {
@@ -37,5 +38,5 @@ export default {
       }
     }
   },
-  plugins: []
+  plugins: [nextui()]
 } satisfies Config;

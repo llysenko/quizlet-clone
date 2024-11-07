@@ -4,7 +4,7 @@ import { getLocale, getMessages } from 'next-intl/server';
 import { Prompt } from 'next/font/google';
 import { ReactNode } from 'react';
 
-import PageLayout from '@/components/page-layout/page-layout';
+import PageLayout from '@/components/page-layout';
 
 import { getUser } from '@/features/auth/db/queries';
 

@@ -7,13 +7,7 @@
 }
 
 .nav {
-  @apply flex items-center;
-
-  &_right {
-    li:not(:last-child) {
-      padding: 0 0.5rem;
-    }
-  }
+  @apply flex items-center gap-4;
 
   &_left {
     @apply h-full;

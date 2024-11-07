@@ -9,6 +9,8 @@ import { useAuthDialogStore } from '@/store';
 
 import Button from '@/components/buttons';
 import Carousel from '@/components/carousel';
+import Heading1 from '@/components/headings/heading-1';
+import Heading2 from '@/components/headings/heading-2';
 
 export default function IndexPage() {
   const t = useTranslations('IndexPage');
@@ -25,7 +27,7 @@ export default function IndexPage() {
     <>
       <section className="bg-grey-4 py-16">
         <div className="m-auto flex max-w-[52.5rem] flex-col items-center gap-4 px-8 pb-8 pt-0 text-center">
-          <h1 className="text-heading-1 font-bold">{t('headingOne')}</h1>
+          <Heading1>{t('headingOne')}</Heading1>
           <p className="min-h-[1.5rem] text-xl leading-[1.4]">{t('descriptionOne')}</p>
           <Button label="Sign up for free" size="medium" onClick={toggleMenu} />
           <Button
@@ -42,7 +44,7 @@ export default function IndexPage() {
         <div className="m-auto max-w-[64rem]">
           <div className="flex flex-wrap-reverse items-center px-8 lg:flex-nowrap">
             <div className="w-full grow lg:w-1/2">
-              <h2 className="text-heading-2 font-bold">Every class, every test, one ultimate study app</h2>
+              <Heading2>Every class, every test, one ultimate study app</Heading2>
               <div className="py-12 text-left">
                 <p className="text-xl">
                   Create your own flashcards or find sets made by teachers, students, and experts. Study them anytime,
@@ -54,7 +56,7 @@ export default function IndexPage() {
                   <Image src="/static/images/app-store.svg" alt="App Store" width={129} height={40} />
                 </Link>
                 <Link href="#">
-                  <Image src="/static/images/google-play.svg" alt="App Store" width={129} height={40} />
+                  <Image src="/static/images/google-play.svg" alt="Google Play" width={129} height={40} />
                 </Link>
               </div>
             </div>
@@ -81,7 +83,7 @@ export default function IndexPage() {
               />
             </div>
             <div className="ml-0 w-full grow lg:ml-20 lg:w-1/2">
-              <h2 className="text-heading-2 font-bold">Make class material instantly studiable</h2>
+              <Heading2>Make class material instantly studiable</Heading2>
               <div className="py-12 text-left">
                 <p className="text-xl">
                   Turn your slides, videos, and notes into flashcard sets, practice tests, and study guides.
@@ -96,7 +98,7 @@ export default function IndexPage() {
         <div className="m-auto max-w-[64rem]">
           <div className="flex flex-wrap-reverse items-center px-8 lg:flex-nowrap">
             <div className="w-full grow lg:w-1/2">
-              <h2 className="text-heading-2 font-bold">Test prep for any subject</h2>
+              <Heading2>Test prep for any subject</Heading2>
               <div className="py-12 text-left">
                 <p className="text-xl">
                   Memorize anything with personalized practice tests and study sessions in Learn. 98% of students say
@@ -116,7 +118,7 @@ export default function IndexPage() {
           <div className="flex flex-wrap-reverse items-center px-8 lg:flex-nowrap">
             <div className="w-full grow lg:w-1/2">
               <h4 className="text-xl font-bold uppercase">teachers</h4>
-              <h2 className="text-heading-2 font-bold">Empower your students</h2>
+              <Heading2>Empower your students</Heading2>
               <div className="py-12 text-left">
                 <p className="text-xl">
                   Help every student confidently learn anything. With free flashcard sets, study modes, and in-class

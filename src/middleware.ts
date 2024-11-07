@@ -6,7 +6,7 @@ import { deleteSession, signToken, verifyToken } from '@/features/auth/lib/sessi
 
 import { locales, pathnames } from './config';
 
-const protectedRoutes = ['/about', '/pathnames'];
+const protectedRoutes = ['/create-set', '/latest'];
 
 const nextIntlMiddleware = createMiddleware({ defaultLocale: 'en', locales, localePrefix: 'never', pathnames });
 

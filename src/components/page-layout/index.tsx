@@ -2,6 +2,7 @@
 
 import clsx from 'clsx';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
 
@@ -9,22 +10,26 @@ import { useAuthDialogStore } from '@/store';
 
 import Footer from '@/components/footer';
 import Header from '@/components/header';
+import Heading1 from '@/components/headings/heading-1';
 import IconButton from '@/components/icon-button';
 
 import { signIn, signOut, signUp } from '@/features/auth/actions/auth';
 import SignIn from '@/features/auth/components/sign-in';
 import SignUp from '@/features/auth/components/sign-up';
 import { AUTH_TABS } from '@/features/auth/lib/constants';
-import { ActionState } from '@/features/auth/lib/middleware';
-import { AuthTab } from '@/features/auth/lib/types';
+import { ActionState, AuthTab } from '@/features/auth/lib/types';
 
 export const UserContext = createContext(null);
-
 export default function PageLayout({ user, children }: { user: any; children: ReactNode }) {
+  const router = useRouter();
   const { open, setOpen } = useAuthDialogStore();
   const [activeTab, setActiveTab] = useState(AUTH_TABS.SIGN_IN);
   const [signInFormState, signInFormAction] = useFormState<ActionState, FormData>(signIn, { errors: '' });
   const [signUpFormState, signUpFormAction] = useFormState<ActionState, FormData>(signUp, { errors: '' });
+
+  async function handleSignOut() {
+    await signOut();
+  }
 
   function toggleMenu() {
     setOpen(!open);
@@ -37,38 +42,38 @@ export default function PageLayout({ user, children }: { user: any; children: Re
     setActiveTab(chosenTab);
   }
 
-  async function handleSignOut() {
-    await signOut();
-  }
-
   useEffect(() => {
-    if (signInFormState.token) toggleMenu();
+    if (signInFormState.token) {
+      toggleMenu();
+      router.push('/latest');
+    }
   }, [signInFormState.token]);
 
   useEffect(() => {
-    if (signUpFormState.token) toggleMenu();
+    if (signUpFormState.token) {
+      toggleMenu();
+      router.push('/latest');
+    }
   }, [signUpFormState.token]);
 
   return (
     <UserContext.Provider value={user}>
       <div className="wrapper">
         <div className="page-header">
-          <Header toggleMenu={toggleMenu} signOut={handleSignOut} />
+          <Header signOut={handleSignOut} toggleMenu={toggleMenu} />
         </div>
         <main className="page-body">{children}</main>
-        <div className="page-footer">
-          <Footer />
-        </div>
+        <div className="page-footer">{!user && <Footer />}</div>
         {open && (
           <div className="fixed inset-0 z-[1000] flex h-full w-full flex-col items-stretch overflow-auto bg-white">
             <div className="flex">
               <div className="background hidden h-screen flex-col justify-between lg:flex">
                 <div className={clsx(activeTab === AUTH_TABS.SIGN_IN && 'w-[18.75rem]', 'm-11')}>
-                  <h1 className="text-heading-1 font-bold">
+                  <Heading1>
                     {activeTab === AUTH_TABS.SIGN_IN
                       ? 'Smash sets in your sweats.'
                       : 'The best way to study. Sign up for free.'}
-                  </h1>
+                  </Heading1>
                 </div>
                 <div className="p-11">
                   <Image src="/static/images/logo-full.svg" alt="Quizlet" width={160} height={37} quality={75} />

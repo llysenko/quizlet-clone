@@ -3,11 +3,14 @@
 import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
 import { usePathname } from 'next/navigation';
-import React, { useState } from 'react';
+import React, { useContext, useState } from 'react';
 
 import { Link } from '@/navigation';
 
 import IconButton from '@/components/icon-button';
+import { UserContext } from '@/components/page-layout';
+
+import { User } from '@/features/auth/lib/types';
 
 import styles from './styles.module.scss';
 
@@ -23,6 +26,7 @@ const items = [
 ];
 
 export default function Navigation() {
+  const user: User | null = useContext(UserContext);
   const t = useTranslations('Navigation');
   const currentPath = usePathname();
   const [open, setOpen] = useState(false);
@@ -51,15 +55,19 @@ export default function Navigation() {
   return (
     <div className={styles.nav}>
       <div aria-labelledby="primary-navigation" className="flex h-full items-center">
-        <ul className={clsx(styles.nav__list, !open && 'hidden')}>{menuList}</ul>
-        <IconButton
-          className="lg:invisible"
-          size="medium"
-          borderless={true}
-          iconSrc="/static/images/menu.svg"
-          title="Menu"
-          onClick={toggleMenu}
-        />
+        {!user && (
+          <>
+            <ul className={clsx(styles.nav__list, !open && 'hidden')}>{menuList}</ul>
+            <IconButton
+              className="lg:invisible"
+              size="medium"
+              borderless={true}
+              iconSrc="/static/images/menu.svg"
+              title="Menu"
+              onClick={toggleMenu}
+            />
+          </>
+        )}
       </div>
       {open && (
         <div className={styles.nav_mobile}>
