@@ -12,9 +12,6 @@ const cspHeader = `
     frame-ancestors 'none';
     upgrade-insecure-requests;`;
 const nextConfig = {
-  experimental: {
-    typedRoutes: true
-  },
   reactStrictMode: true,
   async headers() {
     return [

@@ -1,4 +1,4 @@
-import SetPage from '@/features/flashcards/components/set-page';
+import SetPage from '@/features/flashcards/components/create-set/set-page';
 
 export default function CreateSetPage() {
   const initFlashcardsSet = Array.from({ length: 5 }).map((_, index) => ({ id: index + 1 }));

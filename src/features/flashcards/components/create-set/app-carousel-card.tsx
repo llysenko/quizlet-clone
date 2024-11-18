@@ -11,7 +11,7 @@ type Set = {
   updatedAt: Date;
   userId: number;
   _count: { flashcards: number };
-  User: { username: string };
+  user: { username: string };
 };
 
 export default function AppCarouselCard({ set }: { set: Set }) {

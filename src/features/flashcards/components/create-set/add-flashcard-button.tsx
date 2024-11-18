@@ -1,4 +1,4 @@
-import Card from '@/features/flashcards/components/card';
+import Card from '@/features/flashcards/components/create-set/card';
 
 import styles from '../styles.module.scss';
 
