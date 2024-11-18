@@ -6,13 +6,13 @@ import { deleteSession, signToken, verifyToken } from '@/features/auth/lib/sessi
 
 import { locales, pathnames } from './config';
 
-const protectedRoutes = ['/create-set', '/latest', '/achievements', '/:id/flash-cards', '/user/*/sets'];
+const protectedRoutes = ['/create-set', '/latest', '/achievements', '/flash-cards', '/sets'];
 const nextIntlMiddleware = createMiddleware({ defaultLocale: 'en', locales, localePrefix: 'never', pathnames });
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;
   const sessionCookie = req.cookies.get(USER_SESSION_NAME);
-  const isProtectedRoute = protectedRoutes.includes(pathname);
+  const isProtectedRoute = protectedRoutes.some(route => pathname.includes(route));
 
   if (isProtectedRoute && !sessionCookie) return NextResponse.redirect(new URL('/', req.url));
 
