@@ -10,13 +10,13 @@ import Input from '@/components/input';
 import Textarea from '@/components/textarea';
 
 import { createFlashcardSetWithCards } from '@/features/flashcards/actions';
-import AddFlashcardButton from '@/features/flashcards/components/add-flashcard-button';
-import SetCreateControl from '@/features/flashcards/components/set-create-control';
-import SetHeader from '@/features/flashcards/components/set-header';
-import SetInfo from '@/features/flashcards/components/set-info';
-import SetList from '@/features/flashcards/components/set-list';
-import SetListItem from '@/features/flashcards/components/set-list-item';
-import SetSettings from '@/features/flashcards/components/set-settings';
+import AddFlashcardButton from '@/features/flashcards/components/create-set/add-flashcard-button';
+import SetCreateControl from '@/features/flashcards/components/create-set/set-create-control';
+import SetHeader from '@/features/flashcards/components/create-set/set-header';
+import SetInfo from '@/features/flashcards/components/create-set/set-info';
+import SetList from '@/features/flashcards/components/create-set/set-list';
+import SetListItem from '@/features/flashcards/components/create-set/set-list-item';
+import SetSettings from '@/features/flashcards/components/create-set/set-settings';
 import { DESCRIPTION_DATA, TITLE_DATA } from '@/features/flashcards/lib/constants';
 import { FlashCard } from '@/features/flashcards/lib/types';
 
