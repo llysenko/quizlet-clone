@@ -6,8 +6,7 @@ import { deleteSession, signToken, verifyToken } from '@/features/auth/lib/sessi
 
 import { locales, pathnames } from './config';
 
-const protectedRoutes = ['/create-set', '/latest'];
-
+const protectedRoutes = ['/create-set', '/latest', '/achievements', '/:id/flash-cards', '/user/*/sets'];
 const nextIntlMiddleware = createMiddleware({ defaultLocale: 'en', locales, localePrefix: 'never', pathnames });
 
 export async function middleware(req: NextRequest) {

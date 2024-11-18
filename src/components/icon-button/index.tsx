@@ -1,6 +1,6 @@
+import clsx from 'clsx';
 import Image from 'next/image';
 import React from 'react';
-import clsx from 'clsx';
 
 import styles from './styles.module.scss';
 
@@ -11,7 +11,7 @@ interface IconButtonProps {
   className?: string;
   size?: 'small' | 'medium' | 'large';
   title?: string;
-  onClick?: () => void;
+  onClick?: (event?: any) => void;
 }
 
 export default function IconButton({

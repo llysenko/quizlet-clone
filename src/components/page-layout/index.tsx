@@ -1,29 +1,21 @@
 'use client';
 
-import clsx from 'clsx';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { createContext, ReactNode, useEffect, useState } from 'react';
 import { useFormState } from 'react-dom';
 
 import { useAuthDialogStore } from '@/store';
 
-import Footer from '@/components/footer';
 import Header from '@/components/header';
-import Heading1 from '@/components/headings/heading-1';
-import IconButton from '@/components/icon-button';
 
 import { signIn, signOut, signUp } from '@/features/auth/actions/auth';
-import SignIn from '@/features/auth/components/sign-in';
-import SignUp from '@/features/auth/components/sign-up';
-import { AUTH_TABS } from '@/features/auth/lib/constants';
-import { ActionState, AuthTab } from '@/features/auth/lib/types';
+import AuthModal from '@/features/auth/components/auth-modal';
+import { ActionState } from '@/features/auth/lib/types';
 
 export const UserContext = createContext(null);
 export default function PageLayout({ user, children }: { user: any; children: ReactNode }) {
   const router = useRouter();
   const { open, setOpen } = useAuthDialogStore();
-  const [activeTab, setActiveTab] = useState(AUTH_TABS.SIGN_IN);
   const [signInFormState, signInFormAction] = useFormState<ActionState, FormData>(signIn, { errors: '' });
   const [signUpFormState, signUpFormAction] = useFormState<ActionState, FormData>(signUp, { errors: '' });
 
@@ -36,10 +28,6 @@ export default function PageLayout({ user, children }: { user: any; children: Re
 
     document.body.classList.remove(open ? 'overflow-hidden' : 'overflow-auto');
     document.body.classList.add(open ? 'overflow-auto' : 'overflow-hidden');
-  }
-
-  function switchTab(chosenTab: AuthTab) {
-    setActiveTab(chosenTab);
   }
 
   useEffect(() => {
@@ -63,81 +51,14 @@ export default function PageLayout({ user, children }: { user: any; children: Re
           <Header signOut={handleSignOut} toggleMenu={toggleMenu} />
         </div>
         <main className="page-body">{children}</main>
-        <div className="page-footer">{!user && <Footer />}</div>
         {open && (
-          <div className="fixed inset-0 z-[1000] flex h-full w-full flex-col items-stretch overflow-auto bg-white">
-            <div className="flex">
-              <div className="background hidden h-screen flex-col justify-between lg:flex">
-                <div className={clsx(activeTab === AUTH_TABS.SIGN_IN && 'w-[18.75rem]', 'm-11')}>
-                  <Heading1>
-                    {activeTab === AUTH_TABS.SIGN_IN
-                      ? 'Smash sets in your sweats.'
-                      : 'The best way to study. Sign up for free.'}
-                  </Heading1>
-                </div>
-                <div className="p-11">
-                  <Image src="/static/images/logo-full.svg" alt="Quizlet" width={160} height={37} quality={75} />
-                </div>
-              </div>
-              <div className="h-screen shrink grow basis-1/2 overflow-y-auto">
-                <div className="m-4 flex justify-end">
-                  <IconButton
-                    size="medium"
-                    iconSrc="/static/images/icon__close.svg"
-                    title="Close menu"
-                    borderless={true}
-                    onClick={toggleMenu}
-                  />
-                </div>
-                <div className="m-auto flex max-w-[40rem] flex-col px-12 pb-10">
-                  <div className="mb-6 flex gap-8">
-                    <h3
-                      className={clsx(
-                        activeTab === AUTH_TABS.SIGN_UP &&
-                          'text-text-color-h underline decoration-magenta decoration-wavy underline-offset-8',
-                        activeTab !== AUTH_TABS.SIGN_UP && 'text-gray-600',
-                        'cursor-pointer',
-                        'text-2xl',
-                        'font-bold'
-                      )}
-                      onClick={() => switchTab(AUTH_TABS.SIGN_UP)}>
-                      Sign up
-                    </h3>
-                    <h3
-                      className={clsx(
-                        activeTab === AUTH_TABS.SIGN_IN &&
-                          'text-text-color-h underline decoration-magenta decoration-wavy underline-offset-8',
-                        activeTab !== AUTH_TABS.SIGN_IN && 'text-gray-600',
-                        'cursor-pointer',
-                        'text-2xl',
-                        'font-bold'
-                      )}
-                      onClick={() => switchTab(AUTH_TABS.SIGN_IN)}>
-                      Log in
-                    </h3>
-                  </div>
-                  {activeTab === AUTH_TABS.SIGN_UP && (
-                    <SignUp switchTab={switchTab} formAction={signUpFormAction} formState={signUpFormState} />
-                  )}
-                  {activeTab === AUTH_TABS.SIGN_IN && (
-                    <SignIn switchTab={switchTab} formAction={signInFormAction} formState={signInFormState} />
-                  )}
-                </div>
-              </div>
-            </div>
-
-            <style jsx>{`
-              .background {
-                background-image: url('/static/images/bg-auth.png');
-                background-repeat: no-repeat;
-                background-size: cover;
-                background-position: 50%;
-                flex-grow: 1;
-                flex-shrink: 1;
-                flex-basis: 50%;
-              }
-            `}</style>
-          </div>
+          <AuthModal
+            signInFormAction={signInFormAction}
+            signInFormState={signInFormState}
+            signUpFormAction={signUpFormAction}
+            signUpFormState={signUpFormState}
+            toggleMenu={toggleMenu}
+          />
         )}
       </div>
     </UserContext.Provider>

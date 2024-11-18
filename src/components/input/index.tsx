@@ -4,26 +4,26 @@ import { useState } from 'react';
 import IconButton from '@/components/icon-button';
 import InputLabel from '@/components/input-label';
 
-export type InputType = 'email' | 'password' | 'text';
+export type InputType = 'email' | 'password' | 'text' | 'search';
 type InputProps = {
   id: string;
   type: InputType;
   name: string;
-  label: string;
+  label?: string;
   placeholder: string;
-  inputBg?: string;
+  className?: string;
 };
 
 export default function Input({
   data,
   onInputBlur,
   error,
-  inputBg = 'bg-grey'
+  className = 'bg-grey'
 }: {
   data: InputProps;
   onInputBlur?: (target: any) => void;
   error?: any;
-  inputBg?: string;
+  className?: string;
 }) {
   const [type, setType] = useState<InputType>(data.type);
 
@@ -33,12 +33,12 @@ export default function Input({
 
   return (
     <div>
-      <InputLabel label={error ? error : data.label} error={!!error} />
+      {data.label && <InputLabel label={error ? error : data.label} error={!!error} />}
       <label
         htmlFor={data.id}
         className={clsx(
-          'relative flex h-[3rem] flex-col justify-center overflow-hidden rounded-lg px-4 py-1',
-          inputBg,
+          'relative flex flex-col justify-center overflow-hidden rounded-lg px-4 py-2.5',
+          className,
           error && 'border-b-2 border-error'
         )}>
         <div className="flex items-center justify-between">
@@ -48,7 +48,7 @@ export default function Input({
             id={data.id}
             name={data.name}
             placeholder={data.placeholder}
-            className="w-full border-0 bg-inherit text-gray-600 outline-0"
+            className="w-full border-0 bg-inherit text-color-h outline-0"
             onBlur={event => onInputBlur?.(event.target)}
           />
           {data.type === 'password' && (

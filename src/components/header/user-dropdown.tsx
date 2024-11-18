@@ -1,8 +1,8 @@
 import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger } from '@nextui-org/react';
 
 import { AchievementIcon } from '@/components/header/achievement-icon';
-import { SettingIcon } from '@/components/header/setting-icon';
 import { ThemeIcon } from '@/components/header/theme-icon';
+import { SettingIcon } from '@/components/icons/setting-icon';
 
 import { User } from '@/features/auth/lib/types';
 

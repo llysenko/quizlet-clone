@@ -1,5 +1,5 @@
 generator client {
-  provider = "prisma-client-js"
+  provider        = "prisma-client-js"
   previewFeatures = ["omitApi"]
 }
 
@@ -14,15 +14,39 @@ enum UserRole {
 }
 
 model User {
-  id                Int       @id @default(autoincrement())
-  avatar String?
-  email             String    @unique
-  username          String    @unique
+  id                Int      @id @default(autoincrement())
+  avatar            String?
+  email             String   @unique
+  username          String   @unique
   birthday          DateTime
   password          String
   policyAccepted    Boolean
   remindersAccepted Boolean  @default(false)
   role              UserRole @default(student)
   createdAt         DateTime @default(now())
-  updatedAt         DateTime  @updatedAt
+  updatedAt         DateTime @updatedAt
+
+  flashcardSets FlashcardSet[]
+}
+
+model FlashcardSet {
+  id          Int         @id @default(autoincrement())
+  title       String
+  description String?
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime    @updatedAt
+  flashcards  Flashcard[]
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+}
+
+model Flashcard {
+  id             Int           @id @default(autoincrement())
+  term           String
+  definition     String
+  imagePath      String?
+  createdAt      DateTime      @default(now())
+  updatedAt      DateTime      @updatedAt
+  flashcardSet   FlashcardSet @relation(fields: [flashcardSetId], references: [id])
+  flashcardSetId Int
 }

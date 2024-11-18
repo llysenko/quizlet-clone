@@ -2,11 +2,11 @@
 
 import { ReactNode, useEffect, useRef, useState } from 'react';
 
-import SetContainer from '@/features/flashcards/components/set-container';
+import Container from '@/components/container';
 
 export default function SetHeader({ children }: { children: ReactNode }) {
   const headerRef = useRef(null);
-  const [isAtTop, setIsAtTop] = useState(false);
+  const [isAtTop, setIsAtTop] = useState(true);
 
   useEffect(() => {
     let observer: IntersectionObserver | null = null;
@@ -37,10 +37,8 @@ export default function SetHeader({ children }: { children: ReactNode }) {
   });
 
   return (
-    <>
-      <div ref={headerRef} className="sticky top-0 z-50" style={{ background: isAtTop ? 'white' : 'transparent' }}>
-        <SetContainer className="flex items-center justify-between">{children}</SetContainer>
-      </div>
-    </>
+    <div ref={headerRef} className="sticky top-0 z-50" style={{ background: isAtTop ? 'white' : 'transparent' }}>
+      <Container className="flex items-center justify-between">{children}</Container>
+    </div>
   );
 }

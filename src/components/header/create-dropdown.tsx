@@ -2,7 +2,7 @@ import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger } from '@
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
-import { PlusIcon } from '@/components/header/plus-icon';
+import { PlusIcon } from '@/components/icons/plus-icon';
 
 import { User } from '@/features/auth/lib/types';
 

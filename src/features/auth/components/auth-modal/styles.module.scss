@@ -1,0 +1,10 @@
+.background {
+  @apply hidden h-screen flex-col justify-between lg:flex;
+  background-image: url('/static/images/bg-auth.png');
+  background-repeat: no-repeat;
+  background-size: cover;
+  background-position: 50%;
+  flex-grow: 1;
+  flex-shrink: 1;
+  flex-basis: 50%;
+}

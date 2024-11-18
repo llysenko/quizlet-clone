@@ -1,3 +1,5 @@
+'use client';
+
 import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
@@ -20,7 +22,7 @@ export default function Footer() {
   }
 
   return (
-    <footer>
+    <footer className="bg-grey">
       <nav aria-labelledby="footer-navigation" className="m-auto max-w-[76.25rem] px-8 py-16">
         <div className="flex flex-wrap">
           {LINKS.map(item => (

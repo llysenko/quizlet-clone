@@ -1,0 +1,25 @@
+.addImageBtn {
+  @apply flex flex-col justify-center items-center border-2 border-dashed rounded font-semibold text-nav-items text-xs h-[3.75rem] w-[5.25rem];
+
+  &:hover {
+    img {
+      @apply transition-all;
+      filter: brightness(0) saturate(100%) invert(83%) sepia(66%) saturate(2768%) hue-rotate(338deg) brightness(105%) contrast(101%);
+    }
+  }
+}
+
+.addFlashcardBtn__container {
+  @apply flex items-center justify-center px-6 py-10 cursor-pointer;
+
+  .addFlashcardBtn {
+    @apply grow uppercase font-bold underline decoration-[0.3125rem] decoration-green-1 underline-offset-[0.75rem] transition-colors;
+  }
+
+  &:hover {
+    .addFlashcardBtn {
+      @apply decoration-yellow text-yellow;
+    }
+  }
+}
+

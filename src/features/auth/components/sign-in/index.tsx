@@ -1,6 +1,7 @@
 import Button from '@/components/buttons';
 import SubmitButton from '@/components/buttons/submit-button';
 import Divider from '@/components/divider';
+import Error from '@/components/error';
 import Input from '@/components/input';
 
 import { AUTH_TABS, SIGN_IN_AUTH_PROVIDERS, SIGN_IN_CONTROLS } from '@/features/auth/lib/constants';
@@ -33,15 +34,11 @@ export default function SignIn({ switchTab, formState, formAction }: AuthProps) 
           By clicking Log in, you accept Quizlet&apos;s <b>Terms of Service</b> and <b>Privacy Policy</b>
         </p>
         {formState.errors && (
-          <div className="mt-8">
-            <div className="rounded-lg border-2 border-error p-4 font-semibold text-error">
-              <p>
-                {typeof formState.errors === 'string'
-                  ? Object.values(formState.errors)
-                  : (Object.values(formState.errors).at(0) as string)}
-              </p>
-            </div>
-          </div>
+          <Error className="mt-8">
+            {typeof formState.errors === 'string'
+              ? Object.values(formState.errors)
+              : (Object.values(formState.errors).at(0) as string)}
+          </Error>
         )}
         <div className="mt-6 flex flex-col gap-4">
           <SubmitButton label="Log in" size="large" width="full" />

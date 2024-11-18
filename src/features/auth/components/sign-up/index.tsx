@@ -5,6 +5,7 @@ import Button from '@/components/buttons';
 import SubmitButton from '@/components/buttons/submit-button';
 import Checkbox from '@/components/checkbox';
 import Divider from '@/components/divider';
+import Error from '@/components/error';
 import Input from '@/components/input';
 
 import BirthdayDateSelect from '@/features/auth/components/sign-up/birthday-date-select';
@@ -84,19 +85,15 @@ export default function SignUp({ switchTab, formAction, formState }: AuthProps) 
           ))}
         </div>
         {formState.errors && (
-          <div className="mt-8">
-            <div className="rounded-lg border-2 border-error p-4 font-semibold text-error">
-              <ul className={clsx(typeof formState.errors !== 'string' && 'list-disc', 'ml-6')}>
-                {formState.errors.policyAccepted && (
-                  <li>PLEASE ACCEPT QUIZLET&apos;S TERMS OF SERVICE AND PRIVACY POLICY TO CONTINUE.</li>
-                )}
-                {((Object.keys(formState.errors).length === 1 && !formState.errors.policyAccepted) ||
-                  Object.keys(formState.errors).length >= 2) && (
-                  <li>Oops, something went wrong 😅. Please try again.</li>
-                )}
-              </ul>
-            </div>
-          </div>
+          <Error className="mt-8">
+            <ul className={clsx(typeof formState.errors !== 'string' && 'list-disc', 'ml-6')}>
+              {formState.errors.policyAccepted && (
+                <li>PLEASE ACCEPT QUIZLET&apos;S TERMS OF SERVICE AND PRIVACY POLICY TO CONTINUE.</li>
+              )}
+              {((Object.keys(formState.errors).length === 1 && !formState.errors.policyAccepted) ||
+                Object.keys(formState.errors).length >= 2) && <li>Oops, something went wrong 😅. Please try again.</li>}
+            </ul>
+          </Error>
         )}
         <div className="mt-6 flex flex-col gap-4">
           <SubmitButton label="Sign up" size="large" width="full" />

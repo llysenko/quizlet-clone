@@ -1,11 +1,7 @@
-import SetContainer from '@/features/flashcards/components/set-container';
+import { ReactNode } from 'react';
 
-export default function SetList() {
-  return (
-    <div className="bg-blue h-[1716px]">
-      <SetContainer>
-        <p>456</p>
-      </SetContainer>
-    </div>
-  );
+import Container from '@/components/container';
+
+export default function SetList({ className, children }: { className?: string; children: ReactNode }) {
+  return <Container className={className}>{children}</Container>;
 }
