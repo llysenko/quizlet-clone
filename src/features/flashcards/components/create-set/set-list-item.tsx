@@ -2,11 +2,11 @@
 
 import { ChangeEvent, useState } from 'react';
 
-import AddImageButton from '@/features/flashcards/components/add-image-button';
-import AddImageSection from '@/features/flashcards/components/add-image-section';
-import Card from '@/features/flashcards/components/card';
-import SetListItemHeader from '@/features/flashcards/components/set-list-item-header';
-import SetListItemInput from '@/features/flashcards/components/set-list-item-input';
+import AddImageButton from '@/features/flashcards/components/create-set/add-image-button';
+import AddImageSection from '@/features/flashcards/components/create-set/add-image-section';
+import Card from '@/features/flashcards/components/create-set/card';
+import SetListItemHeader from '@/features/flashcards/components/create-set/set-list-item-header';
+import SetListItemInput from '@/features/flashcards/components/create-set/set-list-item-input';
 import { FlashCard } from '@/features/flashcards/lib/types';
 
 type Props = {

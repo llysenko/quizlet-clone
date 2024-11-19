@@ -1,7 +1,7 @@
 import SubmitButton from '@/components/buttons/submit-button';
 
-import SetCreateDropdown from '@/features/flashcards/components/set-create-dropdown';
-import SetCreateModal from '@/features/flashcards/components/set-create-modal';
+import SetCreateDropdown from '@/features/flashcards/components/create-set/set-create-dropdown';
+import SetCreateModal from '@/features/flashcards/components/create-set/set-create-modal';
 
 type Props = {
   size?: 'medium' | 'large';

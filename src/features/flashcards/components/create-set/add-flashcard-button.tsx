@@ -1,6 +1,6 @@
 import Card from '@/features/flashcards/components/create-set/card';
 
-import styles from '../styles.module.scss';
+import styles from '../../styles.module.scss';
 
 type Props = {
   next: number;

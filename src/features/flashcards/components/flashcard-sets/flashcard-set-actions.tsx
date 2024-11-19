@@ -16,8 +16,8 @@ export default function FlashcardSetActions() {
         </Button>
       </AppTooltip>
       <AppTooltip content="More" placement="bottom">
-        <Button isIconOnly aria-label="Star" variant="ghost" radius="sm" className="bg-transparent hover:bg-grey-3">
-          <Image src="/static/images/icon__more.svg" alt="Star the card" width={24} height={24} />
+        <Button isIconOnly aria-label="More" variant="ghost" radius="sm" className="bg-transparent hover:bg-grey-3">
+          <Image src="/static/images/icon__more.svg" alt="More" width={24} height={24} />
         </Button>
       </AppTooltip>
     </div>

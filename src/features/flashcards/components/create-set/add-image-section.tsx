@@ -6,7 +6,7 @@ import Image from 'next/image';
 import AppTooltip from '@/components/app-tooltip/app-tooltip';
 import Input from '@/components/input';
 
-import AppCarousel from '@/features/flashcards/components/app-carousel';
+import AppCarousel from '@/features/flashcards/components/create-set/app-carousel';
 
 const items = [
   <img key={1} src="/static/images/bg-auth.png" role="presentation" className="max-h-[150px]" />,

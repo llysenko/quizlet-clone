@@ -5,7 +5,7 @@ import AppTooltip from '@/components/app-tooltip/app-tooltip';
 import Container from '@/components/container';
 import { PlusIcon } from '@/components/icons/plus-icon';
 
-import { SparkleIcon } from '@/features/flashcards/components/sparkle-icon';
+import { SparkleIcon } from '@/features/flashcards/components/create-set/sparkle-icon';
 
 const buttons = [
   {

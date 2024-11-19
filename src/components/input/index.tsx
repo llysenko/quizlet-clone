@@ -44,6 +44,7 @@ export default function Input({
         <div className="flex items-center justify-between">
           <input
             autoComplete="off"
+            spellCheck="true"
             type={type}
             id={data.id}
             name={data.name}

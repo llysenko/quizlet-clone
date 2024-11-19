@@ -35,6 +35,7 @@ export default function Textarea({
         <div className="flex items-center justify-between">
           <textarea
             autoComplete="off"
+            spellCheck="true"
             id={data.id}
             name={data.name}
             placeholder={data.placeholder}
