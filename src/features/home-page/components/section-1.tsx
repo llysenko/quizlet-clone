@@ -11,13 +11,7 @@ export default function Section1({ toggleMenu, t }: { toggleMenu: () => void; t:
         <Heading1>{t('headingOne')}</Heading1>
         <p className="min-h-[1.5rem] text-xl leading-[1.4]">{t('descriptionOne')}</p>
         <Button label="Sign up for free" size="medium" onClick={toggleMenu} />
-        <Button
-          label="I'm a teacher"
-          size="medium"
-          borderless={true}
-          mode="accent"
-          onClick={() => alert('Not implemented')}
-        />
+        <Button label="I'm a teacher" size="medium" borderless={true} mode="accent" />
       </div>
       <Carousel />
     </section>

@@ -11,32 +11,32 @@ const imagesPath = '/static/images/';
 const carouselData = [
   {
     title: 'Learn',
-    bgColor: '#98E3FF',
-    textColor: '#000',
+    bgColorClass: 'bg-blue-4',
+    textColorClass: 'text-dark-grey',
     imageSrc: `${imagesPath}learn@2x.avif`
   },
   {
     title: 'Study Guides',
-    bgColor: '#EEAAFF',
-    textColor: '#000',
+    bgColorClass: 'bg-pink',
+    textColorClass: 'text-dark-grey',
     imageSrc: `${imagesPath}study_guides@2x.avif`
   },
   {
     title: 'Flashcards',
-    bgColor: '#423ed8',
-    textColor: '#fff',
+    bgColorClass: 'bg-blue-2',
+    textColorClass: 'text-white',
     imageSrc: `${imagesPath}flashcards@2x.avif`
   },
   {
     title: 'Practice Tests',
-    bgColor: '#FFC38C',
-    textColor: '#000',
+    bgColorClass: 'bg-orange',
+    textColorClass: 'text-dark-grey',
     imageSrc: `${imagesPath}practice_tests@2x.avif`
   },
   {
     title: 'Expert Solutions',
-    bgColor: '#98F1D1',
-    textColor: '#000',
+    bgColorClass: 'bg-green',
+    textColorClass: 'text-dark-grey',
     imageSrc: `${imagesPath}expert_solutions@2x.avif`
   }
 ];

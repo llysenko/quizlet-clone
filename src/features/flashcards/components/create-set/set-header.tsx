@@ -1,5 +1,6 @@
 'use client';
 
+import clsx from 'clsx';
 import { ReactNode, useEffect, useRef, useState } from 'react';
 
 import Container from '@/components/container';
@@ -37,7 +38,7 @@ export default function SetHeader({ children }: { children: ReactNode }) {
   });
 
   return (
-    <div ref={headerRef} className="sticky top-0 z-50" style={{ background: isAtTop ? 'white' : 'transparent' }}>
+    <div ref={headerRef} className={clsx(isAtTop ? 'bg-white' : 'bg-transparent', 'sticky top-0 z-50')}>
       <Container className="flex items-center justify-between">{children}</Container>
     </div>
   );

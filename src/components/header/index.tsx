@@ -36,12 +36,12 @@ export default function Header({ toggleMenu, signOut }: HeaderProps) {
           <li className="flex">
             <CreateDropdown user={user} />
           </li>
-          {user && <Button label="Upgrade: free 7-day trial" onClick={() => alert('Not implemented')} mode="accent" />}
+          {user && <Button label="Upgrade: free 7-day trial" mode="accent" />}
           <li>
             {user ? (
               <UserDropdown user={user} signOut={signOut} />
             ) : (
-              <Button label="Log in" size="medium" onClick={() => toggleMenu?.()} />
+              <Button label="Log in" size="medium" onClick={toggleMenu} />
             )}
           </li>
         </ul>

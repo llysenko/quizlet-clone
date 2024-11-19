@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from '@storybook/react';
 
-import { IconButton } from '@/components/icon-button';
+import IconButton from '@/components/icon-button';
 
 const meta = {
   title: 'Example/IconButton',
@@ -10,7 +10,7 @@ const meta = {
   },
   tags: ['autodocs'],
   argTypes: {
-    backgroundColor: { control: 'color' }
+    bgColor: { control: 'color' }
   }
 } satisfies Meta<typeof IconButton>;
 

@@ -17,7 +17,12 @@ export default function BirthdayDateSelect({
   error?: any;
   errorMsg?: string;
 }) {
-  const tooltipHtml = `Quizlet is open to <i>all ages</i> but requires all users to provide their real date of birth to comply with local laws.`;
+  const tooltipHtml = (
+    <div className="w-[246px]">
+      Quizlet is open to <i>all ages</i> but requires all users to provide their real date of birth to comply with local
+      laws.
+    </div>
+  );
 
   return (
     <div className="mb-6">

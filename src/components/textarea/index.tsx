@@ -1,7 +1,8 @@
-import { background } from '@storybook/theming';
 import clsx from 'clsx';
 
 import InputLabel from '@/components/input-label';
+
+import styles from './styles.module.scss';
 
 type Props = {
   id: string;
@@ -29,6 +30,7 @@ export default function Textarea({
         htmlFor={data.id}
         className={clsx(
           'flex flex-col justify-center overflow-hidden rounded-lg px-4 py-3.5',
+          styles.label,
           className,
           error && 'border-b-2 border-error'
         )}>
@@ -44,11 +46,6 @@ export default function Textarea({
           />
         </div>
       </label>
-      <style jsx>{`
-        label:focus-within {
-          border-bottom: 2px solid #282e3e;
-        }
-      `}</style>
     </div>
   );
 }

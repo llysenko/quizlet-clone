@@ -1,0 +1,12 @@
+.divider::after,
+.divider::before {
+  @apply h-[0.0625rem] grow bg-grey-3 content-[''];
+}
+
+.divider::after {
+  @apply ml-4;
+}
+
+.divider::before {
+  @apply mr-4;
+}

@@ -4,6 +4,8 @@ import { useState } from 'react';
 import IconButton from '@/components/icon-button';
 import InputLabel from '@/components/input-label';
 
+import styles from './styles.module.scss';
+
 export type InputType = 'email' | 'password' | 'text' | 'search';
 type InputProps = {
   id: string;
@@ -38,6 +40,7 @@ export default function Input({
         htmlFor={data.id}
         className={clsx(
           'relative flex flex-col justify-center overflow-hidden rounded-lg px-4 py-2.5',
+          styles.label,
           className,
           error && 'border-b-2 border-error'
         )}>
@@ -62,11 +65,6 @@ export default function Input({
           )}
         </div>
       </label>
-      <style jsx>{`
-        label:focus-within {
-          border-bottom: 2px solid #282e3e;
-        }
-      `}</style>
     </div>
   );
 }

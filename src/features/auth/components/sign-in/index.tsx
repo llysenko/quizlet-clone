@@ -19,7 +19,6 @@ export default function SignIn({ switchTab, formState, formAction }: AuthProps) 
             size="large"
             width="full"
             mode="outlined"
-            onClick={() => alert('Not implemented')}
           />
         ))}
       </div>
@@ -49,13 +48,7 @@ export default function SignIn({ switchTab, formState, formAction }: AuthProps) 
             mode="outlined"
             onClick={() => switchTab(AUTH_TABS.SIGN_UP)}
           />
-          <Button
-            label="Log in with magic link"
-            size="large"
-            width="full"
-            borderless={true}
-            onClick={() => alert('Not implemented')}
-          />
+          <Button label="Log in with magic link" size="large" width="full" borderless={true} />
         </div>
       </form>
     </>
