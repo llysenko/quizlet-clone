@@ -45,7 +45,7 @@ export async function createSession(user: Partial<User>) {
     expires: expiresInOneDay,
     httpOnly: true,
     secure: true,
-    sameSite: 'lax'
+    sameSite: 'strict'
   });
 
   return encryptedSession;
