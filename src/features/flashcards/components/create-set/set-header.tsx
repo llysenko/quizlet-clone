@@ -1,7 +1,7 @@
 'use client';
 
 import clsx from 'clsx';
-import { ReactNode, useEffect, useRef, useState } from 'react';
+import { ReactNode, useLayoutEffect, useRef, useState } from 'react';
 
 import Container from '@/components/container';
 
@@ -9,7 +9,7 @@ export default function SetHeader({ children }: { children: ReactNode }) {
   const headerRef = useRef(null);
   const [isAtTop, setIsAtTop] = useState(true);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     let observer: IntersectionObserver | null = null;
     const handleScroll = () => {
       observer = new IntersectionObserver(

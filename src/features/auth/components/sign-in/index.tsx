@@ -32,7 +32,7 @@ export default function SignIn({ switchTab, formState, formAction }: AuthProps) 
         <p className="mt-6 text-sm text-gray-600">
           By clicking Log in, you accept Quizlet&apos;s <b>Terms of Service</b> and <b>Privacy Policy</b>
         </p>
-        {formState.errors && (
+        {formState?.errors && (
           <Error className="mt-8">
             {typeof formState.errors === 'string'
               ? Object.values(formState.errors)

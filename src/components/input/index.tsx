@@ -1,5 +1,5 @@
 import clsx from 'clsx';
-import { useState } from 'react';
+import { useId, useState } from 'react';
 
 import IconButton from '@/components/icon-button';
 import InputLabel from '@/components/input-label';
@@ -28,6 +28,7 @@ export default function Input({
   className?: string;
 }) {
   const [type, setType] = useState<InputType>(data.type);
+  const id = useId();
 
   function togglePasswordVisibility() {
     setType(type === 'password' ? 'text' : 'password');
@@ -37,7 +38,7 @@ export default function Input({
     <div>
       {data.label && <InputLabel label={error ? error : data.label} error={!!error} />}
       <label
-        htmlFor={data.id}
+        htmlFor={id}
         className={clsx(
           'relative flex flex-col justify-center overflow-hidden rounded-lg px-4 py-2.5',
           styles.label,
@@ -46,13 +47,13 @@ export default function Input({
         )}>
         <div className="flex items-center justify-between">
           <input
+            id={id}
             autoComplete="off"
             spellCheck="true"
+            className="w-full border-0 bg-inherit text-color-h outline-0"
             type={type}
-            id={data.id}
             name={data.name}
             placeholder={data.placeholder}
-            className="w-full border-0 bg-inherit text-color-h outline-0"
             onBlur={event => onInputBlur?.(event.target)}
           />
           {data.type === 'password' && (

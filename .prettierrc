@@ -16,9 +16,12 @@
   "tabWidth": 2,
   "trailingComma": "none",
   "plugins": [
+    "prettier-plugin-organize-attributes",
     "prettier-plugin-tailwindcss",
     "@ianvs/prettier-plugin-sort-imports"
   ],
+  "pluginSearchDirs": false,
+  "attributeGroups": ["^(id|name)$", "^className$",  "$DEFAULT", "^aria-"],
   "tailwindConfig": "./tailwind.config.ts",
   "importOrder": [
     "<BUILTIN_MODULES>",

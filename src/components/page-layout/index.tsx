@@ -1,7 +1,7 @@
 'use client';
 
 import { useRouter } from 'next/navigation';
-import { createContext, ReactNode, useEffect, useState } from 'react';
+import { createContext, ReactNode } from 'react';
 import { useFormState } from 'react-dom';
 
 import { useAuthDialogStore } from '@/store';
@@ -16,8 +16,30 @@ export const UserContext = createContext(null);
 export default function PageLayout({ user, children }: { user: any; children: ReactNode }) {
   const router = useRouter();
   const { open, setOpen } = useAuthDialogStore();
-  const [signInFormState, signInFormAction] = useFormState<ActionState, FormData>(signIn, { errors: '' });
-  const [signUpFormState, signUpFormAction] = useFormState<ActionState, FormData>(signUp, { errors: '' });
+  const [signInFormState, signInFormAction] = useFormState<ActionState, FormData>(handleSignIn, { errors: '' });
+  const [signUpFormState, signUpFormAction] = useFormState<ActionState, FormData>(handleSignUp, { errors: '' });
+
+  async function handleSignIn(prevState: ActionState, formData: FormData) {
+    const response = await signIn(prevState, formData);
+
+    if (response && !response.errors) {
+      router.push('/latest');
+      toggleMenu();
+    }
+
+    return response;
+  }
+
+  async function handleSignUp(prevState: ActionState, formData: FormData) {
+    const response = await signUp(prevState, formData);
+
+    if (!response.errors) {
+      router.push('/latest');
+      toggleMenu();
+    }
+
+    return response;
+  }
 
   async function handleSignOut() {
     await signOut();
@@ -29,20 +51,6 @@ export default function PageLayout({ user, children }: { user: any; children: Re
     document.body.classList.remove(open ? 'overflow-hidden' : 'overflow-auto');
     document.body.classList.add(open ? 'overflow-auto' : 'overflow-hidden');
   }
-
-  useEffect(() => {
-    if (signInFormState.token) {
-      toggleMenu();
-      router.push('/latest');
-    }
-  }, [signInFormState.token]);
-
-  useEffect(() => {
-    if (signUpFormState.token) {
-      toggleMenu();
-      router.push('/latest');
-    }
-  }, [signUpFormState.token]);
 
   return (
     <UserContext.Provider value={user}>

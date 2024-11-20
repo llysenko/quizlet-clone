@@ -1,4 +1,5 @@
 import clsx from 'clsx';
+import { ChangeEvent, useId, useState } from 'react';
 
 import InputLabel from '@/components/input-label';
 
@@ -14,15 +15,20 @@ type Props = {
 
 export default function Textarea({
   data,
-  onInputBlur,
   error,
   className = 'bg-grey'
 }: {
   data: Props;
-  onInputBlur?: (target: any) => void;
   error?: any;
   className?: string;
 }) {
+  const [value, setValue] = useState('');
+  const id = useId();
+
+  function handleChange(event: ChangeEvent<HTMLTextAreaElement>) {
+    setValue(event.target.value);
+  }
+
   return (
     <div>
       <InputLabel label={error ? error : data.label} error={!!error} />
@@ -36,13 +42,14 @@ export default function Textarea({
         )}>
         <div className="flex items-center justify-between">
           <textarea
+            className="w-full border-0 bg-inherit text-color-h text-sm outline-0 resize-none overflow-y-auto"
             autoComplete="off"
             spellCheck="true"
-            id={data.id}
+            id={id}
             name={data.name}
             placeholder={data.placeholder}
-            className="w-full border-0 bg-inherit text-color-h text-sm outline-0 resize-none overflow-y-auto"
-            onBlur={event => onInputBlur?.(event.target)}
+            value={value}
+            onChange={handleChange}
           />
         </div>
       </label>
