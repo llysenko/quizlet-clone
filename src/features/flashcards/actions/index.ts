@@ -3,6 +3,7 @@
 import transformZodErrors from '@/utils/transform-zod-errors';
 
 import db from '@/lib/db';
+import { AuthRequiredError, NotFoundError } from '@/lib/exceptions';
 
 import { validateAction } from '@/features/auth/lib/middleware';
 import { getSession } from '@/features/auth/lib/session';
@@ -10,10 +11,6 @@ import { FlashcardSetSchema, FlashcardsSchema } from '@/features/flashcards/lib/
 import { FlashCard } from '@/features/flashcards/lib/types';
 
 export async function getSetById(id: number) {
-  // const session = await getSession();
-  //
-  // if (!session) return new Response(null, { status: 401 });
-
   return db.flashcardSet.findUnique({
     where: { id },
     include: {
@@ -26,15 +23,19 @@ export async function getSetById(id: number) {
 
 export async function getLatestFlashcardSets() {
   const session = await getSession();
-  //
-  // if (!session) return new Response(null, { status: 401 });
 
-  return db.flashcardSet.findMany({
+  if (!session) throw new AuthRequiredError();
+
+  const result = await db.flashcardSet.findMany({
     where: { userId: session?.user.id },
     include: { _count: { select: { flashcards: true } }, user: { select: { username: true } } },
     orderBy: { createdAt: 'desc' },
     take: 3
   });
+
+  if (!result.length) throw new NotFoundError();
+
+  return result;
 }
 
 export async function createFlashcardSetWithCards(formData: FormData, allFlashcards: FlashCard[]) {

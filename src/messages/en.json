@@ -11,11 +11,14 @@
     "description": "<p>The pathnames are internationalized too.</p><p>If you're using the default language English, you'll see <code>/en/pathnames</code> in the browser address bar on this page.</p><p>If you change the locale to German, the URL is localized accordingly (<code>/de/pfadnamen</code>).</p>"
   },
   "Error": {
-    "title": "Something went wrong!",
-    "description": "<p>We've unfortunately encountered an error.</p><p>You can try to <retry>reload the page</retry> you were visiting.</p>"
+    "title": "There was a problem",
+    "description": "Please try again later or contact support if the problem persists.",
+    "reset": "Try again",
+    "home": "Go back home"
   },
-  "NotFoundPage": {
+  "NotFound": {
     "title": "Page not found",
+    "subtitle": "There was a problem",
     "description": "Please double-check the browser address bar or use the navigation to go to a known page."
   },
   "LocaleLayout": {
@@ -31,5 +34,8 @@
     "home": "Home",
     "about": "Subjects",
     "pathnames": "Expert Solutions"
+  },
+  "Loading": {
+    "title": "Loading... Please wait!"
   }
 }

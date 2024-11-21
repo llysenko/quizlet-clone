@@ -63,7 +63,7 @@ export default function CreateDropdown({ user }: { user: User | null }) {
             <PlusIcon className="text-white size-6" />
           </Button>
         ) : (
-          <Button variant="light" aria-label="Create" className="text-blue font-medium">
+          <Button variant="light" aria-label="Create" radius="sm" className="text-blue font-medium">
             <PlusIcon className="text-blue size-4" /> Create
           </Button>
         )}

@@ -11,12 +11,15 @@
     "description": "<p>Auch die Pfadnamen sind internationalisiert.</p><p>Wenn du die Standardsprache Englisch verwendest, siehst du <code>/en/pathnames</code> in der Adressleiste des Browsers auf dieser Seite.</p><p>Wenn du die Sprache auf Deutsch änderst, wird die URL entsprechend lokalisiert (<code>/de/pfadnamen</code>).</p>"
   },
   "Error": {
-    "title": "Etwas ist schief gelaufen!",
-    "description": "<p>Es ist leider ein Problem aufgetreten.</p><p>Du kannst versuchen <retry>diese Seite neu zu laden</retry>.</p>"
+    "title": "Сталася помилка",
+    "description": "Будь-ласка спробуйте пізніше або зверніться в підтримку якщо проблема не зникає.",
+    "reset": "Спробувати ще раз",
+    "home": "Повернутися"
   },
-  "NotFoundPage": {
-    "title": "Seite nicht gefunden",
-    "description": "Bitte überprüfe die Addressleiste deines Browsers oder verwende die Navigation um zu einer bekannten Seite zu wechseln."
+  "NotFound": {
+    "title": "Сторінка не знайдена",
+    "subtitle": "Сталася помилка",
+    "description": "Будь ласка, ще раз перевірте адресний рядок браузера або скористайтеся навігацією, щоб перейти на відому сторінку."
   },
   "LocaleLayout": {
     "title": "next-intl Beispiel"
@@ -31,5 +34,8 @@
     "home": "Домашня сторінка",
     "about": "Про додаток",
     "pathnames": "Тестова"
+  },
+  "Loading": {
+    "title": "Завантаження... Будь-ласка зачекайте!"
   }
 }
