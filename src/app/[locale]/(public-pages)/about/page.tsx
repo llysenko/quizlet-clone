@@ -1,9 +1,13 @@
-'use client';
+import { redirect } from 'next/navigation';
 
-import { useTranslations } from 'next-intl';
+import Heading2 from '@/components/headings/heading-2';
 
-export default function About() {
-  const t = useTranslations('AboutPage');
+import { getUser } from '@/features/auth/db/queries';
 
-  return <h1 className="p-4 text-center text-3xl font-bold">{t('title')}</h1>;
+export default async function About() {
+  const user = await getUser();
+
+  if (user) redirect('/latest');
+
+  return <Heading2 className="p-4 text-center text-3xl font-bold">About Page Here</Heading2>;
 }
