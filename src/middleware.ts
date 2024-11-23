@@ -1,6 +1,8 @@
 import createMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
 
+import { limit } from '@/lib/rate-limit';
+
 import { USER_SESSION_NAME } from '@/features/auth/lib/constants';
 import { deleteSession, signToken, verifyToken } from '@/features/auth/lib/session';
 
@@ -36,6 +38,14 @@ export async function middleware(req: NextRequest) {
 
       if (isProtectedRoute) return NextResponse.redirect(new URL('/', req.url));
     }
+  }
+
+  // Rate limit
+  if (req.method === 'POST') {
+    const ip = req.ip ?? req.headers.get('X-Forwarded-For') ?? 'unknown';
+    const isRateLimited = limit(ip);
+
+    if (isRateLimited) return NextResponse.json({ error: 'rate limited' }, { status: 429 });
   }
 
   return nextIntlMiddleware(req);
