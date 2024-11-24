@@ -64,8 +64,8 @@
 }
 
 .label {
-  @apply ml-4 text-sm font-semibold leading-[1.4rem] text-text-color-h;
+  @apply ml-4 text-sm font-semibold leading-[1.4rem] text-gunmetal;
   &_error {
-    @apply text-error;
+    @apply text-alabama-crimson;
   }
 }

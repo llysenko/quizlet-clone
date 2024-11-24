@@ -1,5 +1,5 @@
 .addImageBtn {
-  @apply flex flex-col justify-center items-center border-2 border-dashed rounded font-semibold text-nav-items text-xs h-[3.75rem] w-[5.25rem];
+  @apply flex flex-col justify-center items-center border-2 border-dashed rounded font-semibold text-charcoal text-xs h-[3.75rem] w-[5.25rem];
 
   &:hover {
     img {
@@ -13,12 +13,12 @@
   @apply flex items-center justify-center px-6 py-10 cursor-pointer;
 
   .addFlashcardBtn {
-    @apply grow uppercase font-bold underline decoration-[0.3125rem] decoration-green-1 underline-offset-[0.75rem] transition-colors;
+    @apply grow uppercase font-bold underline decoration-[0.3125rem] decoration-medium-turquoise underline-offset-[0.75rem] transition-colors;
   }
 
   &:hover {
     .addFlashcardBtn {
-      @apply decoration-yellow text-yellow;
+      @apply decoration-ripe-mango text-ripe-mango;
     }
   }
 }

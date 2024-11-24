@@ -9,7 +9,11 @@ const items = [
 
 export default function FlashcardListFilters() {
   return (
-    <Select placeholder="Original" className="max-w-xs font-semibold text-gray-600">
+    <Select
+      placeholder="Original"
+      aria-label="Sort cards"
+      radius="sm"
+      className="max-w-xs font-semibold text-dark-electric-blue">
       {items.map(item => (
         <SelectItem key={item.key}>{item.label}</SelectItem>
       ))}

@@ -10,7 +10,7 @@ export default function NotFound() {
     <html lang="en">
       <body>
         <Container className="text-center flex flex-col justify-center h-full">
-          <p className="text-blue-2">{t('subtitle')}</p>
+          <p className="text-palatinate-blue">{t('subtitle')}</p>
           <Heading2 className="my-8">{t('title')}</Heading2>
           <p className="mb-10">{t('description')}</p>
           <div className="flex gap-2 justify-center"></div>

@@ -22,7 +22,7 @@ export default function Footer() {
   }
 
   return (
-    <footer className="bg-grey">
+    <footer className="bg-ghost-white">
       <nav aria-labelledby="footer-navigation" className="m-auto max-w-[76.25rem] px-8 py-16">
         <div className="flex flex-wrap">
           {LINKS.map(item => (
@@ -41,8 +41,8 @@ export default function Footer() {
                         'mb-4',
                         'flex',
                         'text-sm',
-                        'text-text-color-h',
-                        'hover:text-blue-2'
+                        'text-gunmetal',
+                        'hover:text-palatinate-blue'
                       )}>
                       Sign up
                     </button>
@@ -56,8 +56,8 @@ export default function Footer() {
                         'mb-4',
                         'flex',
                         'text-sm',
-                        'text-text-color-h',
-                        'hover:text-blue-2'
+                        'text-gunmetal',
+                        'hover:text-palatinate-blue'
                       )}>
                       <span>{link.name}</span>
                       {link.name === 'Privacy' && (
@@ -84,7 +84,7 @@ export default function Footer() {
 
       <div className="m-auto max-w-[76.25rem]">
         <div className="py-2">
-          <div className="h-[.0625rem] bg-grey-2"></div>
+          <div className="h-[.0625rem] bg-gainsboro"></div>
         </div>
       </div>
 
@@ -94,7 +94,7 @@ export default function Footer() {
           <ul className="flex flex-wrap gap-[1.5rem]">
             {COUNTRIES.map(country => (
               <li key={country.name}>
-                <Link href="#" className="mb-4 text-sm text-text-color-h hover:text-blue-2">
+                <Link href="#" className="mb-4 text-sm text-gunmetal hover:text-palatinate-blue">
                   {country.name}
                 </Link>
               </li>
@@ -109,7 +109,7 @@ export default function Footer() {
             <ul className="flex gap-4">
               {SOCIAL_LINKS.map(link => (
                 <li key={link.name} className="flex items-center justify-center">
-                  <Link href="#" className="rounded-full p-2 hover:bg-grey-3">
+                  <Link href="#" className="rounded-full p-2 hover:bg-bright-gray">
                     <Image src={link.imageSrc} alt={link.name} width={16} height={16} />
                   </Link>
                 </li>

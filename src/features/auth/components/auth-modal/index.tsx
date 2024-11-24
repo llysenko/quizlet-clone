@@ -55,8 +55,8 @@ export default function AuthModal({
               <h3
                 className={clsx(
                   activeTab === AUTH_TABS.SIGN_UP &&
-                    'text-text-color-h underline decoration-magenta decoration-wavy underline-offset-8',
-                  activeTab !== AUTH_TABS.SIGN_UP && 'text-gray-600',
+                    'text-gunmetal underline decoration-phlox decoration-wavy underline-offset-8',
+                  activeTab !== AUTH_TABS.SIGN_UP && 'text-dark-electric-blue',
                   'cursor-pointer',
                   'text-2xl',
                   'font-bold'
@@ -67,8 +67,8 @@ export default function AuthModal({
               <h3
                 className={clsx(
                   activeTab === AUTH_TABS.SIGN_IN &&
-                    'text-text-color-h underline decoration-magenta decoration-wavy underline-offset-8',
-                  activeTab !== AUTH_TABS.SIGN_IN && 'text-gray-600',
+                    'text-gunmetal underline decoration-phlox decoration-wavy underline-offset-8',
+                  activeTab !== AUTH_TABS.SIGN_IN && 'text-dark-electric-blue',
                   'cursor-pointer',
                   'text-2xl',
                   'font-bold'

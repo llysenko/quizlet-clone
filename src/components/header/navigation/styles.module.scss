@@ -23,10 +23,10 @@
     &:hover,
     &_active_horizontal {
         &::after {
-          @apply bg-blue-3 absolute bottom-0 left-0 right-0 h-1 rounded-t content-[''];
+          @apply bg-maximum-blue-purple absolute bottom-0 left-0 right-0 h-1 rounded-t content-[''];
 
           //@media (min-width: 1024px) {
-          //  @apply bg-blue-3 absolute top-0 bottom-0 left-0 right-0 w-full h-1 rounded-t content-[''];
+          //  @apply bg-maximum-blue-purple absolute top-0 bottom-0 left-0 right-0 w-full h-1 rounded-t content-[''];
           //}
         }
 

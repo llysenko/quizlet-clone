@@ -48,7 +48,11 @@ export default async function Page({ params }: { params: { id: number } }) {
         <FlashcardList>{set?.flashcards.map(card => <FlashcardListItem key={card.id} card={card} />)}</FlashcardList>
 
         <div className="flex justify-center mb-10">
-          <Button size="lg" variant="ghost" radius="sm" className="text-gray-600 font-semibold hover:bg-grey-3">
+          <Button
+            size="lg"
+            variant="ghost"
+            radius="sm"
+            className="text-dark-electric-blue font-semibold hover:bg-bright-gray">
             Add or remove terms
             <Image src="/static/images/icon__pencil.svg" alt="Edit the set" width={16} height={16} />
           </Button>

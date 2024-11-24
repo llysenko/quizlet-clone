@@ -1,6 +1,6 @@
 .divider::after,
 .divider::before {
-  @apply h-[0.0625rem] grow bg-grey-3 content-[''];
+  @apply h-[0.0625rem] grow bg-bright-gray content-[''];
 }
 
 .divider::after {

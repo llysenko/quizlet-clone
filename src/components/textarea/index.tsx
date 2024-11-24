@@ -6,7 +6,6 @@ import InputLabel from '@/components/input-label';
 import styles from './styles.module.scss';
 
 type Props = {
-  id: string;
   name: string;
   label?: string;
   placeholder: string;
@@ -16,7 +15,7 @@ type Props = {
 export default function Textarea({
   data,
   error,
-  className = 'bg-grey'
+  className = 'bg-ghost-white'
 }: {
   data: Props;
   error?: any;
@@ -33,7 +32,7 @@ export default function Textarea({
     <div>
       <InputLabel label={error ? error : data.label} error={!!error} />
       <label
-        htmlFor={data.id}
+        htmlFor={id}
         className={clsx(
           'flex flex-col justify-center overflow-hidden rounded-lg px-4 py-3.5',
           styles.label,
@@ -42,7 +41,7 @@ export default function Textarea({
         )}>
         <div className="flex items-center justify-between">
           <textarea
-            className="w-full border-0 bg-inherit text-color-h text-sm outline-0 resize-none overflow-y-auto"
+            className="w-full border-0 bg-inherit text-gunmetal text-sm outline-0 resize-none overflow-y-auto"
             autoComplete="off"
             spellCheck="true"
             id={id}

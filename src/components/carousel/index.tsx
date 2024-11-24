@@ -11,32 +11,32 @@ const imagesPath = '/static/images/';
 const carouselData = [
   {
     title: 'Learn',
-    bgColorClass: 'bg-blue-4',
-    textColorClass: 'text-dark-grey',
+    bgColorClass: 'bg-winter-wizard',
+    textColorClass: 'text-dark-jungle-green',
     imageSrc: `${imagesPath}learn@2x.avif`
   },
   {
     title: 'Study Guides',
-    bgColorClass: 'bg-pink',
-    textColorClass: 'text-dark-grey',
+    bgColorClass: 'bg-rich-brilliant-lavender',
+    textColorClass: 'text-dark-jungle-green',
     imageSrc: `${imagesPath}study_guides@2x.avif`
   },
   {
     title: 'Flashcards',
-    bgColorClass: 'bg-blue-2',
+    bgColorClass: 'bg-palatinate-blue',
     textColorClass: 'text-white',
     imageSrc: `${imagesPath}flashcards@2x.avif`
   },
   {
     title: 'Practice Tests',
-    bgColorClass: 'bg-orange',
-    textColorClass: 'text-dark-grey',
+    bgColorClass: 'bg-macaroni-and-cheese',
+    textColorClass: 'text-dark-jungle-green',
     imageSrc: `${imagesPath}practice_tests@2x.avif`
   },
   {
     title: 'Expert Solutions',
-    bgColorClass: 'bg-green',
-    textColorClass: 'text-dark-grey',
+    bgColorClass: 'bg-magic-mint',
+    textColorClass: 'text-dark-jungle-green',
     imageSrc: `${imagesPath}expert_solutions@2x.avif`
   }
 ];

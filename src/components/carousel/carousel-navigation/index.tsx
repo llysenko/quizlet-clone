@@ -8,7 +8,7 @@ export default function CarouselNavigation({ movePrev, moveNext }: { movePrev: a
           size="large"
           iconSrc="/static/images/icon__chevron.svg"
           title="Previous"
-          className="bg-white hover:bg-grey-3"
+          className="bg-white hover:bg-bright-gray"
           onClick={movePrev}
         />
       </div>
@@ -17,7 +17,7 @@ export default function CarouselNavigation({ movePrev, moveNext }: { movePrev: a
           size="large"
           iconSrc="/static/images/icon__chevron.svg"
           title="Next"
-          className="rotate-180 bg-white hover:bg-grey-3"
+          className="rotate-180 bg-white hover:bg-bright-gray"
           onClick={moveNext}
         />
       </div>

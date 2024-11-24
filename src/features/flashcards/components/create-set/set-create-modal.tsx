@@ -43,7 +43,7 @@ export default function SetCreateModal() {
                 </div>
               </ModalBody>
               <ModalFooter>
-                <Button color="primary" onPress={onClose} className="bg-blue" radius="sm" fullWidth={true}>
+                <Button color="primary" onPress={onClose} className="bg-ultramarine-blue" radius="sm" fullWidth={true}>
                   Save
                 </Button>
               </ModalFooter>

@@ -11,7 +11,7 @@ export default function Heading4({
   className?: string;
 }) {
   return (
-    <h4 className={clsx(className, 'font-semibold text-base text-text-color-h')} {...props}>
+    <h4 className={clsx(className, 'font-semibold text-base text-gunmetal')} {...props}>
       {children}
     </h4>
   );

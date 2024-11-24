@@ -14,7 +14,7 @@ export default function Checkbox({ data, error }: { data: CheckboxProps; error: 
       htmlFor={data.id}
       className={clsx(
         styles.container,
-        'flex cursor-pointer items-center text-sm font-semibold leading-[1.4rem] text-text-color-h'
+        'flex cursor-pointer items-center text-sm font-semibold leading-[1.4rem] text-gunmetal'
       )}>
       <input type="checkbox" id={data.id} name={data.name} />
       <span className={styles.checkmark}></span>

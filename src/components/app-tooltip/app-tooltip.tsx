@@ -12,7 +12,11 @@ export default function AppTooltip({
   placement?: OverlayPlacement | undefined;
 }) {
   return (
-    <Tooltip content={content} className="bg-dark-grey text-xs text-white rounded" radius="none" placement={placement}>
+    <Tooltip
+      content={content}
+      className="bg-dark-jungle-green text-xs text-white rounded"
+      radius="none"
+      placement={placement}>
       {children}
     </Tooltip>
   );

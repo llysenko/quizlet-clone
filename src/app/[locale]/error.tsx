@@ -27,7 +27,7 @@ export default function Error({ error, reset }: Props) {
 
   return (
     <Container className="text-center m-10">
-      <p className="text-blue-2">{t('title')}</p>
+      <p className="text-palatinate-blue">{t('title')}</p>
       <Heading2 className="my-8">{error.message}</Heading2>
       <p className="mb-10">{t('description')}</p>
       <div className="flex gap-2 justify-center">
@@ -36,7 +36,7 @@ export default function Error({ error, reset }: Props) {
           size="lg"
           color="primary"
           radius="sm"
-          className="border-blue-2 text-blue-2"
+          className="border-palatinate-blue text-palatinate-blue"
           onClick={reset}>
           {t('reset')}
         </Button>

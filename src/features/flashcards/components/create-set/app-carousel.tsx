@@ -56,7 +56,7 @@ export default function AppCarousel({ items }: any) {
           size="sm"
           radius="full"
           aria-label="Prev"
-          className="bg-blue">
+          className="bg-ultramarine-blue">
           <Image
             src="/static/images/icon__chevron_down.svg"
             alt="Prev"
@@ -73,7 +73,7 @@ export default function AppCarousel({ items }: any) {
           size="sm"
           radius="full"
           aria-label="Next"
-          className="bg-blue">
+          className="bg-ultramarine-blue">
           <Image
             src="/static/images/icon__chevron_down.svg"
             alt="Next"

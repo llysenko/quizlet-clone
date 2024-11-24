@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 html, body {
-    @apply h-full m-0 p-0 font-sans text-text-color-h;
+    @apply h-full m-0 p-0 font-sans text-gunmetal;
 }
 
 .wrapper {
@@ -35,7 +35,7 @@ html, body {
 
 /* Handle */
 ::-webkit-scrollbar-thumb {
-    @apply bg-grey-2 rounded-2xl;
+    @apply bg-gainsboro rounded-2xl;
 }
 
 input:-webkit-autofill {

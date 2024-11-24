@@ -1,10 +1,10 @@
 .button {
-  @apply flex items-center justify-center border-2 border-grey-2 rounded-full hover:bg-grey-3;
+  @apply flex items-center justify-center border-2 border-gainsboro rounded-full hover:bg-bright-gray;
 
   transition: all .12s cubic-bezier(.47, 0, .745, .715);
 
   &_borderless {
-    @apply border-0 text-gray-600 hover:bg-grey-3;
+    @apply border-0 text-dark-electric-blue hover:bg-bright-gray;
   }
 
   &_small {

@@ -12,9 +12,9 @@ export default function FlashcardSetData({ set }: { set: any }) {
         </Link>
       </AppTooltip>
       <div>
-        <p className="text-grey-5 mb-[-.125rem] text-xxs">Created by</p>
+        <p className="text-cadet-grey mb-[-.125rem] text-xxs">Created by</p>
         <p className="font-semibold text-base">{set?.user.username}</p>
-        <p className="text-grey-5 text-xs">Created {set?.createdAt.toLocaleDateString()}</p>
+        <p className="text-cadet-grey text-xs">Created {set?.createdAt.toLocaleDateString()}</p>
       </div>
     </div>
   );

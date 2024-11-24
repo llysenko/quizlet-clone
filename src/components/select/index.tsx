@@ -1,8 +1,8 @@
+import clsx from 'clsx';
 import Image from 'next/image';
+import { ChangeEvent } from 'react';
 
 import styles from './styles.module.scss';
-import { ChangeEvent } from 'react';
-import clsx from 'clsx';
 
 type Option = {
   name: string | number;

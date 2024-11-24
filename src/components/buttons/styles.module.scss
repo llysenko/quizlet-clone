@@ -13,19 +13,19 @@
   }
 
   &_primary {
-    @apply bg-blue text-white hover:bg-blue-2;
+    @apply bg-ultramarine-blue text-white hover:bg-palatinate-blue;
   }
 
   &_accent {
-    @apply bg-yellow text-text-color-h hover:bg-yellow-light;
+    @apply bg-ripe-mango text-gunmetal hover:bg-naples-ripe-mango;
   }
 
   &_outlined {
-    @apply bg-transparent border-2 border-grey-2 text-gray-600 hover:bg-grey-3;
+    @apply bg-transparent border-2 border-gainsboro text-dark-electric-blue hover:bg-bright-gray;
   }
 
   &_borderless {
-    @apply bg-transparent text-blue hover:bg-transparent hover:text-blue-2;
+    @apply bg-transparent text-ultramarine-blue hover:bg-transparent hover:text-palatinate-blue;
   }
 
   &_medium {

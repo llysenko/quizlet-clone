@@ -23,8 +23,10 @@ export default function SetListItemInput({ cardId, label, name, placeholder, han
         onChange={event => handleOnChange(event)}
       />
       <div className="flex mt-3 justify-between">
-        <p className="pl-1 uppercase text-grey-5 text-ellipsis overflow-hidden whitespace-nowrap text-xs">{label}</p>
-        {/*<p className="pl-1 uppercase text-ellipsis overflow-hidden whitespace-nowrap text-xs text-green-1">*/}
+        <p className="pl-1 uppercase text-cadet-grey text-ellipsis overflow-hidden whitespace-nowrap text-xs">
+          {label}
+        </p>
+        {/*<p className="pl-1 uppercase text-ellipsis overflow-hidden whitespace-nowrap text-xs text-medium-turquoise">*/}
         {/*  choose language*/}
         {/*</p>*/}
       </div>

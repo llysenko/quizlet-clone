@@ -19,15 +19,15 @@ const items = [
 
 export default function AddImageSection() {
   return (
-    <div className="px-6 pt-7 pb-6 border-t-2 border-grey">
+    <div className="px-6 pt-7 pb-6 border-t-2 border-ghost-white">
       <div className="flex gap-4 items-center">
         <div className="max-w-[220px]">
           <Input data={{ id: 'imageSearch', name: 'imageSearch', type: 'search', placeholder: 'Enter term' }} />
         </div>
-        <Button variant="solid" radius="sm" className="bg-blue text-white">
+        <Button variant="solid" radius="sm" className="bg-ultramarine-blue text-white">
           Or upload your own image
           <AppTooltip content="Unlock this feature with Quizlet Plus">
-            <span className="py-0.5 px-2 bg-yellow rounded-full">
+            <span className="py-0.5 px-2 bg-ripe-mango rounded-full">
               <Image
                 src="/static/images/icon__lock.svg"
                 alt="Unlock adding diagram"

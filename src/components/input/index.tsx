@@ -8,7 +8,6 @@ import styles from './styles.module.scss';
 
 export type InputType = 'email' | 'password' | 'text' | 'search';
 type InputProps = {
-  id: string;
   type: InputType;
   name: string;
   label?: string;
@@ -20,7 +19,7 @@ export default function Input({
   data,
   onInputBlur,
   error,
-  className = 'bg-grey'
+  className = 'bg-ghost-white'
 }: {
   data: InputProps;
   onInputBlur?: (target: any) => void;
@@ -50,7 +49,7 @@ export default function Input({
             id={id}
             autoComplete="off"
             spellCheck="true"
-            className="w-full border-0 bg-inherit text-color-h outline-0"
+            className="w-full border-0 bg-inherit text-gunmetal outline-0"
             type={type}
             name={data.name}
             placeholder={data.placeholder}
@@ -61,7 +60,7 @@ export default function Input({
               iconSrc="/static/images/icon__eye.svg"
               borderless={true}
               onClick={togglePasswordVisibility}
-              className="hover:bg-grey-3"
+              className="hover:bg-bright-gray"
             />
           )}
         </div>

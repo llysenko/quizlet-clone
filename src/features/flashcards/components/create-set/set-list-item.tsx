@@ -25,7 +25,7 @@ export default function SetListItem({ data, index, deleteCard, handleOnChange }:
 
   return (
     <Card>
-      <div className="py-3 px-6 border-b-2 border-grey flex items-center justify-between">
+      <div className="py-3 px-6 border-b-2 border-ghost-white flex items-center justify-between">
         <SetListItemHeader data={data} index={index} deleteCard={deleteCard} />
       </div>
       <div className="px-6 pt-7 pb-6 flex flex-wrap sm:flex-nowrap gap-8">

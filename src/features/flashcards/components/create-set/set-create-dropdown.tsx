@@ -7,7 +7,7 @@ export default function SetCreateDropdown() {
   return (
     <Dropdown>
       <DropdownTrigger>
-        <Button color="primary" variant="solid" className="bg-blue" radius="sm">
+        <Button color="primary" variant="solid" className="bg-ultramarine-blue" radius="sm">
           Create
           <Image src="/static/images/icon__chevron_down.svg" alt="" width="16" height="16" />
         </Button>

@@ -37,18 +37,18 @@ export default function SetSettings() {
         <Button
           variant="bordered"
           radius="sm"
-          className="text-gray-600 bg-white hover:bg-grey-3"
-          startContent={<PlusIcon className="w-4 text-gray-600" />}>
+          className="text-dark-electric-blue bg-white hover:bg-bright-gray"
+          startContent={<PlusIcon className="w-4 text-dark-electric-blue" />}>
           Import
         </Button>
         <Button
           variant="bordered"
           radius="sm"
-          className="text-gray-600 bg-white hover:bg-grey-3"
-          startContent={<PlusIcon className="w-4 text-gray-600" />}>
+          className="text-dark-electric-blue bg-white hover:bg-bright-gray"
+          startContent={<PlusIcon className="w-4 text-dark-electric-blue" />}>
           Add diagram
           <AppTooltip content="Unlock this feature with Quizlet Plus">
-            <span className="py-0.5 px-2 bg-yellow rounded-full">
+            <span className="py-0.5 px-2 bg-ripe-mango rounded-full">
               <Image
                 src="/static/images/icon__lock.svg"
                 alt="Unlock adding diagram"
@@ -62,8 +62,8 @@ export default function SetSettings() {
         <Button
           variant="bordered"
           radius="sm"
-          className="text-gray-600 bg-white hover:bg-grey-3"
-          startContent={<SparkleIcon className="size-4 text-gray-600" />}>
+          className="text-dark-electric-blue bg-white hover:bg-bright-gray"
+          startContent={<SparkleIcon className="size-4 text-dark-electric-blue" />}>
           Create from notes
         </Button>
       </div>
@@ -74,7 +74,7 @@ export default function SetSettings() {
               isIconOnly
               variant="bordered"
               radius="full"
-              className="text-gray-600 bg-white hover:bg-grey-3"
+              className="text-dark-electric-blue bg-white hover:bg-bright-gray"
               aria-label={button.ariaLabel}>
               <Image src={button.iconSrc} alt={button.alt} width={24} height={24} className="w-6 h-auto" />
             </Button>

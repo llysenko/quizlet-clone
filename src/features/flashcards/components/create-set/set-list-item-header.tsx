@@ -12,7 +12,7 @@ type Props = {
 export default function SetListItemHeader({ data, index, deleteCard }: Props) {
   return (
     <>
-      <div className="text-grey-5 font-bold text-base">{index}</div>
+      <div className="text-cadet-grey font-bold text-base">{index}</div>
       <div></div>
       <div>
         <Button isIconOnly variant="light" radius="full" aria-label="Delete" onClick={() => deleteCard(data.id)}>

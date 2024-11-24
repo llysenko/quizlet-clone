@@ -6,7 +6,7 @@ import Heading1 from '@/components/headings/heading-1';
 
 export default function Section1({ toggleMenu, t }: { toggleMenu: () => void; t: any }) {
   return (
-    <section className="bg-grey-4 py-16">
+    <section className="bg-ghost-white py-16">
       <div className="m-auto flex max-w-[52.5rem] flex-col items-center gap-4 px-8 pb-8 pt-0 text-center">
         <Heading1>{t('headingOne')}</Heading1>
         <p className="min-h-[1.5rem] text-xl leading-[1.4]">{t('descriptionOne')}</p>

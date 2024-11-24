@@ -16,13 +16,13 @@ type Set = {
 
 export default function AppCarouselCard({ set }: { set: Set }) {
   return (
-    <Link href={`/${set.id}/flash-cards`} className="cursor-pointer border-2 border-grey-3 rounded-md grid">
-      <div className="transition-all flex flex-col justify-between w-full h-full border-b-4 p-4 border-white rounded-md hover:border-b-blue-3">
+    <Link href={`/${set.id}/flash-cards`} className="cursor-pointer border-2 border-bright-gray rounded-md grid">
+      <div className="transition-all flex flex-col justify-between w-full h-full border-b-4 p-4 border-white rounded-md hover:border-b-maximum-blue-purple">
         <div>
           <Heading4 className="line-clamp-1">{set.title}</Heading4>
 
           <div className="my-4 min-h-12">
-            <Chip size="sm" className="bg-grey-6">
+            <Chip size="sm" className="bg-alice-blue">
               {set._count.flashcards} terms
             </Chip>
           </div>

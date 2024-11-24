@@ -9,7 +9,7 @@ import SectionContainer from '@/features/home-page/components/section-container'
 
 export default function Section5({ toggleMenu, t }: { toggleMenu: () => void; t: any }) {
   return (
-    <div className="bg-blue-light">
+    <div className="bg-lavender">
       <SectionContainer>
         <div className="flex flex-wrap-reverse items-center px-8 lg:flex-nowrap">
           <div className="w-full grow lg:w-1/2">
@@ -23,7 +23,7 @@ export default function Section5({ toggleMenu, t }: { toggleMenu: () => void; t:
             </div>
             <Button label="Sign up as a teacher" size="large" onClick={toggleMenu} />
             <div className="mt-8">
-              <Link href="#" className="text-xl text-blue hover:text-blue-2">
+              <Link href="#" className="text-xl text-ultramarine-blue hover:text-palatinate-blue">
                 See how teachers use Quizlet
               </Link>
             </div>

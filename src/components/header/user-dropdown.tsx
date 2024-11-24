@@ -12,7 +12,7 @@ export default function UserDropdown({ user, signOut }: { user: User; signOut?: 
       <DropdownTrigger>
         <Avatar as="button" className="transition-transform" src={user.avatar || '/static/images/default-avatar.svg'} />
       </DropdownTrigger>
-      <DropdownMenu aria-label="Profile Actions" variant="flat" className="text-gray-600">
+      <DropdownMenu aria-label="Profile Actions" variant="flat" className="text-dark-electric-blue">
         <DropdownSection showDivider>
           <DropdownItem key="profile" isReadOnly className="flex items-center gap-2">
             <div className="flex items-center gap-4">

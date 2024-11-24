@@ -29,7 +29,7 @@ export default function SignIn({ switchTab, formState, formAction }: AuthProps) 
             <Input data={control} key={control.id} />
           ))}
         </div>
-        <p className="mt-6 text-sm text-gray-600">
+        <p className="mt-6 text-sm text-dark-electric-blue">
           By clicking Log in, you accept Quizlet&apos;s <b>Terms of Service</b> and <b>Privacy Policy</b>
         </p>
         {formState?.errors && (

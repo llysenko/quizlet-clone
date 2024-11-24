@@ -54,7 +54,7 @@ export default function SetPage({ cards }: Props) {
   }
 
   return (
-    <form action={handleCreateSet} className="bg-grey">
+    <form action={handleCreateSet} className="bg-ghost-white">
       <SetHeader>
         <Heading2>Create a new flashcard set</Heading2>
         <SetCreateControl />
