@@ -31,9 +31,8 @@
   "PageLayout": {
   },
   "Navigation": {
-    "home": "Home",
-    "about": "Subjects",
-    "pathnames": "Expert Solutions"
+    "study-tools": "Study tools",
+    "subjects": "Subjects"
   },
   "Loading": {
     "title": "Loading... Please wait!"

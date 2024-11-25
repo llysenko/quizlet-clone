@@ -51,7 +51,6 @@ export default function CreateDropdown({ user }: { user: User | null }) {
   const router = useRouter();
 
   function handleMenuItemClick(href: string) {
-    // @ts-ignore
     router.push(href);
   }
 

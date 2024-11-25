@@ -1,11 +1,11 @@
 'use client';
 
+import { Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger } from '@nextui-org/react';
 import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
-import { usePathname } from 'next/navigation';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 import React, { useContext, useState } from 'react';
-
-import { Link } from '@/navigation';
 
 import IconButton from '@/components/icon-button';
 import { UserContext } from '@/components/page-layout';
@@ -14,39 +14,174 @@ import { User } from '@/features/auth/lib/types';
 
 import styles from './styles.module.scss';
 
-const items = [
-  {
-    label: 'about',
-    path: '/about'
-  },
-  {
-    label: 'pathnames',
-    path: '/pathnames'
-  }
-];
+const studyTools = {
+  label: 'study-tools',
+  menuItemsForStudents: [
+    {
+      label: 'Flashcards',
+      key: 'flashcards',
+      href: '/features/flashcards',
+      iconSrc: 'cards.png'
+    },
+    {
+      label: 'Learn',
+      key: 'learn',
+      href: '/features/learn',
+      iconSrc: 'learn.png'
+    },
+    {
+      label: 'Study Guides',
+      key: 'study-guides',
+      href: '/study-guides/upload',
+      iconSrc: 'study-guides.png'
+    },
+    {
+      label: 'Test',
+      key: 'test',
+      href: '/features/test',
+      iconSrc: 'test.png'
+    },
+    {
+      label: 'Expert Solutions',
+      key: 'expert-solutions',
+      href: '/explanations',
+      iconSrc: 'expert-solutions.png'
+    }
+  ],
+  menuItemsForTeachers: [
+    {
+      label: 'Live',
+      key: 'live',
+      href: '/features/live',
+      iconSrc: 'live.png'
+    },
+    {
+      label: 'Blast',
+      key: 'blast',
+      href: '/features/blast',
+      iconSrc: 'blast.png'
+    },
+    {
+      label: 'Categories',
+      key: 'categories',
+      href: '/features/categories',
+      iconSrc: 'categories.png'
+    },
+    {
+      label: 'Checkpoint',
+      key: 'checkpoint',
+      href: '/features/checkpoint',
+      iconSrc: 'checkpoint.png'
+    }
+  ]
+};
+
+const subjects = {
+  label: 'subjects',
+  menuItems: [
+    {
+      label: 'Exams',
+      key: 'exams',
+      href: '/'
+    },
+    {
+      label: 'Literature',
+      key: 'literature',
+      href: '/'
+    }
+  ]
+};
 
 export default function Navigation() {
   const user: User | null = useContext(UserContext);
   const t = useTranslations('Navigation');
-  const currentPath = usePathname();
   const [open, setOpen] = useState(false);
-  const menuList = items.map(item => (
-    <li
-      key={item.label}
-      className={clsx(styles.nav__item, item.label === 'home' && !open && styles.nav__item_xl_hidden)}>
-      <Link
-        href={item.path}
-        className={clsx(
-          styles.nav__item,
-          styles.nav__link,
-          currentPath === item.path && open && styles.nav__link_active && styles.nav__link_active_horizontal,
-          currentPath === item.path && !open && styles.nav__link_active,
-          styles.nav__link_active_vertical
-        )}>
-        <span>{t(item.label)}</span>
-      </Link>
-    </li>
-  ));
+  const router = useRouter();
+  const menuList = (
+    <>
+      <li className={styles.nav__item}>
+        <Dropdown placement="bottom">
+          <DropdownTrigger
+            className={clsx(
+              styles.nav__item,
+              styles.nav__link,
+              styles.nav__link_active_vertical,
+              'outline-0 cursor-pointer'
+            )}>
+            {t(studyTools.label)}
+          </DropdownTrigger>
+          <DropdownMenu aria-label="Study tools" variant="flat">
+            <DropdownSection title="Students" showDivider>
+              {studyTools.menuItemsForStudents.map(item => (
+                <DropdownItem
+                  key={item.key}
+                  textValue={item.label}
+                  className="text-dark-electric-blue"
+                  onClick={() => handleMenuItemClick(item.href)}>
+                  <div className="flex items-center gap-3">
+                    <Image
+                      src={`/static/images/${item.iconSrc}`}
+                      alt={item.label}
+                      width={24}
+                      height={24}
+                      className="w-5 h-auto"
+                    />
+                    <p>{item.label}</p>
+                  </div>
+                </DropdownItem>
+              ))}
+            </DropdownSection>
+            <DropdownSection title="Teachers">
+              {studyTools.menuItemsForTeachers.map(item => (
+                <DropdownItem
+                  key={item.key}
+                  textValue={item.label}
+                  className="text-dark-electric-blue"
+                  onClick={() => handleMenuItemClick(item.href)}>
+                  <div className="flex items-center gap-3">
+                    <Image
+                      src={`/static/images/${item.iconSrc}`}
+                      alt={item.label}
+                      width={24}
+                      height={24}
+                      className="w-5 h-auto"
+                    />
+                    <p>{item.label}</p>
+                  </div>
+                </DropdownItem>
+              ))}
+            </DropdownSection>
+          </DropdownMenu>
+        </Dropdown>
+      </li>
+      <li className={styles.nav__item}>
+        <Dropdown placement="bottom">
+          <DropdownTrigger>
+            <button className={clsx(styles.nav__item, styles.nav__link, styles.nav__link_active_vertical, 'outline-0')}>
+              {t(subjects.label)}
+            </button>
+          </DropdownTrigger>
+          <DropdownMenu aria-label="Subjects" variant="flat">
+            {subjects.menuItems.map(item => (
+              <DropdownItem
+                key={item.key}
+                textValue={item.label}
+                className="text-dark-electric-blue"
+                onClick={() => handleMenuItemClick(item.href)}>
+                <div className="flex items-center gap-3">
+                  <p>{item.label}</p>
+                </div>
+              </DropdownItem>
+            ))}
+          </DropdownMenu>
+        </Dropdown>
+      </li>
+    </>
+  );
+
+  function handleMenuItemClick(href: string) {
+    router.push(href);
+  }
 
   function toggleMenu() {
     setOpen(!open);
