@@ -3,7 +3,7 @@ const withNextIntl = require('next-intl/plugin')();
 const cspHeader = `
     default-src 'self';
     script-src 'self' 'unsafe-inline' 'unsafe-eval';
-    style-src 'self';
+    style-src 'self' 'unsafe-inline';
     img-src 'self';
     font-src 'self' fonts.gstatic.com;
     object-src 'none';

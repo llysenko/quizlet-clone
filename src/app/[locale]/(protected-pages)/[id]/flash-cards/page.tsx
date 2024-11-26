@@ -5,15 +5,12 @@ import transformZodErrors from '@/utils/transform-zod-errors';
 
 import Footer from '@/components/footer';
 import Heading2 from '@/components/headings/heading-2';
-import Heading3 from '@/components/headings/heading-3';
 
 import { IdentifierSchema } from '@/lib/definitions';
 import { NotFoundError, ValidationError } from '@/lib/exceptions';
 
 import { getSetById } from '@/features/flashcards/actions';
 import FlashcardList from '@/features/flashcards/components/flashcard-sets/flashcard-list';
-import FlashcardListFilters from '@/features/flashcards/components/flashcard-sets/flashcard-list-filters';
-import FlashcardListItem from '@/features/flashcards/components/flashcard-sets/flashcard-list-item';
 import FlashcardSetActions from '@/features/flashcards/components/flashcard-sets/flashcard-set-actions';
 import FlashcardSetData from '@/features/flashcards/components/flashcard-sets/flashcard-set-data';
 
@@ -32,27 +29,22 @@ export default async function Page({ params }: { params: { id: number } }) {
 
   return (
     <div>
-      <div className="max-w-[77.125rem] m-auto px-10 pt-6">
+      <div className="m-auto max-w-[77.125rem] px-10 pt-6">
         <Heading2 className="mb-4">{set?.title}</Heading2>
 
-        <section className="py-8 flex items-center justify-between flex-wrap">
+        <section className="flex flex-wrap items-center justify-between py-8">
           <FlashcardSetData set={set} />
           <FlashcardSetActions />
         </section>
 
-        <section className="flex items-center justify-between mb-6">
-          <Heading3>Terms in this set ({set?._count.flashcards})</Heading3>
-          <FlashcardListFilters />
-        </section>
+        <FlashcardList set={set} />
 
-        <FlashcardList>{set?.flashcards.map(card => <FlashcardListItem key={card.id} card={card} />)}</FlashcardList>
-
-        <div className="flex justify-center mb-10">
+        <div className="mb-10 flex justify-center">
           <Button
             size="lg"
             variant="ghost"
             radius="sm"
-            className="text-dark-electric-blue font-semibold hover:bg-bright-gray">
+            className="font-semibold text-dark-electric-blue hover:bg-bright-gray">
             Add or remove terms
             <Image src="/static/images/icon__pencil.svg" alt="Edit the set" width={16} height={16} />
           </Button>

@@ -10,7 +10,7 @@ import { getSession } from '@/features/auth/lib/session';
 import { FlashcardSetSchema, FlashcardsSchema } from '@/features/flashcards/lib/definitions';
 import { FlashCard } from '@/features/flashcards/lib/types';
 
-export async function getSetById(id: number) {
+export async function getSetById(id: number, orderBy = 'createdAt') {
   return db.flashcardSet.findUnique({
     where: { id },
     include: {
@@ -18,6 +18,13 @@ export async function getSetById(id: number) {
       user: { select: { username: true, avatar: true } },
       _count: { select: { flashcards: true } }
     }
+  });
+}
+
+export async function getFlashcards(flashcardSetId: number, order: string) {
+  return db.flashcard.findMany({
+    where: { flashcardSetId },
+    orderBy: { [order]: 'asc' }
   });
 }
 

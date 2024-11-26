@@ -6,7 +6,7 @@ import AppTooltip from '@/components/app-tooltip/app-tooltip';
 export default function FlashcardSetActions() {
   return (
     <div className="flex items-center gap-2">
-      <Button size="md" variant="ghost" radius="sm" className="text-dark-electric-blue font-semibold">
+      <Button size="md" variant="ghost" radius="sm" className="font-semibold text-dark-electric-blue">
         <Image src="/static/images/icon__share.svg" alt="Share the set" width={16} height={16} />
         Share
       </Button>

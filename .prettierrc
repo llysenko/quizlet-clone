@@ -11,17 +11,25 @@
       "options": {
         "singleQuote": false
       }
+    },
+    {
+      "files": ["**/*.tsx"],
+      "options": {
+        "plugins": ["prettier-plugin-organize-attributes"]
+      }
     }
   ],
   "tabWidth": 2,
   "trailingComma": "none",
   "plugins": [
+    "@ianvs/prettier-plugin-sort-imports",
     "prettier-plugin-organize-attributes",
-    "prettier-plugin-tailwindcss",
-    "@ianvs/prettier-plugin-sort-imports"
+    "prettier-plugin-tailwindcss"
   ],
   "pluginSearchDirs": false,
   "attributeGroups": ["^(id|name)$", "^className$",  "$DEFAULT", "^aria-"],
+  "attributeSort": "ASC",
+  "attributeIgnoreCase": false,
   "tailwindConfig": "./tailwind.config.ts",
   "importOrder": [
     "<BUILTIN_MODULES>",
