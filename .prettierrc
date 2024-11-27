@@ -11,12 +11,6 @@
       "options": {
         "singleQuote": false
       }
-    },
-    {
-      "files": ["**/*.tsx"],
-      "options": {
-        "plugins": ["prettier-plugin-organize-attributes"]
-      }
     }
   ],
   "tabWidth": 2,
