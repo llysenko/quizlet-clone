@@ -1,11 +1,22 @@
 import { Button } from '@nextui-org/react';
 import clsx from 'clsx';
 import Image from 'next/image';
+import { useState } from 'react';
+
+import { updateFlashcard } from '@/features/flashcards/actions';
 
 import styles from '../../styles.module.scss';
 import { Flashcard } from '.prisma/client';
 
 export default function FlashcardListItem({ card }: { card: Flashcard }) {
+  const [isFlashcardStarred, setIsFlashcardStarred] = useState(card.isStarred);
+
+  async function toggleStarred() {
+    setIsFlashcardStarred(!isFlashcardStarred);
+
+    await updateFlashcard(card.id, { isStarred: !isFlashcardStarred });
+  }
+
   return (
     <div
       key={card.id}
@@ -15,8 +26,19 @@ export default function FlashcardListItem({ card }: { card: Flashcard }) {
         <div className="flex-1 py-2 pl-8 pr-4">{card.definition}</div>
       </div>
       <div className="flex w-[6.75rem]">
-        <Button isIconOnly aria-label="Star" radius="full" className="bg-transparent hover:bg-bright-gray">
-          <Image src="/static/images/icon__star.svg" alt="Star the card" width={24} height={24} />
+        <Button
+          isIconOnly
+          aria-label="Star the card"
+          radius="full"
+          className="bg-transparent hover:bg-bright-gray"
+          onClick={toggleStarred}>
+          <Image
+            src="/static/images/icon__star.svg"
+            alt="Star the card"
+            width={24}
+            height={24}
+            className={clsx(isFlashcardStarred && styles.active)}
+          />
         </Button>
         <Button
           isIconOnly

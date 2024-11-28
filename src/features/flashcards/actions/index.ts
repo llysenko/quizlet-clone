@@ -10,20 +10,32 @@ import { getSession } from '@/features/auth/lib/session';
 import { FlashcardSetSchema, FlashcardsSchema } from '@/features/flashcards/lib/definitions';
 import { FlashCard } from '@/features/flashcards/lib/types';
 
-export async function getSetById(id: number, orderBy = 'createdAt') {
-  return db.flashcardSet.findUnique({
+import { Flashcard } from '.prisma/client';
+
+export async function getSetById(id: number) {
+  const flashcardSet = await db.flashcardSet.findUnique({
     where: { id },
     include: {
-      flashcards: true,
+      flashcards: {
+        orderBy: { createdAt: 'asc' }
+      },
       user: { select: { username: true, avatar: true } },
       _count: { select: { flashcards: true } }
     }
   });
+  const starredFlashcardsCount = await db.flashcard.count({
+    where: {
+      flashcardSetId: id,
+      isStarred: true
+    }
+  });
+
+  return { ...flashcardSet, starred: starredFlashcardsCount };
 }
 
-export async function getFlashcards(flashcardSetId: number, order: string) {
+export async function getFlashcards(conditions: Partial<Flashcard>, order = 'createdAt') {
   return db.flashcard.findMany({
-    where: { flashcardSetId },
+    where: { ...conditions },
     orderBy: { [order]: 'asc' }
   });
 }
@@ -85,4 +97,11 @@ export async function createFlashcardSetWithCards(formData: FormData, allFlashca
       return { errors: error.message };
     }
   })({ errors: '' }, formData);
+}
+
+export async function updateFlashcard(id: number, data: Partial<Flashcard>) {
+  return db.flashcard.update({
+    where: { id },
+    data: { ...data }
+  });
 }

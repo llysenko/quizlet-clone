@@ -26,3 +26,7 @@
 .shadow {
   box-shadow: 0 .125rem .25rem 0 #282e3e1f;
 }
+
+.active {
+  filter: brightness(0) saturate(100%) invert(83%) sepia(66%) saturate(2768%) hue-rotate(338deg) brightness(105%) contrast(101%);
+}

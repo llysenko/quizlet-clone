@@ -11,3 +11,13 @@ export const DESCRIPTION_DATA = {
   name: 'description',
   placeholder: 'Add a description...'
 };
+
+export const FILTERS = {
+  ALL: 'all',
+  STARRED: 'starred'
+};
+
+export const ORDER = {
+  ORIGINAL: 'original',
+  ALPHABETICAL: 'alphabetical'
+};
