@@ -8,13 +8,21 @@ import { updateFlashcard } from '@/features/flashcards/actions';
 import styles from '../../styles.module.scss';
 import { Flashcard } from '.prisma/client';
 
-export default function FlashcardListItem({ card }: { card: Flashcard }) {
+export default function FlashcardListItem({
+  card,
+  handleStarredCount
+}: {
+  card: Flashcard;
+  handleStarredCount: (isStarred: boolean) => void;
+}) {
   const [isFlashcardStarred, setIsFlashcardStarred] = useState(card.isStarred);
 
   async function toggleStarred() {
     setIsFlashcardStarred(!isFlashcardStarred);
 
-    await updateFlashcard(card.id, { isStarred: !isFlashcardStarred });
+    const updatedFlashcard = await updateFlashcard(card.id, { isStarred: !isFlashcardStarred });
+
+    handleStarredCount(updatedFlashcard.isStarred);
   }
 
   return (

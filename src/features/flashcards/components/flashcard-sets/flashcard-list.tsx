@@ -16,6 +16,7 @@ export default function FlashcardList({ set }: any) {
   const [cards, setCards] = useState<Flashcard[]>(set?.flashcards);
   const [currentFilter, setCurrentFilter] = useState<string>(FILTERS.ALL);
   const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [starredCount, setStarredCount] = useState<number>(set?.starred);
 
   async function sortCards(event: ChangeEvent<HTMLSelectElement>) {
     setIsLoading(true);
@@ -45,6 +46,10 @@ export default function FlashcardList({ set }: any) {
     setIsLoading(false);
   }
 
+  function calcStarredCount(isStarred: boolean) {
+    setStarredCount(isStarred ? starredCount + 1 : starredCount - 1);
+  }
+
   return (
     <section className="flex flex-col">
       <header className="mb-6 flex flex-wrap items-center justify-between">
@@ -53,7 +58,7 @@ export default function FlashcardList({ set }: any) {
           handleOnChange={sortCards}
           handleFilterCards={filterCards}
           currentFilter={currentFilter}
-          starredCount={set?.starred}
+          starredCount={starredCount}
         />
       </header>
 
@@ -61,7 +66,7 @@ export default function FlashcardList({ set }: any) {
         {isLoading ? (
           <Spinner color="warning" size="md" />
         ) : (
-          cards.map(card => <FlashcardListItem key={card.id} card={card} />)
+          cards.map(card => <FlashcardListItem key={card.id} card={card} handleStarredCount={calcStarredCount} />)
         )}
       </div>
     </section>
