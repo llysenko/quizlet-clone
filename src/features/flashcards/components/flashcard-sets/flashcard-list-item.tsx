@@ -1,7 +1,7 @@
 import { Button } from '@nextui-org/react';
 import clsx from 'clsx';
 import Image from 'next/image';
-import { useLayoutEffect, useRef, useState } from 'react';
+import { ChangeEvent, useEffect, useRef, useState } from 'react';
 
 import AppTooltip from '@/components/app-tooltip/app-tooltip';
 
@@ -17,22 +17,51 @@ export default function FlashcardListItem({
   card: Flashcard;
   handleStarredCount: (isStarred: boolean) => void;
 }) {
+  const [changedCard, setChangedCard] = useState<any>();
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [isFlashcardStarred, setIsFlashcardStarred] = useState<boolean>(card.isStarred);
-  const descriptionRef = useRef<HTMLTextAreaElement | null>(null);
+  const cardRef = useRef<HTMLDivElement | null>(null);
+  const definitionRef = useRef<HTMLTextAreaElement | null>(null);
   const termRef = useRef<HTMLTextAreaElement | null>(null);
 
-  useLayoutEffect(() => {
+  useEffect(() => {
     if (termRef && termRef.current) {
       termRef.current.style.height = `${termRef?.current?.scrollHeight}px`;
     }
   }, [termRef.current?.scrollHeight]);
 
-  useLayoutEffect(() => {
-    if (descriptionRef && descriptionRef.current) {
-      descriptionRef.current.style.height = `${descriptionRef?.current?.scrollHeight}px`;
+  useEffect(() => {
+    if (definitionRef && definitionRef.current) {
+      definitionRef.current.style.height = `${definitionRef?.current?.scrollHeight}px`;
     }
-  }, [descriptionRef.current?.scrollHeight]);
+  }, [definitionRef.current?.scrollHeight]);
+
+  useEffect(() => {
+    async function handleClickOutside(event: MouseEvent) {
+      if (cardRef.current && !cardRef.current.contains(event.target as Node)) {
+        setIsEditMode(false);
+
+        if (changedCard) {
+          const { id, ...rest } = changedCard;
+          await updateFlashcard(id, rest);
+        }
+      }
+    }
+
+    document.addEventListener('mousedown', handleClickOutside);
+
+    return () => document.removeEventListener('mousedown', handleClickOutside);
+  }, [changedCard]);
+
+  function handleOnChange(event: ChangeEvent<HTMLTextAreaElement>) {
+    const { name, value } = event.target;
+
+    setChangedCard((prevCard: { id: number; term: string; definition: string }) => ({
+      ...prevCard,
+      id: card.id,
+      [name]: value
+    }));
+  }
 
   async function toggleStarred() {
     setIsFlashcardStarred(!isFlashcardStarred);
@@ -42,32 +71,31 @@ export default function FlashcardListItem({
     handleStarredCount(updatedFlashcard.isStarred);
   }
 
-  function toggleEditMode() {
-    setIsEditMode(!isEditMode);
-  }
-
   return (
     <div
+      id={card.id.toString()}
+      ref={cardRef}
       key={card.id}
       className={clsx(styles.shadow, 'flex min-h-[3.625rem] justify-between rounded bg-white px-6 py-5')}>
       <div className="flex w-full gap-2">
-        <textarea
-          ref={termRef}
-          readOnly={true}
-          value={card.term}
-          className={clsx(
-            card.definition && 'border-r-2 border-ghost-white',
-            'h-auto w-1/3 resize-none overflow-hidden py-2 pr-4'
-          )}>
-          {card.term}
-        </textarea>
-        <textarea
-          ref={descriptionRef}
-          readOnly={true}
-          value={card.definition}
-          className="h-auto flex-1 resize-none overflow-hidden py-2 pl-8 pr-4">
-          {card.definition}
-        </textarea>
+        <div className={clsx(card.definition && 'border-r-2 border-ghost-white', 'w-1/3')}>
+          <textarea
+            ref={termRef}
+            readOnly={!isEditMode}
+            defaultValue={card.term}
+            name="term"
+            className="h-auto w-full resize-none overflow-hidden py-2 pr-4 outline-0"
+            onChange={handleOnChange}></textarea>
+        </div>
+        <div className="flex h-full w-full">
+          <textarea
+            ref={definitionRef}
+            readOnly={!isEditMode}
+            defaultValue={card.definition}
+            name="definition"
+            className="h-auto w-full flex-1 resize-none overflow-hidden py-2 pl-8 pr-4 outline-0"
+            onChange={handleOnChange}></textarea>
+        </div>
       </div>
       <div className="flex w-[6.75rem]">
         <AppTooltip content="Star">
@@ -101,7 +129,7 @@ export default function FlashcardListItem({
             aria-label="Edit"
             radius="full"
             className="bg-transparent hover:bg-bright-gray"
-            onClick={toggleEditMode}>
+            onClick={() => setIsEditMode(!isEditMode)}>
             <Image
               src="/static/images/icon__pencil.svg"
               alt="Edit the card"

@@ -32,6 +32,7 @@ export default function FlashcardList({ set }: any) {
 
   async function filterCards(filter: string) {
     if (filter === currentFilter) return;
+    if (filter === FILTERS.STARRED && starredCount === 0) return;
 
     setIsLoading(true);
 
