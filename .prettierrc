@@ -26,8 +26,10 @@
   "attributeIgnoreCase": false,
   "tailwindConfig": "./tailwind.config.ts",
   "importOrder": [
+    "^react",
+    "^@nextui-org/(.*)$",
+    "^next/(.*)$",
     "<BUILTIN_MODULES>",
-    "",
     "<THIRD_PARTY_MODULES>",
     "",
     "^@/(?!actions|components|lib|features)(.*)$",
