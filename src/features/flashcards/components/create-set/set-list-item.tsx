@@ -25,26 +25,28 @@ export default function SetListItem({ data, index, deleteCard, handleOnChange }:
 
   return (
     <Card>
-      <div className="py-3 px-6 border-b-2 border-ghost-white flex items-center justify-between">
+      <div className="flex items-center justify-between border-b-2 border-ghost-white px-6 py-3">
         <SetListItemHeader data={data} index={index} deleteCard={deleteCard} />
       </div>
-      <div className="px-6 pt-7 pb-6 flex flex-wrap sm:flex-nowrap gap-8">
+      <div className="flex flex-wrap gap-8 px-6 pb-6 pt-7 sm:flex-nowrap">
         <div className="w-full sm:w-1/2">
           <SetListItemInput
             label="term"
             placeholder="Enter term"
             name="term"
             cardId={data.id}
+            defaultValue={data.term}
             handleOnChange={handleOnChange}
           />
         </div>
-        <div className="flex w-full sm:w-1/2 gap-4">
+        <div className="flex w-full gap-4 sm:w-1/2">
           <div className="grow">
             <SetListItemInput
               label="definition"
               placeholder="Enter definition"
               name="definition"
               cardId={data.id}
+              defaultValue={data.definition}
               handleOnChange={handleOnChange}
             />
           </div>

@@ -8,9 +8,8 @@ import { AuthRequiredError, NotFoundError } from '@/lib/exceptions';
 import { validateAction } from '@/features/auth/lib/middleware';
 import { getSession } from '@/features/auth/lib/session';
 import { FlashcardSetSchema, FlashcardsSchema } from '@/features/flashcards/lib/definitions';
-import { FlashCard } from '@/features/flashcards/lib/types';
 
-import { Flashcard } from '.prisma/client';
+import { Flashcard, FlashcardSet } from '.prisma/client';
 
 export async function getSetById(id: number) {
   const flashcardSet = await db.flashcardSet.findUnique({
@@ -57,7 +56,7 @@ export async function getLatestFlashcardSets() {
   return result;
 }
 
-export async function createFlashcardSetWithCards(formData: FormData, allFlashcards: FlashCard[]) {
+export async function createFlashcardSetWithCards(formData: FormData, allFlashcards: Partial<Flashcard>[]) {
   const filledCards = allFlashcards.filter(card => card.term || card.definition);
   const validatedCards = FlashcardsSchema.safeParse(filledCards);
 
@@ -104,4 +103,55 @@ export async function updateFlashcard(id: number, data: Partial<Flashcard>) {
     where: { id },
     data: { ...data }
   });
+}
+
+export async function updateFlashcardSetWithCards(
+  setId: number,
+  formData: FormData,
+  allFlashcards: Partial<Flashcard>[]
+) {
+  const filledCards = allFlashcards.filter(card => card.term || card.definition);
+  const validatedCards = FlashcardsSchema.safeParse(filledCards);
+
+  if (!validatedCards.success) {
+    const errors = transformZodErrors(validatedCards.error);
+
+    return { errors: { cards: Object.values(errors).at(0) } };
+  }
+
+  return validateAction(FlashcardSetSchema, async (data, formData) => {
+    try {
+      // TODO: check if user is authorized and if is owner of the set
+      const session = await getSession();
+      let updatedSet: FlashcardSet;
+
+      await db.$transaction(async prisma => {
+        updatedSet = await prisma.flashcardSet.update({ where: { id: setId }, data });
+
+        await Promise.all(
+          validatedCards.data.map(async card => {
+            await prisma.flashcard.upsert({
+              create: {
+                term: card.term as string,
+                definition: card.definition as string,
+                flashcardSetId: updatedSet?.id as number
+              },
+              update: {
+                term: card.term as string,
+                definition: card.definition as string
+              },
+              where: {
+                id: card.id,
+                flashcardSetId: updatedSet?.id as number
+              }
+            });
+          })
+        );
+      });
+
+      return getSetById(setId);
+    } catch (error: any) {
+      return { errors: error.message };
+    }
+  })({ errors: '' }, formData);
 }

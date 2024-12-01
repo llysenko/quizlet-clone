@@ -2,6 +2,7 @@ import { z } from 'zod';
 
 export const FlashcardSchema = z
   .object({
+    id: z.number().optional(),
     term: z.string().max(930).optional(),
     definition: z.string().max(1850).optional()
   })

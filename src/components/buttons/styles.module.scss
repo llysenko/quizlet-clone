@@ -28,15 +28,15 @@
     @apply bg-transparent text-ultramarine-blue hover:bg-transparent hover:text-palatinate-blue;
   }
 
-  &_medium {
+  &_md {
     @apply min-h-10 px-3.5 py-1.5 text-sm font-semibold leading-none;
   }
 
-  &_large {
+  &_lg {
     @apply min-h-16 px-[1.875rem] py-[1.125rem] text-base font-semibold leading-none;
   }
 
-  &_large>&__icon {
+  &_lg>&__icon {
     @apply w-6;
   }
 

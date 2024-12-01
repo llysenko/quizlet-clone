@@ -1,7 +1,9 @@
 'use client';
 
-import { Spinner } from '@nextui-org/react';
 import { ChangeEvent, useState } from 'react';
+import { Button, Spinner } from '@nextui-org/react';
+import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import Heading3 from '@/components/headings/heading-3';
 
@@ -17,6 +19,7 @@ export default function FlashcardList({ set }: any) {
   const [currentFilter, setCurrentFilter] = useState<string>(FILTERS.ALL);
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [starredCount, setStarredCount] = useState<number>(set?.starred);
+  const router = useRouter();
 
   async function sortCards(event: ChangeEvent<HTMLSelectElement>) {
     setIsLoading(true);
@@ -51,6 +54,10 @@ export default function FlashcardList({ set }: any) {
     setStarredCount(isStarred ? starredCount + 1 : starredCount - 1);
   }
 
+  function redirectToEditPage() {
+    router.push(`/${set.id}/edit`);
+  }
+
   return (
     <section className="flex flex-col">
       <header className="mb-6 flex flex-wrap items-center justify-between">
@@ -69,6 +76,18 @@ export default function FlashcardList({ set }: any) {
         ) : (
           cards.map(card => <FlashcardListItem key={card.id} card={card} handleStarredCount={calcStarredCount} />)
         )}
+      </div>
+
+      <div className="mb-10 flex justify-center">
+        <Button
+          size="lg"
+          variant="ghost"
+          radius="sm"
+          className="font-semibold text-dark-electric-blue hover:bg-bright-gray"
+          onClick={redirectToEditPage}>
+          Add or remove terms
+          <Image src="/static/images/icon__pencil.svg" alt="Edit the set" width={16} height={16} />
+        </Button>
       </div>
     </section>
   );

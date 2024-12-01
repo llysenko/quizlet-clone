@@ -1,5 +1,5 @@
-import clsx from 'clsx';
 import { useId, useState } from 'react';
+import clsx from 'clsx';
 
 import IconButton from '@/components/icon-button';
 import InputLabel from '@/components/input-label';
@@ -12,19 +12,20 @@ type InputProps = {
   name: string;
   label?: string;
   placeholder: string;
-  className?: string;
 };
 
 export default function Input({
   data,
   onInputBlur,
   error,
-  className = 'bg-ghost-white'
+  className = 'bg-ghost-white',
+  defaultValue
 }: {
   data: InputProps;
   onInputBlur?: (target: any) => void;
   error?: any;
   className?: string;
+  defaultValue?: string;
 }) {
   const [type, setType] = useState<InputType>(data.type);
   const id = useId();
@@ -42,11 +43,12 @@ export default function Input({
           'relative flex flex-col justify-center overflow-hidden rounded-lg px-4 py-2.5',
           styles.label,
           className,
-          error && 'border-b-2 border-error'
+          error && 'border-error border-b-2'
         )}>
         <div className="flex items-center justify-between">
           <input
             id={id}
+            defaultValue={defaultValue}
             autoComplete="off"
             spellCheck="true"
             className="w-full border-0 bg-inherit text-gunmetal outline-0"

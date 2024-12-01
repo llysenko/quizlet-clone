@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import Image from 'next/image';
 import React from 'react';
+import Image from 'next/image';
+import clsx from 'clsx';
 
 import styles from './styles.module.scss';
 
@@ -10,7 +10,7 @@ export interface ButtonProps {
   iconSrc?: string;
   label: string;
   mode?: 'primary' | 'accent' | 'outlined';
-  size?: 'small' | 'medium' | 'large' | 'full';
+  size?: 'sm' | 'md' | 'lg';
   type?: 'button' | 'submit';
   width?: 'full' | 'fit';
   onClick?: (event?: any) => void;
@@ -22,7 +22,7 @@ export default function Button({
   iconSrc,
   label,
   mode = 'primary',
-  size = 'medium',
+  size = 'md',
   type = 'button',
   width = 'fit',
   onClick

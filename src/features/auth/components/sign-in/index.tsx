@@ -16,7 +16,7 @@ export default function SignIn({ switchTab, formState, formAction }: AuthProps) 
             key={provider.name}
             label={provider.label}
             iconSrc={`/static/images/${provider.iconSrc}`}
-            size="large"
+            size="lg"
             width="full"
             mode="outlined"
           />
@@ -40,15 +40,15 @@ export default function SignIn({ switchTab, formState, formAction }: AuthProps) 
           </Error>
         )}
         <div className="mt-6 flex flex-col gap-4">
-          <SubmitButton label="Log in" size="large" width="full" />
+          <SubmitButton label="Log in" size="lg" width="full" />
           <Button
             label="New to Quizlet? Create an account"
-            size="large"
+            size="lg"
             width="full"
             mode="outlined"
             onClick={() => switchTab(AUTH_TABS.SIGN_UP)}
           />
-          <Button label="Log in with magic link" size="large" width="full" borderless={true} />
+          <Button label="Log in with magic link" size="lg" width="full" borderless={true} />
         </div>
       </form>
     </>

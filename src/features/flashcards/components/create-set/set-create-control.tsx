@@ -4,14 +4,14 @@ import SetCreateDropdown from '@/features/flashcards/components/create-set/set-c
 import SetCreateModal from '@/features/flashcards/components/create-set/set-create-modal';
 
 type Props = {
-  size?: 'medium' | 'large';
+  size?: 'md' | 'lg';
   className?: string;
 };
 
-export default function SetCreateControl({ size = 'medium', className }: Props) {
+export default function SetCreateControl({ size = 'md', className }: Props) {
   return (
     <div className={className}>
-      <div className="gap-4 hidden lg:flex">
+      <div className="hidden gap-4 lg:flex">
         <SubmitButton label="Create" mode="outlined" size={size} />
         <SubmitButton label="Create and practice" mode="primary" size={size} />
       </div>

@@ -1,7 +1,7 @@
 'use client';
 
-import { redirect } from 'next/navigation';
 import { ChangeEvent, useState } from 'react';
+import { redirect, useRouter } from 'next/navigation';
 
 import Container from '@/components/container';
 import Error from '@/components/error';
@@ -9,7 +9,7 @@ import Heading2 from '@/components/headings/heading-2';
 import Input from '@/components/input';
 import Textarea from '@/components/textarea';
 
-import { createFlashcardSetWithCards } from '@/features/flashcards/actions';
+import { createFlashcardSetWithCards, updateFlashcardSetWithCards } from '@/features/flashcards/actions';
 import AddFlashcardButton from '@/features/flashcards/components/create-set/add-flashcard-button';
 import SetCreateControl from '@/features/flashcards/components/create-set/set-create-control';
 import SetHeader from '@/features/flashcards/components/create-set/set-header';
@@ -17,16 +17,28 @@ import SetInfo from '@/features/flashcards/components/create-set/set-info';
 import SetList from '@/features/flashcards/components/create-set/set-list';
 import SetListItem from '@/features/flashcards/components/create-set/set-list-item';
 import SetSettings from '@/features/flashcards/components/create-set/set-settings';
+import SetEditControl from '@/features/flashcards/components/edit-set/set-edit-control';
 import { DESCRIPTION_DATA, TITLE_DATA } from '@/features/flashcards/lib/constants';
 import { FlashCard } from '@/features/flashcards/lib/types';
 
 type Props = {
-  cards: FlashCard[];
+  set: {
+    flashcards: FlashCard[];
+  };
 };
 
-export default function SetPage({ cards }: Props) {
-  const [allFlashcards, setFlashcards] = useState<FlashCard[]>(cards);
+export default function SetPage({ set }: any) {
+  const [allFlashcards, setFlashcards] = useState<FlashCard[]>(set.flashcards);
   const [errors, setErrors] = useState();
+  const router = useRouter();
+
+  async function handleCreateSet(formData: FormData) {
+    const response: any = set.id
+      ? await updateFlashcardSetWithCards(set.id, formData, allFlashcards)
+      : await createFlashcardSetWithCards(formData, allFlashcards);
+
+    response?.errors ? setErrors(response?.errors) : redirect(`/${response?.id}/flash-cards`);
+  }
 
   function addNewCard() {
     const lastId = allFlashcards
@@ -47,22 +59,20 @@ export default function SetPage({ cards }: Props) {
     if (card) card[event.target.name] = event.target.value;
   }
 
-  async function handleCreateSet(formData: FormData) {
-    const response: any = await createFlashcardSetWithCards(formData, allFlashcards);
-
-    response?.errors ? setErrors(response?.errors) : redirect(`/${response?.id}/flash-cards`);
+  function redirectToSet() {
+    router.push(`/${set.id}/flash-cards`);
   }
 
   return (
     <form action={handleCreateSet} className="bg-ghost-white">
       <SetHeader>
-        <Heading2>Create a new flashcard set</Heading2>
-        <SetCreateControl />
+        <Heading2>{!set.id && 'Create a new flashcard set'}</Heading2>
+        {set.id ? <SetEditControl handleOnClick={redirectToSet} /> : <SetCreateControl />}
       </SetHeader>
 
       <SetInfo>
-        <Input data={TITLE_DATA} className="bg-white" error={true} />
-        <Textarea data={DESCRIPTION_DATA} className="bg-white" />
+        <Input data={TITLE_DATA} defaultValue={set.title} className="bg-white" error={true} />
+        <Textarea data={DESCRIPTION_DATA} defaultValue={set.description} className="bg-white" />
       </SetInfo>
 
       <SetSettings />
@@ -87,7 +97,11 @@ export default function SetPage({ cards }: Props) {
       </SetList>
 
       <Container className="flex justify-end">
-        <SetCreateControl size="large" className="mb-4" />
+        {set.id ? (
+          <SetEditControl size="lg" handleOnClick={redirectToSet} backBtnVisibility={false} />
+        ) : (
+          <SetCreateControl size="lg" className="mb-4" />
+        )}
       </Container>
     </form>
   );

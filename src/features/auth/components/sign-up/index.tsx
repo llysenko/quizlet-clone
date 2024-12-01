@@ -1,5 +1,5 @@
-import clsx from 'clsx';
 import { useRef, useState } from 'react';
+import clsx from 'clsx';
 
 import Button from '@/components/buttons';
 import SubmitButton from '@/components/buttons/submit-button';
@@ -53,7 +53,7 @@ export default function SignUp({ switchTab, formAction, formState }: AuthProps) 
             key={provider.name}
             label={provider.label}
             iconSrc={`/static/images/${provider.iconSrc}`}
-            size="large"
+            size="lg"
             width="full"
             mode="outlined"
           />
@@ -96,10 +96,10 @@ export default function SignUp({ switchTab, formAction, formState }: AuthProps) 
           </Error>
         )}
         <div className="mt-6 flex flex-col gap-4">
-          <SubmitButton label="Sign up" size="large" width="full" />
+          <SubmitButton label="Sign up" size="lg" width="full" />
           <Button
             label="Already have an account? Log in"
-            size="large"
+            size="lg"
             width="full"
             mode="outlined"
             onClick={() => switchTab(AUTH_TABS.SIGN_IN)}

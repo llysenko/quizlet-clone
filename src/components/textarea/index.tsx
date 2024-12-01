@@ -1,5 +1,5 @@
-import clsx from 'clsx';
 import { ChangeEvent, useId, useState } from 'react';
+import clsx from 'clsx';
 
 import InputLabel from '@/components/input-label';
 
@@ -9,17 +9,18 @@ type Props = {
   name: string;
   label?: string;
   placeholder: string;
-  className?: string;
 };
 
 export default function Textarea({
   data,
   error,
-  className = 'bg-ghost-white'
+  className = 'bg-ghost-white',
+  defaultValue
 }: {
   data: Props;
   error?: any;
   className?: string;
+  defaultValue?: string;
 }) {
   const [value, setValue] = useState('');
   const id = useId();
@@ -37,17 +38,17 @@ export default function Textarea({
           'flex flex-col justify-center overflow-hidden rounded-lg px-4 py-3.5',
           styles.label,
           className,
-          error && 'border-b-2 border-error'
+          error && 'border-error border-b-2'
         )}>
         <div className="flex items-center justify-between">
           <textarea
-            className="w-full border-0 bg-inherit text-gunmetal text-sm outline-0 resize-none overflow-y-auto"
+            className="w-full resize-none overflow-y-auto border-0 bg-inherit text-sm text-gunmetal outline-0"
             autoComplete="off"
             spellCheck="true"
             id={id}
             name={data.name}
             placeholder={data.placeholder}
-            value={value}
+            defaultValue={defaultValue}
             onChange={handleChange}
           />
         </div>

@@ -1,15 +1,16 @@
-import { Input } from '@nextui-org/react';
 import { ChangeEvent } from 'react';
+import { Input } from '@nextui-org/react';
 
 type Props = {
   cardId: number;
+  defaultValue?: string;
   label: string;
   name: string;
   placeholder: string;
   handleOnChange: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
-export default function SetListItemInput({ cardId, label, name, placeholder, handleOnChange }: Props) {
+export default function SetListItemInput({ cardId, defaultValue, label, name, placeholder, handleOnChange }: Props) {
   return (
     <>
       <Input
@@ -19,11 +20,12 @@ export default function SetListItemInput({ cardId, label, name, placeholder, han
         variant="underlined"
         id={cardId.toString()}
         name={name}
+        defaultValue={defaultValue}
         placeholder={placeholder}
         onChange={event => handleOnChange(event)}
       />
-      <div className="flex mt-3 justify-between">
-        <p className="pl-1 uppercase text-cadet-grey text-ellipsis overflow-hidden whitespace-nowrap text-xs">
+      <div className="mt-3 flex justify-between">
+        <p className="overflow-hidden text-ellipsis whitespace-nowrap pl-1 text-xs uppercase text-cadet-grey">
           {label}
         </p>
         {/*<p className="pl-1 uppercase text-ellipsis overflow-hidden whitespace-nowrap text-xs text-medium-turquoise">*/}

@@ -1,6 +1,3 @@
-import { Button } from '@nextui-org/react';
-import Image from 'next/image';
-
 import transformZodErrors from '@/utils/transform-zod-errors';
 
 import Footer from '@/components/footer';
@@ -34,21 +31,10 @@ export default async function Page({ params }: { params: { id: number } }) {
 
         <section className="flex flex-wrap items-center justify-between py-8">
           <FlashcardSetData set={set} />
-          <FlashcardSetActions />
+          <FlashcardSetActions set={set} />
         </section>
 
         <FlashcardList set={set} />
-
-        <div className="mb-10 flex justify-center">
-          <Button
-            size="lg"
-            variant="ghost"
-            radius="sm"
-            className="font-semibold text-dark-electric-blue hover:bg-bright-gray">
-            Add or remove terms
-            <Image src="/static/images/icon__pencil.svg" alt="Edit the set" width={16} height={16} />
-          </Button>
-        </div>
       </div>
 
       <Footer />

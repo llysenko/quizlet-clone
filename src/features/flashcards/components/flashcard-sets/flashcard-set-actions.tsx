@@ -1,9 +1,18 @@
+'use client';
+
 import { Button } from '@nextui-org/react';
 import Image from 'next/image';
+import { useRouter } from 'next/navigation';
 
 import AppTooltip from '@/components/app-tooltip/app-tooltip';
 
-export default function FlashcardSetActions() {
+export default function FlashcardSetActions({ set }: any) {
+  const router = useRouter();
+
+  function redirectToEditPage() {
+    router.push(`/${set.id}/edit`);
+  }
+
   return (
     <div className="flex items-center gap-2">
       <Button size="md" variant="ghost" radius="sm" className="font-semibold text-dark-electric-blue">
@@ -16,7 +25,8 @@ export default function FlashcardSetActions() {
           aria-label="Edit"
           variant="ghost"
           radius="sm"
-          className="bg-transparent hover:bg-bright-gray">
+          className="bg-transparent hover:bg-bright-gray"
+          onClick={redirectToEditPage}>
           <Image src="/static/images/icon__pencil.svg" alt="Edit the card" width={24} height={24} />
         </Button>
       </AppTooltip>
