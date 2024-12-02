@@ -1,13 +1,12 @@
 'use client';
 
 import { ChangeEvent, useState } from 'react';
+import { Input, Textarea } from '@nextui-org/react';
 import { redirect, useRouter } from 'next/navigation';
 
 import Container from '@/components/container';
 import Error from '@/components/error';
 import Heading2 from '@/components/headings/heading-2';
-import Input from '@/components/input';
-import Textarea from '@/components/textarea';
 
 import { createFlashcardSetWithCards, updateFlashcardSetWithCards } from '@/features/flashcards/actions';
 import AddFlashcardButton from '@/features/flashcards/components/create-set/add-flashcard-button';
@@ -18,7 +17,6 @@ import SetList from '@/features/flashcards/components/create-set/set-list';
 import SetListItem from '@/features/flashcards/components/create-set/set-list-item';
 import SetSettings from '@/features/flashcards/components/create-set/set-settings';
 import SetEditControl from '@/features/flashcards/components/edit-set/set-edit-control';
-import { DESCRIPTION_DATA, TITLE_DATA } from '@/features/flashcards/lib/constants';
 import { FlashCard } from '@/features/flashcards/lib/types';
 
 type Props = {
@@ -71,8 +69,25 @@ export default function SetPage({ set }: any) {
       </SetHeader>
 
       <SetInfo>
-        <Input data={TITLE_DATA} defaultValue={set.title} className="bg-white" error={true} />
-        <Textarea data={DESCRIPTION_DATA} defaultValue={set.description} className="bg-white" />
+        <Input
+          defaultValue={set.title}
+          label="Title"
+          name="title"
+          placeholder="Enter a title, like “Biology - Chapter 22: Evolution"
+          radius="lg"
+          variant="underlined"
+          className="overflow-hidden rounded-lg bg-white"
+        />
+
+        <Textarea
+          defaultValue={set.description}
+          label="Description"
+          labelPlacement="inside"
+          name="description"
+          placeholder="Add a description..."
+          variant="underlined"
+          className="overflow-hidden rounded-lg bg-white"
+        />
       </SetInfo>
 
       <SetSettings />
