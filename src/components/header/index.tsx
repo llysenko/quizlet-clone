@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import Link from 'next/link';
 import { useContext } from 'react';
+import Link from 'next/link';
+import clsx from 'clsx';
 
 import Button from '@/components/buttons';
 import CreateDropdown from '@/components/header/create-dropdown';
@@ -41,7 +41,7 @@ export default function Header({ toggleMenu, signOut }: HeaderProps) {
             {user ? (
               <UserDropdown user={user} signOut={signOut} />
             ) : (
-              <Button label="Log in" size="medium" onClick={toggleMenu} />
+              <Button label="Log in" size="md" onClick={toggleMenu} />
             )}
           </li>
         </ul>

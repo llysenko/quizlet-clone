@@ -1,6 +1,6 @@
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
 
 import Button from '@/components/buttons';
 import Heading2 from '@/components/headings/heading-2';
@@ -21,7 +21,7 @@ export default function Section5({ toggleMenu, t }: { toggleMenu: () => void; t:
                 like Quizlet Live, you can instantly create a more engaged classroom.
               </p>
             </div>
-            <Button label="Sign up as a teacher" size="large" onClick={toggleMenu} />
+            <Button label="Sign up as a teacher" size="lg" onClick={toggleMenu} />
             <div className="mt-8">
               <Link href="#" className="text-xl text-ultramarine-blue hover:text-palatinate-blue">
                 See how teachers use Quizlet

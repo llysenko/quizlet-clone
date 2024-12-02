@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import React from 'react';
+import Image from 'next/image';
 
 import Button from '@/components/buttons';
 import Heading2 from '@/components/headings/heading-2';
@@ -18,7 +18,7 @@ export default function Section4({ toggleMenu, t }: { toggleMenu: () => void; t:
               Quizlet has improved their understanding.
             </p>
           </div>
-          <Button label="Get started" size="large" onClick={toggleMenu} />
+          <Button label="Get started" size="lg" onClick={toggleMenu} />
         </div>
         <div className="mb-20 ml-0 flex w-full shrink-0 grow-[1.12] justify-center lg:mb-0 lg:ml-20 lg:w-1/2">
           <Image src="/static/images/ZpWfEx5LeNNTxK_U_learn-image.avif" alt="Flashcards" width={461} height={357} />

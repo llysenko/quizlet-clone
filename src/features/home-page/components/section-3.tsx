@@ -1,5 +1,5 @@
-import Image from 'next/image';
 import React from 'react';
+import Image from 'next/image';
 
 import Button from '@/components/buttons';
 import Heading2 from '@/components/headings/heading-2';
@@ -25,7 +25,7 @@ export default function Section3({ toggleMenu, t }: { toggleMenu: () => void; t:
               Turn your slides, videos, and notes into flashcard sets, practice tests, and study guides.
             </p>
           </div>
-          <Button label="Try it out" size="large" onClick={toggleMenu} />
+          <Button label="Try it out" size="lg" onClick={toggleMenu} />
         </div>
       </div>
     </SectionContainer>
