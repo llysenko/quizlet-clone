@@ -1,11 +1,8 @@
 import { ChangeEvent, useEffect, useRef, useState } from 'react';
-import { Button } from '@nextui-org/react';
-import Image from 'next/image';
 import clsx from 'clsx';
 
-import AppTooltip from '@/components/app-tooltip/app-tooltip';
-
 import { updateFlashcard } from '@/features/flashcards/actions';
+import FlashCardControls from '@/features/flashcards/components/flashcard-sets/flashcard-controls';
 
 import styles from '../../styles.module.scss';
 import { Flashcard } from '.prisma/client';
@@ -97,49 +94,12 @@ export default function FlashcardListItem({
             onChange={handleOnChange}></textarea>
         </div>
       </div>
-      <div className="flex w-[6.75rem]">
-        <AppTooltip content="Star">
-          <Button
-            isIconOnly
-            aria-label="Star the card"
-            radius="full"
-            className="bg-transparent hover:bg-bright-gray"
-            onClick={toggleStarred}>
-            <Image
-              src="/static/images/icon__star.svg"
-              alt="Star the card"
-              width={24}
-              height={24}
-              className={clsx(isFlashcardStarred && styles.active)}
-            />
-          </Button>
-        </AppTooltip>
-        <AppTooltip content="Play audio for this term">
-          <Button
-            isIconOnly
-            aria-label="Play the card sound"
-            radius="full"
-            className="bg-transparent hover:bg-bright-gray">
-            <Image src="/static/images/icon__sound.svg" alt="Play the card sound" width={24} height={24} />
-          </Button>
-        </AppTooltip>
-        <AppTooltip content="Edit">
-          <Button
-            isIconOnly
-            aria-label="Edit"
-            radius="full"
-            className="bg-transparent hover:bg-bright-gray"
-            onClick={() => setIsEditMode(!isEditMode)}>
-            <Image
-              src="/static/images/icon__pencil.svg"
-              alt="Edit the card"
-              width={24}
-              height={24}
-              className={clsx(isEditMode && styles.active)}
-            />
-          </Button>
-        </AppTooltip>
-      </div>
+      <FlashCardControls
+        isEditMode={isEditMode}
+        isFlashcardStarred={isFlashcardStarred}
+        setIsEditMode={setIsEditMode}
+        toggleStarred={toggleStarred}
+      />
     </div>
   );
 }
