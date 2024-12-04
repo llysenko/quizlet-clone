@@ -1,4 +1,6 @@
-import clsx from 'clsx';
+'use client';
+
+import { useRef } from 'react';
 
 import FlashcardCarouselItemDefinition from '@/features/flashcards/components/flashcard-sets/flashcard-carousel-item-definition';
 import FlashcardCarouselItemTerm from '@/features/flashcards/components/flashcard-sets/flashcard-carousel-item-term';
@@ -6,9 +8,18 @@ import FlashcardCarouselItemTerm from '@/features/flashcards/components/flashcar
 import styles from '../../styles.module.scss';
 
 export default function FlashCardCarouselItem() {
+  const flashcardRef = useRef<HTMLDivElement>(null);
+
+  function flipCard() {
+    if (flashcardRef && flashcardRef.current) {
+      flashcardRef.current.style.transform =
+        flashcardRef.current.style.transform === 'rotateX(180deg)' ? 'rotateX(0)' : 'rotateX(180deg)';
+    }
+  }
+
   return (
-    <div className={clsx(styles.flashcard_container)}>
-      <div className={clsx(styles.flashcard, 'rounded-2xl shadow-[0_0_2rem_0_#282e3e1f]')}>
+    <div className={styles.flashcard_container} onClick={flipCard}>
+      <div ref={flashcardRef} className={styles.flashcard}>
         <FlashcardCarouselItemTerm />
         <FlashcardCarouselItemDefinition />
       </div>

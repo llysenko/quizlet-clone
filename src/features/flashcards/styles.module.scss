@@ -31,17 +31,11 @@
   filter: brightness(0) saturate(100%) invert(83%) sepia(66%) saturate(2768%) hue-rotate(338deg) brightness(105%) contrast(101%);
 }
 
-.flashcard_container:hover .flashcard {
-  animation: flipOut .25s ease-in-out 1;
-  animation-fill-mode: forwards;
-}
-
 .flashcard_container {
   @apply grid grid-rows-1 w-full min-h-[31.25rem];
 
   .flashcard {
-    @apply bg-white;
-    transition: 0.5s;
+    @apply bg-white cursor-pointer rounded-2xl shadow-[0_0_2rem_0_#282e3e1f] duration-500;
     transform-style: preserve-3d;
 
     .term {
@@ -54,7 +48,7 @@
     }
 
     .term, .definition {
-      @apply flex w-full h-full m-auto text-center absolute top-0 left-0;
+      @apply flex w-full h-full m-auto text-center absolute top-0 left-0 px-8 py-6;
       backface-visibility: hidden;
     }
   }

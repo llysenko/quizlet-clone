@@ -1,7 +1,5 @@
 'use client';
 
-import clsx from 'clsx';
-
 import FlashCardControls from '@/features/flashcards/components/flashcard-sets/flashcard-controls';
 
 import styles from '../../styles.module.scss';
@@ -13,7 +11,7 @@ export default function FlashcardCarouselItemDefinition({
   toggleStarred
 }: any) {
   return (
-    <div className={clsx(styles.definition, 'px-8 py-6')}>
+    <div className={styles.definition}>
       <div className="flex h-full w-full flex-col justify-between">
         <div className="flex items-center justify-end">
           <FlashCardControls
