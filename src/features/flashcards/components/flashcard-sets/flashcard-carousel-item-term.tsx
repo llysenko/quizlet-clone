@@ -8,6 +8,7 @@ import FlashCardControls from '@/features/flashcards/components/flashcard-sets/f
 import styles from '../../styles.module.scss';
 
 export default function FlashcardCarouselItemTerm({
+  card,
   isEditMode,
   isFlashcardStarred,
   setIsEditMode,
@@ -29,7 +30,7 @@ export default function FlashcardCarouselItemTerm({
             size="sm"
           />
         </div>
-        <div className="text-wrap break-words text-2xl">Term</div>
+        <div className="text-wrap break-words text-2xl">{card.term}</div>
         <div></div>
       </div>
     </div>

@@ -59,11 +59,11 @@ export default function CreateDropdown({ user }: { user: User | null }) {
       <DropdownTrigger>
         {user ? (
           <Button isIconOnly className="bg-ultramarine-blue" radius="sm" aria-label="Create">
-            <PlusIcon className="text-white size-6" />
+            <PlusIcon className="size-6 text-white" />
           </Button>
         ) : (
-          <Button variant="light" aria-label="Create" radius="sm" className="text-ultramarine-blue font-medium">
-            <PlusIcon className="text-ultramarine-blue size-4" /> Create
+          <Button variant="light" aria-label="Create" radius="sm" className="font-medium text-ultramarine-blue">
+            <PlusIcon className="size-4 text-ultramarine-blue" /> Create
           </Button>
         )}
       </DropdownTrigger>
@@ -71,6 +71,7 @@ export default function CreateDropdown({ user }: { user: User | null }) {
         {menuItems.map(item => (
           <DropdownItem
             key={item.key}
+            textValue={item.label}
             className="text-dark-electric-blue"
             onClick={() => handleMenuItemClick(item.href)}>
             <div className="flex items-center gap-3">

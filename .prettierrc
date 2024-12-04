@@ -26,6 +26,7 @@
   "attributeIgnoreCase": false,
   "tailwindConfig": "./tailwind.config.ts",
   "importOrder": [
+    "^.prisma/(.*)$",
     "^react",
     "^@nextui-org/(.*)$",
     "^next/(.*)$",

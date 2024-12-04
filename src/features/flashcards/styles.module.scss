@@ -32,7 +32,7 @@
 }
 
 .flashcard_container {
-  @apply grid grid-rows-1 w-full min-h-[31.25rem];
+  @apply grid-rows-1 w-full min-h-[31.25rem] hidden;
 
   .flashcard {
     @apply bg-white cursor-pointer rounded-2xl shadow-[0_0_2rem_0_#282e3e1f] duration-500;

@@ -1,5 +1,6 @@
 'use client';
 
+import { Flashcard } from '.prisma/client';
 import { useRef } from 'react';
 
 import FlashcardCarouselItemDefinition from '@/features/flashcards/components/flashcard-sets/flashcard-carousel-item-definition';
@@ -7,7 +8,7 @@ import FlashcardCarouselItemTerm from '@/features/flashcards/components/flashcar
 
 import styles from '../../styles.module.scss';
 
-export default function FlashCardCarouselItem() {
+export default function FlashCardCarouselItem({ card }: { card: Partial<Flashcard> }) {
   const flashcardRef = useRef<HTMLDivElement>(null);
 
   function flipCard() {
@@ -20,8 +21,8 @@ export default function FlashCardCarouselItem() {
   return (
     <div className={styles.flashcard_container} onClick={flipCard}>
       <div ref={flashcardRef} className={styles.flashcard}>
-        <FlashcardCarouselItemTerm />
-        <FlashcardCarouselItemDefinition />
+        <FlashcardCarouselItemTerm card={card} />
+        <FlashcardCarouselItemDefinition card={card} />
       </div>
     </div>
   );

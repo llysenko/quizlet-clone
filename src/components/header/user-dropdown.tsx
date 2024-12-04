@@ -14,10 +14,10 @@ export default function UserDropdown({ user, signOut }: { user: User; signOut?: 
       </DropdownTrigger>
       <DropdownMenu aria-label="Profile Actions" variant="flat" className="text-dark-electric-blue">
         <DropdownSection showDivider>
-          <DropdownItem key="profile" isReadOnly className="flex items-center gap-2">
+          <DropdownItem key="profile" textValue={user.username} isReadOnly className="flex items-center gap-2">
             <div className="flex items-center gap-4">
               <Avatar
-                className="transition-transform w-16 h-16"
+                className="h-16 w-16 transition-transform"
                 src={user.avatar ? user.avatar : '/static/images/default-avatar.svg'}
               />
               <div>
@@ -31,13 +31,13 @@ export default function UserDropdown({ user, signOut }: { user: User; signOut?: 
           <DropdownItem
             key="achievements"
             href="/achievements"
-            startContent={<AchievementIcon className="size-5 mr-3" />}>
+            startContent={<AchievementIcon className="mr-3 size-5" />}>
             Achievements
           </DropdownItem>
-          <DropdownItem key="settings" startContent={<SettingIcon className="size-5 mr-3" />}>
+          <DropdownItem key="settings" startContent={<SettingIcon className="mr-3 size-5" />}>
             Settings
           </DropdownItem>
-          <DropdownItem key="theme" startContent={<ThemeIcon className="size-5 mr-3" />}>
+          <DropdownItem key="theme" startContent={<ThemeIcon className="mr-3 size-5" />}>
             Dark mode
           </DropdownItem>
         </DropdownSection>

@@ -1,11 +1,11 @@
-import { ChangeEvent, useEffect, useRef, useState } from 'react';
+import { Flashcard } from '.prisma/client';
+import { ChangeEvent, useEffect, useLayoutEffect, useRef, useState } from 'react';
 import clsx from 'clsx';
 
 import { updateFlashcard } from '@/features/flashcards/actions';
 import FlashCardControls from '@/features/flashcards/components/flashcard-sets/flashcard-controls';
 
 import styles from '../../styles.module.scss';
-import { Flashcard } from '.prisma/client';
 
 export default function FlashcardListItem({
   card,
@@ -21,13 +21,13 @@ export default function FlashcardListItem({
   const definitionRef = useRef<HTMLTextAreaElement | null>(null);
   const termRef = useRef<HTMLTextAreaElement | null>(null);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (termRef && termRef.current) {
       termRef.current.style.height = `${termRef?.current?.scrollHeight}px`;
     }
   }, [termRef.current?.scrollHeight]);
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (definitionRef && definitionRef.current) {
       definitionRef.current.style.height = `${definitionRef?.current?.scrollHeight}px`;
     }
