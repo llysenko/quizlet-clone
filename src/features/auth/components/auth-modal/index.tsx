@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import Image from 'next/image';
 import { useState } from 'react';
+import Image from 'next/image';
+import clsx from 'clsx';
 
 import Heading1 from '@/components/headings/heading-1';
 import IconButton from '@/components/icon-button';
@@ -43,10 +43,10 @@ export default function AuthModal({
         <div className="h-screen shrink grow basis-1/2 overflow-y-auto">
           <div className="m-4 flex justify-end">
             <IconButton
-              size="medium"
-              iconSrc="/static/images/icon__close.svg"
-              title="Close menu"
               borderless={true}
+              iconSrc="/static/images/icon__close.svg"
+              size="medium"
+              title="Close menu"
               onClick={toggleMenu}
             />
           </div>

@@ -1,5 +1,6 @@
-import clsx from 'clsx';
+import { ReactElement } from 'react';
 import Image from 'next/image';
+import clsx from 'clsx';
 
 import AppTooltip from '@/components/app-tooltip/app-tooltip';
 
@@ -13,7 +14,7 @@ export default function InputLabel({
 }: {
   label: string;
   tooltipIconSrc?: string;
-  tooltipHtml?: any;
+  tooltipHtml?: ReactElement;
   error?: boolean;
 }) {
   return (
@@ -22,7 +23,7 @@ export default function InputLabel({
         {label}
       </p>
       <div className="relative">
-        {tooltipIconSrc && (
+        {tooltipIconSrc && tooltipHtml && (
           <AppTooltip placement="right" content={tooltipHtml}>
             <Image
               src={tooltipIconSrc}

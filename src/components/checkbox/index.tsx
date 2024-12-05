@@ -8,7 +8,7 @@ type CheckboxProps = {
   label: string;
 };
 
-export default function Checkbox({ data, error }: { data: CheckboxProps; error: any }) {
+export default function Checkbox({ data, error }: { data: CheckboxProps; error: string | null }) {
   return (
     <label
       htmlFor={data.id}

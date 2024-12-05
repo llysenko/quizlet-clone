@@ -22,8 +22,8 @@ export default function Input({
   defaultValue
 }: {
   data: InputProps;
-  onInputBlur?: (target: any) => void;
-  error?: any;
+  onInputBlur?: (target: EventTarget & HTMLInputElement) => void;
+  error?: string;
   className?: string;
   defaultValue?: string;
 }) {
@@ -59,10 +59,10 @@ export default function Input({
           />
           {data.type === 'password' && (
             <IconButton
-              iconSrc="/static/images/icon__eye.svg"
               borderless={true}
-              onClick={togglePasswordVisibility}
               className="hover:bg-bright-gray"
+              iconSrc="/static/images/icon__eye.svg"
+              onClick={togglePasswordVisibility}
             />
           )}
         </div>

@@ -1,6 +1,11 @@
 import IconButton from '@/components/icon-button';
 
-export default function CarouselNavigation({ movePrev, moveNext }: { movePrev: any; moveNext: any }) {
+type Props = {
+  movePrev: () => void;
+  moveNext: () => void;
+};
+
+export default function CarouselNavigation({ movePrev, moveNext }: Props) {
   return (
     <>
       <div className="top absolute left-4 z-10 flex items-center">

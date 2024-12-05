@@ -1,6 +1,6 @@
-import clsx from 'clsx';
+import { MouseEvent } from 'react';
 import Image from 'next/image';
-import React from 'react';
+import clsx from 'clsx';
 
 import styles from './styles.module.scss';
 
@@ -11,7 +11,7 @@ interface IconButtonProps {
   className?: string;
   size?: 'small' | 'medium' | 'large';
   title?: string;
-  onClick?: (event?: any) => void;
+  onClick?: (event: MouseEvent<HTMLButtonElement>) => void;
 }
 
 export default function IconButton({

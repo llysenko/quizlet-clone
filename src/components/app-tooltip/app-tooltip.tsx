@@ -1,22 +1,20 @@
+import { ReactElement, ReactNode } from 'react';
 import { OverlayPlacement } from '@nextui-org/aria-utils';
 import { Tooltip } from '@nextui-org/react';
-import { ReactNode } from 'react';
 
-export default function AppTooltip({
-  content,
-  children,
-  placement = 'top'
-}: {
-  content: string;
+type Props = {
+  content: ReactElement | string;
   children: ReactNode;
   placement?: OverlayPlacement | undefined;
-}) {
+};
+
+export default function AppTooltip({ content, children, placement = 'top' }: Props) {
   return (
     <Tooltip
       content={content}
-      className="bg-dark-jungle-green text-xs text-white rounded"
-      radius="none"
-      placement={placement}>
+      placement={placement}
+      className="rounded bg-dark-jungle-green text-xs text-white"
+      radius="none">
       {children}
     </Tooltip>
   );

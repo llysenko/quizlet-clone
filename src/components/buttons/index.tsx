@@ -1,4 +1,4 @@
-import React from 'react';
+import { MouseEvent } from 'react';
 import Image from 'next/image';
 import clsx from 'clsx';
 
@@ -13,7 +13,7 @@ export interface ButtonProps {
   size?: 'sm' | 'md' | 'lg';
   type?: 'button' | 'submit';
   width?: 'full' | 'fit';
-  onClick?: (event?: any) => void;
+  onClick?: (event?: MouseEvent<HTMLButtonElement>) => void;
 }
 
 export default function Button({

@@ -1,3 +1,5 @@
+import { ChangeEvent } from 'react';
+
 import InputLabel from '@/components/input-label';
 import Select from '@/components/select';
 
@@ -13,8 +15,8 @@ export default function BirthdayDateSelect({
   error,
   errorMsg
 }: {
-  onInputChange: (date: any) => void;
-  error?: any;
+  onInputChange: (event: ChangeEvent) => void;
+  error?: string;
   errorMsg?: string;
 }) {
   const tooltipHtml = (
@@ -33,9 +35,9 @@ export default function BirthdayDateSelect({
         error={!!errorMsg}
       />
       <div className="flex gap-4">
-        <Select data={MONTHS} onInputChange={onInputChange} error={error} />
-        <Select data={days} onInputChange={onInputChange} error={error} />
-        <Select data={years} onInputChange={onInputChange} error={error} />
+        <Select data={MONTHS} error={error} onInputChange={onInputChange} />
+        <Select data={days} error={error} onInputChange={onInputChange} />
+        <Select data={years} error={error} onInputChange={onInputChange} />
       </div>
     </div>
   );

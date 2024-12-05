@@ -1,18 +1,6 @@
-import clsx from 'clsx';
 import { ReactNode } from 'react';
+import clsx from 'clsx';
 
-export default function Heading4({
-  props,
-  children,
-  className
-}: {
-  props?: any;
-  children: ReactNode;
-  className?: string;
-}) {
-  return (
-    <h4 className={clsx(className, 'font-semibold text-base text-gunmetal')} {...props}>
-      {children}
-    </h4>
-  );
+export default function Heading4({ children, className }: { children: ReactNode; className?: string }) {
+  return <h4 className={clsx(className, 'text-base font-semibold text-gunmetal')}>{children}</h4>;
 }

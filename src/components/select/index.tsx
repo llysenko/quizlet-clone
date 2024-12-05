@@ -1,6 +1,6 @@
-import clsx from 'clsx';
-import Image from 'next/image';
 import { ChangeEvent } from 'react';
+import Image from 'next/image';
+import clsx from 'clsx';
 
 import styles from './styles.module.scss';
 
@@ -16,12 +16,12 @@ type SelectData = {
 
 export default function Select({
   data,
-  onInputChange,
-  error
+  error,
+  onInputChange
 }: {
   data: SelectData;
-  onInputChange: (e: ChangeEvent) => void;
-  error: any;
+  error: string | undefined;
+  onInputChange: (event: ChangeEvent) => void;
 }) {
   return (
     <div className="relative inline-block">

@@ -1,11 +1,11 @@
 'use client';
 
+import React, { useContext, useState } from 'react';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger } from '@nextui-org/react';
-import clsx from 'clsx';
-import { useTranslations } from 'next-intl';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
-import React, { useContext, useState } from 'react';
+import clsx from 'clsx';
+import { useTranslations } from 'next-intl';
 
 import IconButton from '@/components/icon-button';
 import { UserContext } from '@/components/page-layout';
@@ -106,7 +106,7 @@ export default function Navigation() {
               styles.nav__item,
               styles.nav__link,
               styles.nav__link_active_vertical,
-              'outline-0 cursor-pointer'
+              'cursor-pointer outline-0'
             )}>
             {t(studyTools.label)}
           </DropdownTrigger>
@@ -124,7 +124,7 @@ export default function Navigation() {
                       alt={item.label}
                       width={24}
                       height={24}
-                      className="w-5 h-auto"
+                      className="h-auto w-5"
                     />
                     <p>{item.label}</p>
                   </div>
@@ -144,7 +144,7 @@ export default function Navigation() {
                       alt={item.label}
                       width={24}
                       height={24}
-                      className="w-5 h-auto"
+                      className="h-auto w-5"
                     />
                     <p>{item.label}</p>
                   </div>
@@ -194,10 +194,10 @@ export default function Navigation() {
           <>
             <ul className={clsx(styles.nav__list, !open && 'hidden')}>{menuList}</ul>
             <IconButton
-              className="lg:invisible"
-              size="medium"
               borderless={true}
+              className="lg:invisible"
               iconSrc="/static/images/menu.svg"
+              size="medium"
               title="Menu"
               onClick={toggleMenu}
             />
@@ -209,8 +209,8 @@ export default function Navigation() {
           <div className="m-4 flex justify-end">
             <IconButton
               className={clsx(styles.nav__menu__button, 'rotate-45')}
-              size="medium"
               iconSrc="/static/images/plus.svg"
+              size="medium"
               title="Close menu"
               onClick={toggleMenu}
             />

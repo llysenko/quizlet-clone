@@ -1,8 +1,8 @@
 'use client';
 
-import { useRouter } from 'next/navigation';
 import { createContext, ReactNode } from 'react';
 import { useFormState } from 'react-dom';
+import { useRouter } from 'next/navigation';
 
 import { useAuthDialogStore } from '@/store';
 
@@ -61,10 +61,10 @@ export default function PageLayout({ user, children }: { user: any; children: Re
         <main className="page-body">{children}</main>
         {open && (
           <AuthModal
-            signInFormAction={signInFormAction}
             signInFormState={signInFormState}
-            signUpFormAction={signUpFormAction}
             signUpFormState={signUpFormState}
+            signInFormAction={signInFormAction}
+            signUpFormAction={signUpFormAction}
             toggleMenu={toggleMenu}
           />
         )}

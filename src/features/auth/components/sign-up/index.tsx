@@ -62,9 +62,9 @@ export default function SignUp({ switchTab, formAction, formState }: AuthProps) 
       <Divider text="or email" className="mt-6" />
       <form ref={formRef} className="mt-4" action={formData => handleFormData(formData)}>
         <BirthdayDateSelect
-          onInputChange={validateBirthday}
           error={birthdayErrors}
           errorMsg={formState.errors?.birthday}
+          onInputChange={validateBirthday}
         />
         <div className="flex flex-col gap-8">
           {SIGN_UP_CONTROLS.map(controlData => (
