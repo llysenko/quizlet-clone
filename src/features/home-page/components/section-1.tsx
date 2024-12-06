@@ -4,7 +4,12 @@ import Button from '@/components/buttons';
 import Carousel from '@/components/carousel';
 import Heading1 from '@/components/headings/heading-1';
 
-export default function Section1({ toggleMenu, t }: { toggleMenu: () => void; t: any }) {
+type Props = {
+  toggleMenu: () => void;
+  t: (key: string, options?: Record<string, any>) => string;
+};
+
+export default function Section1({ toggleMenu, t }: Props) {
   return (
     <section className="bg-ghost-white py-16">
       <div className="m-auto flex max-w-[52.5rem] flex-col items-center gap-4 px-8 pb-8 pt-0 text-center">

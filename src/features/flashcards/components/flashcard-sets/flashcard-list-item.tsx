@@ -3,20 +3,13 @@ import { ChangeEvent, useEffect, useLayoutEffect, useRef, useState } from 'react
 import clsx from 'clsx';
 
 import { updateFlashcard } from '@/features/flashcards/actions';
-import FlashCardControls from '@/features/flashcards/components/flashcard-sets/flashcard-controls';
+import FlashcardControls from '@/features/flashcards/components/flashcard-sets/flashcard-controls';
 
 import styles from '../../styles.module.scss';
 
-export default function FlashcardListItem({
-  card,
-  handleStarredCount
-}: {
-  card: Flashcard;
-  handleStarredCount: (isStarred: boolean) => void;
-}) {
+export default function FlashcardListItem({ card }: { card: Flashcard }) {
   const [changedCard, setChangedCard] = useState<any>();
   const [isEditMode, setIsEditMode] = useState<boolean>(false);
-  const [isFlashcardStarred, setIsFlashcardStarred] = useState<boolean>(card.isStarred);
   const cardRef = useRef<HTMLDivElement | null>(null);
   const definitionRef = useRef<HTMLTextAreaElement | null>(null);
   const termRef = useRef<HTMLTextAreaElement | null>(null);
@@ -60,14 +53,6 @@ export default function FlashcardListItem({
     }));
   }
 
-  async function toggleStarred() {
-    setIsFlashcardStarred(!isFlashcardStarred);
-
-    const updatedFlashcard = await updateFlashcard(card.id, { isStarred: !isFlashcardStarred });
-
-    handleStarredCount(updatedFlashcard.isStarred);
-  }
-
   return (
     <div
       id={card.id.toString()}
@@ -94,12 +79,7 @@ export default function FlashcardListItem({
             onChange={handleOnChange}></textarea>
         </div>
       </div>
-      <FlashCardControls
-        isEditMode={isEditMode}
-        isFlashcardStarred={isFlashcardStarred}
-        setIsEditMode={setIsEditMode}
-        toggleStarred={toggleStarred}
-      />
+      <FlashcardControls card={card} />
     </div>
   );
 }

@@ -1,12 +1,12 @@
+import React from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import React from 'react';
 
 import Heading2 from '@/components/headings/heading-2';
 
 import SectionContainer from '@/features/home-page/components/section-container';
 
-export default function Section2({ t }: any) {
+export default function Section2({ t }: { t: (key: string, options?: Record<string, any>) => string }) {
   return (
     <SectionContainer>
       <div className="flex flex-wrap-reverse items-center px-8 lg:flex-nowrap">

@@ -1,7 +1,8 @@
 'use server';
 
-import bcrypt from 'bcryptjs';
+import { Prisma } from '@prisma/client';
 import { redirect } from 'next/navigation';
+import bcrypt from 'bcryptjs';
 
 import db from '@/lib/db';
 
@@ -13,7 +14,15 @@ export const signUp = validateAction(SignUpFormSchema, async (data, formData) =>
   const prisma = db.$extends({
     query: {
       user: {
-        $allOperations({ operation, args, query }: any) {
+        $allOperations({
+          operation,
+          args,
+          query
+        }: {
+          operation: string;
+          args: Prisma.MiddlewareParams['args'];
+          query: (args: Prisma.MiddlewareParams['args']) => Promise<any>;
+        }) {
           if (['create', 'update'].includes(operation) && args.data['password']) {
             args.data['password'] = bcrypt.hashSync(args.data['password'], Number(process.env.SALT_ROUNDS));
           }

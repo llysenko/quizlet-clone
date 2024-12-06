@@ -1,5 +1,6 @@
 'use client';
 
+import { Flashcard, FlashcardSet } from '.prisma/client';
 import { ChangeEvent, useState } from 'react';
 import { Button, Spinner } from '@nextui-org/react';
 import Image from 'next/image';
@@ -12,9 +13,11 @@ import FlashcardListFilters from '@/features/flashcards/components/flashcard-set
 import FlashcardListItem from '@/features/flashcards/components/flashcard-sets/flashcard-list-item';
 import { FILTERS, ORDER } from '@/features/flashcards/lib/constants';
 
-import { Flashcard } from '.prisma/client';
-
-export default function FlashcardList({ set }: any) {
+export default function FlashcardList({
+  set
+}: {
+  set: FlashcardSet & { flashcards: Flashcard[] } & { starred: number } & { _count: { flashcards: number } };
+}) {
   const [cards, setCards] = useState<Flashcard[]>(set?.flashcards);
   const [currentFilter, setCurrentFilter] = useState<string>(FILTERS.ALL);
   const [isLoading, setIsLoading] = useState<boolean>(false);
@@ -74,7 +77,7 @@ export default function FlashcardList({ set }: any) {
         {isLoading ? (
           <Spinner color="warning" size="md" />
         ) : (
-          cards.map(card => <FlashcardListItem key={card.id} card={card} handleStarredCount={calcStarredCount} />)
+          cards.map(card => <FlashcardListItem key={card.id} card={card} />)
         )}
       </div>
 

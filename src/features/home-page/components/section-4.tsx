@@ -6,7 +6,12 @@ import Heading2 from '@/components/headings/heading-2';
 
 import SectionContainer from '@/features/home-page/components/section-container';
 
-export default function Section4({ toggleMenu, t }: { toggleMenu: () => void; t: any }) {
+type Props = {
+  toggleMenu: () => void;
+  t: (key: string, options?: Record<string, any>) => string;
+};
+
+export default function Section4({ toggleMenu, t }: Props) {
   return (
     <SectionContainer>
       <div className="flex flex-wrap-reverse items-center px-8 lg:flex-nowrap">

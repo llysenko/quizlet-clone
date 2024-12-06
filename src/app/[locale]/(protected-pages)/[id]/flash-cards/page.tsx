@@ -9,7 +9,6 @@ import { NotFoundError, ValidationError } from '@/lib/exceptions';
 
 import { getSetById } from '@/features/flashcards/actions';
 import FlashcardCarousel from '@/features/flashcards/components/flashcard-sets/flashcard-carousel';
-import FlashCardCarouselItem from '@/features/flashcards/components/flashcard-sets/flashcard-carousel-item';
 import FlashcardList from '@/features/flashcards/components/flashcard-sets/flashcard-list';
 import FlashcardSetActions from '@/features/flashcards/components/flashcard-sets/flashcard-set-actions';
 import FlashcardSetData from '@/features/flashcards/components/flashcard-sets/flashcard-set-data';

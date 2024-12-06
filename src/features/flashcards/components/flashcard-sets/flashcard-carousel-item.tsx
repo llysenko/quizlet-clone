@@ -8,7 +8,7 @@ import FlashcardCarouselItemTerm from '@/features/flashcards/components/flashcar
 
 import styles from '../../styles.module.scss';
 
-export default function FlashCardCarouselItem({ card }: { card: Partial<Flashcard> }) {
+export default function FlashCardCarouselItem({ card }: { card: Flashcard }) {
   const flashcardRef = useRef<HTMLDivElement>(null);
 
   function flipCard() {
@@ -19,11 +19,15 @@ export default function FlashCardCarouselItem({ card }: { card: Partial<Flashcar
   }
 
   return (
-    <div className={styles.flashcard_container} onClick={flipCard}>
-      <div ref={flashcardRef} className={styles.flashcard}>
-        <FlashcardCarouselItemTerm card={card} />
-        <FlashcardCarouselItemDefinition card={card} />
-      </div>
-    </div>
+    <>
+      {card && (
+        <div className={styles.flashcard_container} onClick={flipCard}>
+          <div ref={flashcardRef} className={styles.flashcard}>
+            <FlashcardCarouselItemTerm card={card} />
+            <FlashcardCarouselItemDefinition card={card} />
+          </div>
+        </div>
+      )}
+    </>
   );
 }

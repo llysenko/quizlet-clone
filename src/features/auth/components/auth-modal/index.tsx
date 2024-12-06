@@ -8,17 +8,25 @@ import IconButton from '@/components/icon-button';
 import SignIn from '@/features/auth/components/sign-in';
 import SignUp from '@/features/auth/components/sign-up';
 import { AUTH_TABS } from '@/features/auth/lib/constants';
-import { AuthTab } from '@/features/auth/lib/types';
+import { ActionState, AuthTab } from '@/features/auth/lib/types';
 
 import styles from './styles.module.scss';
 
+type Props = {
+  signInFormState: ActionState;
+  signUpFormState: ActionState;
+  signInFormAction: (formData: FormData) => void;
+  signUpFormAction: (formData: FormData) => void;
+  toggleMenu: () => void;
+};
+
 export default function AuthModal({
-  toggleMenu,
-  signUpFormAction,
+  signInFormState,
   signUpFormState,
   signInFormAction,
-  signInFormState
-}: any) {
+  signUpFormAction,
+  toggleMenu
+}: Props) {
   const [activeTab, setActiveTab] = useState(AUTH_TABS.SIGN_IN);
 
   function switchTab(chosenTab: AuthTab) {

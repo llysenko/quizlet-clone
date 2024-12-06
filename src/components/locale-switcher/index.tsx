@@ -7,7 +7,7 @@ import { locales } from '@/config';
 import LocaleSwitcherSelect from '@/components/locale-switcher/locale-switcher-select';
 
 export default function LocaleSwitcher() {
-  const t = useTranslations('LocaleSwitcher');
+  const t: (key: string, options?: Record<string, any>) => string = useTranslations('LocaleSwitcher');
   const locale = useLocale();
 
   return (

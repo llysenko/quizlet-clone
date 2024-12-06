@@ -1,5 +1,6 @@
 'use client';
 
+import { Flashcard, FlashcardSet } from '.prisma/client';
 import { ChangeEvent, useState } from 'react';
 import { Input, Textarea } from '@nextui-org/react';
 import { redirect, useRouter } from 'next/navigation';
@@ -19,13 +20,7 @@ import SetSettings from '@/features/flashcards/components/create-set/set-setting
 import SetEditControl from '@/features/flashcards/components/edit-set/set-edit-control';
 import { FlashCard } from '@/features/flashcards/lib/types';
 
-type Props = {
-  set: {
-    flashcards: FlashCard[];
-  };
-};
-
-export default function SetPage({ set }: any) {
+export default function SetPage({ set }: { set: FlashcardSet & { flashcards: Flashcard[] } }) {
   const [allFlashcards, setFlashcards] = useState<FlashCard[]>(set.flashcards);
   const [errors, setErrors] = useState();
   const router = useRouter();
@@ -80,7 +75,7 @@ export default function SetPage({ set }: any) {
         />
 
         <Textarea
-          defaultValue={set.description}
+          defaultValue={set.description || 'Add a description...'}
           label="Description"
           labelPlacement="inside"
           name="description"
