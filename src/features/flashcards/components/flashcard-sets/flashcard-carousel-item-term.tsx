@@ -9,6 +9,10 @@ import FlashcardControls from '@/features/flashcards/components/flashcard-sets/f
 import styles from '../../styles.module.scss';
 
 export default function FlashcardCarouselItemTerm({ card }: { card: Flashcard }) {
+  function openEditDialog() {
+    alert('openEditDialog is not implemented yet');
+  }
+
   return (
     <div className={clsx(styles.term, 'z-10')}>
       <div className="flex h-full w-full flex-col justify-between">
@@ -17,7 +21,7 @@ export default function FlashcardCarouselItemTerm({ card }: { card: Flashcard })
             <Image src="/static/images/icon__lightbulb.svg" alt="Hint" width={16} height={16} />
             Get a hint
           </div>
-          <FlashcardControls card={card} size="sm" />
+          <FlashcardControls card={card} size="sm" edit={openEditDialog} />
         </div>
         <div className="text-wrap break-words text-2xl">{card.term}</div>
         <div></div>

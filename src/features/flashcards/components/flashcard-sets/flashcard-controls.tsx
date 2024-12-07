@@ -9,33 +9,47 @@ import AppTooltip from '@/components/app-tooltip/app-tooltip';
 import { updateFlashcard } from '@/features/flashcards/actions';
 import styles from '@/features/flashcards/styles.module.scss';
 
+enum Handler {
+  Star = 'STAR',
+  Play = 'PLAY',
+  Edit = 'EDIT'
+}
+
 const controlsData = [
   {
-    id: 'star',
+    id: 1,
     alt: 'Star the card',
+    ariaLabel: 'Star the card',
     tooltipContent: 'Star',
-    imagePath: '/static/images/icon__star.svg'
+    imagePath: '/static/images/icon__star.svg',
+    handler: Handler.Star
   },
   {
-    id: 'sound',
+    id: 2,
     alt: 'Play the card sound',
+    ariaLabel: 'Play the card sound',
     tooltipContent: 'Play audio for this term',
-    imagePath: '/static/images/icon__sound.svg'
+    imagePath: '/static/images/icon__sound.svg',
+    handler: Handler.Play
   },
   {
-    id: 'edit',
+    id: 3,
     alt: 'Edit the card',
+    ariaLabel: 'Edit the card',
     tooltipContent: 'Edit',
-    imagePath: '/static/images/icon__pencil.svg'
+    imagePath: '/static/images/icon__pencil.svg',
+    handler: Handler.Edit
   }
 ];
 
 type Props = {
   card: Flashcard;
   size?: string;
+  edit: (isEditMode: boolean) => void;
 };
 
-export default function FlashcardControls({ card, size = 'lg' }: Props) {
+export default function FlashcardControls({ card, size = 'lg', edit }: Props) {
+  const [isEditMode, setIsEditMode] = useState<boolean>(false);
   const [isFlashcardStarred, setIsFlashcardStarred] = useState<boolean>(card.isStarred);
 
   async function toggleStarred() {
@@ -44,8 +58,13 @@ export default function FlashcardControls({ card, size = 'lg' }: Props) {
     await updateFlashcard(card.id, { isStarred: !isFlashcardStarred });
   }
 
-  function edit() {
-    console.log('edit');
+  function play() {
+    alert('Play is not implemented yet.');
+  }
+
+  function setEditMode() {
+    setIsEditMode(prevState => !prevState);
+    edit(!isEditMode);
   }
 
   return (
@@ -54,16 +73,22 @@ export default function FlashcardControls({ card, size = 'lg' }: Props) {
         <AppTooltip key={data.id} content={data.tooltipContent}>
           <Button
             isIconOnly
-            aria-label={data.alt}
+            aria-label={data.ariaLabel}
             radius="full"
             className="bg-transparent hover:bg-bright-gray"
-            onClick={data.id === 'star' ? toggleStarred : edit}>
+            onClick={
+              data.handler === Handler.Star ? toggleStarred : data.handler === Handler.Play ? play : setEditMode
+            }>
             <Image
               src={data.imagePath}
               alt={data.alt}
               width={24}
               height={24}
-              className={clsx(data.id === 'star' && isFlashcardStarred && styles.active, styles[`icon__${size}`])}
+              className={clsx(
+                data.handler === Handler.Star && isFlashcardStarred && styles.active,
+                data.handler === Handler.Edit && isEditMode && styles.active,
+                styles[`icon__${size}`]
+              )}
             />
           </Button>
         </AppTooltip>

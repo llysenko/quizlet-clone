@@ -13,15 +13,15 @@ import FlashcardListFilters from '@/features/flashcards/components/flashcard-set
 import FlashcardListItem from '@/features/flashcards/components/flashcard-sets/flashcard-list-item';
 import { FILTERS, ORDER } from '@/features/flashcards/lib/constants';
 
-export default function FlashcardList({
-  set
-}: {
-  set: FlashcardSet & { flashcards: Flashcard[] } & { starred: number } & { _count: { flashcards: number } };
-}) {
-  const [cards, setCards] = useState<Flashcard[]>(set?.flashcards);
+type Props = {
+  set: Partial<FlashcardSet & { flashcards?: Flashcard[] } & { starred: number } & { _count: { flashcards: number } }>;
+};
+
+export default function FlashcardList({ set }: Props) {
+  const [cards, setCards] = useState<Flashcard[]>(set?.flashcards || []);
   const [currentFilter, setCurrentFilter] = useState<string>(FILTERS.ALL);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const [starredCount, setStarredCount] = useState<number>(set?.starred);
+  const [starredCount, setStarredCount] = useState<number>(set?.starred || 0);
   const router = useRouter();
 
   async function sortCards(event: ChangeEvent<HTMLSelectElement>) {
@@ -64,7 +64,7 @@ export default function FlashcardList({
   return (
     <section className="flex flex-col">
       <header className="mb-6 flex flex-wrap items-center justify-between">
-        <Heading3 className="mr-4">Terms in this set ({set?._count.flashcards})</Heading3>
+        <Heading3 className="mr-4">Terms in this set ({set?._count?.flashcards})</Heading3>
         <FlashcardListFilters
           handleOnChange={sortCards}
           handleFilterCards={filterCards}

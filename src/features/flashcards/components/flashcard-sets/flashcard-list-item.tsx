@@ -79,7 +79,7 @@ export default function FlashcardListItem({ card }: { card: Flashcard }) {
             onChange={handleOnChange}></textarea>
         </div>
       </div>
-      <FlashcardControls card={card} />
+      <FlashcardControls card={card} edit={isEditMode => setIsEditMode(isEditMode)} />
     </div>
   );
 }

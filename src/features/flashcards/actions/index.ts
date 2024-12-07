@@ -1,5 +1,7 @@
 'use server';
 
+import { Flashcard, FlashcardSet } from '.prisma/client';
+
 import transformZodErrors from '@/utils/transform-zod-errors';
 
 import db from '@/lib/db';
@@ -8,8 +10,6 @@ import { AuthRequiredError, NotFoundError } from '@/lib/exceptions';
 import { validateAction } from '@/features/auth/lib/middleware';
 import { getSession } from '@/features/auth/lib/session';
 import { FlashcardSetSchema, FlashcardsSchema } from '@/features/flashcards/lib/definitions';
-
-import { Flashcard, FlashcardSet } from '.prisma/client';
 
 export async function getSetById(id: number) {
   const flashcardSet = await db.flashcardSet.findUnique({
