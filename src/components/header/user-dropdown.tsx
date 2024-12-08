@@ -3,6 +3,51 @@ import Image from 'next/image';
 
 import { User } from '@/features/auth/lib/types';
 
+const menuItemsSectionOne = [
+  {
+    id: 1,
+    alt: 'Achievements',
+    href: '/achievements',
+    imagePath: '/static/images/icon__achievement.png',
+    label: 'Achievements'
+  },
+  {
+    id: 2,
+    alt: 'Settings',
+    href: '/achievements',
+    imagePath: '/static/images/icon__settings.png',
+    label: 'Settings'
+  },
+  {
+    id: 3,
+    alt: 'Theme mode',
+    href: '/achievements',
+    imagePath: '/static/images/icon__theme-mode.png',
+    label: 'Dark mode'
+  }
+];
+
+const menuItemsSectionThree = [
+  {
+    id: 4,
+    key: 'policy',
+    href: '/achievements',
+    label: 'Privacy policy'
+  },
+  {
+    id: 5,
+    key: 'help_and_feedback',
+    href: '/achievements',
+    label: 'Help and feedback'
+  },
+  {
+    id: 6,
+    key: 'upgrade',
+    href: '/achievements',
+    label: 'Upgrade'
+  }
+];
+
 export default function UserDropdown({ user, signOut }: { user: User; signOut?: () => void }) {
   return (
     <Dropdown placement="bottom-end">
@@ -24,46 +69,24 @@ export default function UserDropdown({ user, signOut }: { user: User; signOut?: 
             </div>
           </DropdownItem>
         </DropdownSection>
-        <DropdownSection showDivider>
-          <DropdownItem key="achievements" href="/achievements" textValue="achievements">
-            <div className="flex items-center gap-4">
-              <Image
-                src="/static/images/icon__achievment.png"
-                alt="achievements"
-                width={24}
-                height={24}
-                className="size-5"
-              />
-              Achievements
-            </div>
-          </DropdownItem>
-          <DropdownItem key="settings" textValue="settings">
-            <div className="flex items-center gap-4">
-              <Image src="/static/images/icon__settings.png" alt="settings" width={24} height={24} className="size-5" />
-              Settings
-            </div>
-          </DropdownItem>
-          <DropdownItem key="theme" textValue="Theme mode">
-            <div className="flex items-center gap-4">
-              <Image
-                src="/static/images/icon__theme-mode.png"
-                alt="Theme mode"
-                width={24}
-                height={24}
-                className="h-auto w-5"
-              />
-              Dark mode
-            </div>
-          </DropdownItem>
+        <DropdownSection showDivider aria-label="Dynamic Actions" items={menuItemsSectionOne}>
+          {item => (
+            <DropdownItem key={item.id} href={item.href} textValue={item.label}>
+              <div className="flex items-center gap-4">
+                <Image src={item.imagePath} alt={item.alt} width={24} height={24} className="h-auto w-5" />
+                {item.label}
+              </div>
+            </DropdownItem>
+          )}
         </DropdownSection>
         <DropdownSection showDivider>
           <DropdownItem key="logout" onClick={signOut}>
             Log out
           </DropdownItem>
         </DropdownSection>
-        <DropdownItem key="policy">Privacy policy</DropdownItem>
-        <DropdownItem key="help_and_feedback">Help and feedback</DropdownItem>
-        <DropdownItem key="upgrade">Upgrade</DropdownItem>
+        <DropdownSection aria-label="Dynamic Actions" items={menuItemsSectionThree}>
+          {item => <DropdownItem key={item.key}>{item.label}</DropdownItem>}
+        </DropdownSection>
       </DropdownMenu>
     </Dropdown>
   );
