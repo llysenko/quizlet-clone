@@ -1,8 +1,5 @@
 import { Avatar, Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger } from '@nextui-org/react';
-
-import { AchievementIcon } from '@/components/header/achievement-icon';
-import { ThemeIcon } from '@/components/header/theme-icon';
-import { SettingIcon } from '@/components/icons/setting-icon';
+import Image from 'next/image';
 
 import { User } from '@/features/auth/lib/types';
 
@@ -28,17 +25,35 @@ export default function UserDropdown({ user, signOut }: { user: User; signOut?: 
           </DropdownItem>
         </DropdownSection>
         <DropdownSection showDivider>
-          <DropdownItem
-            key="achievements"
-            href="/achievements"
-            startContent={<AchievementIcon className="mr-3 size-5" />}>
-            Achievements
+          <DropdownItem key="achievements" href="/achievements" textValue="achievements">
+            <div className="flex items-center gap-4">
+              <Image
+                src="/static/images/icon__achievment.png"
+                alt="achievements"
+                width={24}
+                height={24}
+                className="size-5"
+              />
+              Achievements
+            </div>
           </DropdownItem>
-          <DropdownItem key="settings" startContent={<SettingIcon className="mr-3 size-5" />}>
-            Settings
+          <DropdownItem key="settings" textValue="settings">
+            <div className="flex items-center gap-4">
+              <Image src="/static/images/icon__settings.png" alt="settings" width={24} height={24} className="size-5" />
+              Settings
+            </div>
           </DropdownItem>
-          <DropdownItem key="theme" startContent={<ThemeIcon className="mr-3 size-5" />}>
-            Dark mode
+          <DropdownItem key="theme" textValue="Theme mode">
+            <div className="flex items-center gap-4">
+              <Image
+                src="/static/images/icon__theme-mode.png"
+                alt="Theme mode"
+                width={24}
+                height={24}
+                className="h-auto w-5"
+              />
+              Dark mode
+            </div>
           </DropdownItem>
         </DropdownSection>
         <DropdownSection showDivider>

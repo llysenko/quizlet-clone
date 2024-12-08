@@ -1,12 +1,17 @@
 'use client';
 
+import { Flashcard, FlashcardSet, User } from '.prisma/client';
 import { Button } from '@nextui-org/react';
 import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 
 import AppTooltip from '@/components/app-tooltip/app-tooltip';
 
-export default function FlashcardSetActions({ set }: any) {
+type Props = {
+  set: Partial<FlashcardSet & { flashcards?: Flashcard[] } & { user: Partial<User> }> & { starred: number };
+};
+
+export default function FlashcardSetActions({ set }: Props) {
   const router = useRouter();
 
   function redirectToEditPage() {
