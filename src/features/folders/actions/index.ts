@@ -18,3 +18,14 @@ export const create = validateAction(TitleSchema, async (data, formData) => {
     return { errors: error.message };
   }
 });
+
+export async function getFolders() {
+  const session = await getSession();
+
+  if (!session) throw new AuthRequiredError();
+
+  return db.folder.findMany({
+    where: { userId: session?.user.id },
+    orderBy: { createdAt: 'desc' }
+  });
+}
