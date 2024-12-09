@@ -20,7 +20,7 @@ export default function Select({
   onInputChange
 }: {
   data: SelectData;
-  error: string | undefined;
+  error: string | string[] | undefined;
   onInputChange: (event: ChangeEvent) => void;
 }) {
   return (

@@ -3,7 +3,7 @@ import { Button } from '@nextui-org/react';
 
 type Props = {
   label?: string;
-  pending?: boolean;
+  disabled?: boolean;
   size?: 'lg' | 'md' | 'sm';
   type?: 'button' | 'submit' | 'reset';
 };
@@ -17,8 +17,8 @@ export default function AppButton({
 }) {
   return (
     <Button
-      aria-disabled={props.pending}
-      disabled={props.pending}
+      aria-disabled={props.disabled}
+      isDisabled={props.disabled}
       size={props.size || 'md'}
       type={props.type || 'button'}
       radius="sm"

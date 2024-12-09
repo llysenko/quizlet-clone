@@ -6,7 +6,7 @@ import { useFormStatus } from 'react-dom';
 import AppButton from '@/components/app-button';
 import { ButtonProps } from '@/components/buttons';
 
-export default function SubmitButton({ label, size = 'md' }: ButtonProps) {
+export default function SubmitButton({ disabled, label, size = 'md' }: ButtonProps) {
   const { pending } = useFormStatus();
 
   function handleClick(event: MouseEvent<HTMLButtonElement>) {
@@ -15,7 +15,7 @@ export default function SubmitButton({ label, size = 'md' }: ButtonProps) {
 
   return (
     <AppButton
-      props={{ label: pending ? 'Submitting...' : label, pending, size, type: 'submit' }}
+      props={{ label: pending ? 'Submitting...' : label, disabled: pending || disabled, size, type: 'submit' }}
       handleClick={handleClick}
     />
   );

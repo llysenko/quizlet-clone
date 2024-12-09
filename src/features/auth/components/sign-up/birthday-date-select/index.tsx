@@ -16,7 +16,7 @@ export default function BirthdayDateSelect({
   errorMsg
 }: {
   onInputChange: (event: ChangeEvent) => void;
-  error?: string;
+  error?: string | string[];
   errorMsg?: string;
 }) {
   const tooltipHtml = (

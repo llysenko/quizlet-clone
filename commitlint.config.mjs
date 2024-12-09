@@ -17,6 +17,7 @@ const Configuration = {
         'config',
         'features',
         'flashcards',
+        'folders',
         'intl',
         'security',
         'styles',
