@@ -18,7 +18,7 @@ export default function FlashcardCarouselItemTerm({ card }: { card: Flashcard })
       <div className="flex h-full w-full flex-col justify-between">
         <div className="flex items-center justify-between">
           <div className="flex cursor-pointer items-center gap-2 text-xs font-semibold">
-            <Image src="/static/images/icon__lightbulb.svg" alt="Hint" width={16} height={16} />
+            <Image src="/images/icon__lightbulb.svg" alt="Hint" width={16} height={16} />
             Get a hint
           </div>
           <FlashcardControls card={card} size="sm" edit={openEditDialog} />

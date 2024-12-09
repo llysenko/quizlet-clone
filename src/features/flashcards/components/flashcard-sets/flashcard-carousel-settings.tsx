@@ -26,7 +26,7 @@ export default function FlashcardCarouselSettings({
           variant="ghost"
           className={clsx(currentCardIndex === 1 && 'cursor-not-allowed opacity-25')}
           onClick={moveToPrevCard}>
-          <Image src="/static/images/icon__arrow.svg" alt="Next" width={32} height={32} />
+          <Image src="/images/icon__arrow.svg" alt="Next" width={32} height={32} />
         </Button>
         <div className="font-semibold text-dark-electric-blue">
           {currentCardIndex} / {cardsTotalCount}
@@ -38,7 +38,7 @@ export default function FlashcardCarouselSettings({
           variant="ghost"
           className={clsx(currentCardIndex === cardsTotalCount && 'cursor-not-allowed opacity-25')}
           onClick={moveToNextCard}>
-          <Image src="/static/images/icon__arrow.svg" alt="Next" width={32} height={32} className="rotate-180" />
+          <Image src="/images/icon__arrow.svg" alt="Next" width={32} height={32} className="rotate-180" />
         </Button>
       </div>
       <div>3</div>

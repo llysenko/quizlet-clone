@@ -13,7 +13,7 @@ export default function FlashcardSetData({ set }: Props) {
     <div className="flex gap-2">
       <AppTooltip content={`Visit ${set?.user?.username}'s profile`} placement="right-end">
         <Link href={`/user/${set?.user?.username}/sets`}>
-          <Avatar src={set?.user?.avatar || '/static/images/default-avatar.svg'} className="h-12 w-12" />
+          <Avatar src={set?.user?.avatar || '/images/default-avatar.svg'} className="h-12 w-12" />
         </Link>
       </AppTooltip>
 

@@ -62,7 +62,7 @@ export default function AppCarousel({ items }: { items: ReactElement[] }) {
             width={16}
             alt="Prev"
             className="rotate-90"
-            src="/static/images/icon__chevron_down.svg"
+            src="/images/icon__chevron_down.svg"
             onClick={(e: MouseEvent<HTMLImageElement>) => carousel?.current?.slidePrev(e)}
           />
         </Button>
@@ -79,7 +79,7 @@ export default function AppCarousel({ items }: { items: ReactElement[] }) {
             width={16}
             alt="Next"
             className="rotate-[-90deg]"
-            src="/static/images/icon__chevron_down.svg"
+            src="/images/icon__chevron_down.svg"
             onClick={(e: MouseEvent<HTMLImageElement>) => carousel?.current?.slideNext(e)}
           />
         </Button>

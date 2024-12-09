@@ -9,7 +9,7 @@ export default function SetCreateDropdown() {
       <DropdownTrigger>
         <Button color="primary" variant="solid" className="bg-ultramarine-blue" radius="sm">
           Create
-          <Image src="/static/images/icon__chevron_down.svg" alt="" width="16" height="16" />
+          <Image src="/images/icon__chevron_down.svg" alt="" width="16" height="16" />
         </Button>
       </DropdownTrigger>
       <DropdownMenu variant="flat" aria-label="Dropdown menu with description">

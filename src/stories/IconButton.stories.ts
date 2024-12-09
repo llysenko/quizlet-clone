@@ -19,6 +19,6 @@ type Story = StoryObj<typeof meta>;
 
 export const PlusButton: Story = {
   args: {
-    iconSrc: '/static/images/plus.svg'
+    iconSrc: '/images/plus.svg'
   }
 };

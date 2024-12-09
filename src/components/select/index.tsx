@@ -36,7 +36,7 @@ export default function Select({
           </option>
         ))}
       </select>
-      <Image src="/static/images/icon__chevron.svg" alt="" width={6} height={16} className={styles.icon} />
+      <Image src="/images/icon__chevron.svg" alt="" width={6} height={16} className={styles.icon} />
     </div>
   );
 }

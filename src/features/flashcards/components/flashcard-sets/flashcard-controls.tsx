@@ -21,7 +21,7 @@ const controlsData = [
     alt: 'Star the card',
     ariaLabel: 'Star the card',
     tooltipContent: 'Star',
-    imagePath: '/static/images/icon__star.svg',
+    imagePath: '/images/icon__star.svg',
     handler: Handler.Star
   },
   {
@@ -29,7 +29,7 @@ const controlsData = [
     alt: 'Play the card sound',
     ariaLabel: 'Play the card sound',
     tooltipContent: 'Play audio for this term',
-    imagePath: '/static/images/icon__sound.svg',
+    imagePath: '/images/icon__sound.svg',
     handler: Handler.Play
   },
   {
@@ -37,7 +37,7 @@ const controlsData = [
     alt: 'Edit the card',
     ariaLabel: 'Edit the card',
     tooltipContent: 'Edit',
-    imagePath: '/static/images/icon__pencil.svg',
+    imagePath: '/images/icon__pencil.svg',
     handler: Handler.Edit
   }
 ];

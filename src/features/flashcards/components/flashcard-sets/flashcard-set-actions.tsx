@@ -21,7 +21,7 @@ export default function FlashcardSetActions({ set }: Props) {
   return (
     <div className="flex items-center gap-2">
       <Button size="md" variant="ghost" radius="sm" className="font-semibold text-dark-electric-blue">
-        <Image src="/static/images/icon__share.svg" alt="Share the set" width={16} height={16} />
+        <Image src="/images/icon__share.svg" alt="Share the set" width={16} height={16} />
         Share
       </Button>
       <AppTooltip content="Edit" placement="bottom">
@@ -32,7 +32,7 @@ export default function FlashcardSetActions({ set }: Props) {
           radius="sm"
           className="bg-transparent hover:bg-bright-gray"
           onClick={redirectToEditPage}>
-          <Image src="/static/images/icon__pencil.svg" alt="Edit the card" width={24} height={24} />
+          <Image src="/images/icon__pencil.svg" alt="Edit the card" width={24} height={24} />
         </Button>
       </AppTooltip>
       <AppTooltip content="More" placement="bottom">
@@ -42,7 +42,7 @@ export default function FlashcardSetActions({ set }: Props) {
           variant="ghost"
           radius="sm"
           className="bg-transparent hover:bg-bright-gray">
-          <Image src="/static/images/icon__more.svg" alt="More" width={24} height={24} />
+          <Image src="/images/icon__more.svg" alt="More" width={24} height={24} />
         </Button>
       </AppTooltip>
     </div>

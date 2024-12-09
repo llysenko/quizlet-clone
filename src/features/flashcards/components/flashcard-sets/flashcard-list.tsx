@@ -89,7 +89,7 @@ export default function FlashcardList({ set }: Props) {
           className="font-semibold text-dark-electric-blue hover:bg-bright-gray"
           onClick={redirectToEditPage}>
           Add or remove terms
-          <Image src="/static/images/icon__pencil.svg" alt="Edit the set" width={16} height={16} />
+          <Image src="/images/icon__pencil.svg" alt="Edit the set" width={16} height={16} />
         </Button>
       </div>
     </section>

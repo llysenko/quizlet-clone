@@ -30,7 +30,7 @@ export default function BirthdayDateSelect({
     <div className="mb-6">
       <InputLabel
         label={errorMsg ? errorMsg : 'Birthday'}
-        tooltipIconSrc="/static/images/icon__info.svg"
+        tooltipIconSrc="/images/icon__info.svg"
         tooltipHtml={tooltipHtml}
         error={!!errorMsg}
       />

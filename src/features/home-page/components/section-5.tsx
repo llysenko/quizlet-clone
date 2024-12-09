@@ -34,12 +34,7 @@ export default function Section5({ toggleMenu, t }: Props) {
             </div>
           </div>
           <div className="mb-20 ml-0 flex w-full shrink-0 grow-[1.12] justify-center lg:mb-0 lg:ml-20 lg:w-1/2">
-            <Image
-              height={357}
-              width={461}
-              alt="Flashcards"
-              src="/static/images/ZpFqjB5LeNNTxHvk_teacher-image-LOH.avif"
-            />
+            <Image height={357} width={461} alt="Flashcards" src="/images/ZpFqjB5LeNNTxHvk_teacher-image-LOH.avif" />
           </div>
         </div>
       </SectionContainer>

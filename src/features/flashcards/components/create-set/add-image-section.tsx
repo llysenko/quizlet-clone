@@ -9,12 +9,12 @@ import Input from '@/components/input';
 import AppCarousel from '@/features/flashcards/components/create-set/app-carousel';
 
 const items = [
-  <img key={1} src="/static/images/bg-auth.png" role="presentation" className="max-h-[150px]" />,
-  <img key={2} src="/static/images/flashcards@2x.avif" role="presentation" />,
-  <img key={3} src="/static/images/expert_solutions@2x.avif" role="presentation" />,
-  <img key={4} src="/static/images/learn@2x.avif" role="presentation" />,
-  <img key={5} src="/static/images/logo.svg" role="presentation" />,
-  <img key={6} src="/static/images/coppa-seal.0efe00c1.avif" role="presentation" />
+  <img key={1} src="/images/bg-auth.png" role="presentation" className="max-h-[150px]" />,
+  <img key={2} src="/images/flashcards@2x.avif" role="presentation" />,
+  <img key={3} src="/images/expert_solutions@2x.avif" role="presentation" />,
+  <img key={4} src="/images/learn@2x.avif" role="presentation" />,
+  <img key={5} src="/images/logo.svg" role="presentation" />,
+  <img key={6} src="/images/coppa-seal.0efe00c1.avif" role="presentation" />
 ];
 
 export default function AddImageSection() {
@@ -28,13 +28,7 @@ export default function AddImageSection() {
           Or upload your own image
           <AppTooltip content="Unlock this feature with Quizlet Plus">
             <span className="rounded-full bg-ripe-mango px-2 py-0.5">
-              <Image
-                src="/static/images/icon__lock.svg"
-                alt="Unlock adding diagram"
-                width={16}
-                height={23}
-                className="h-4"
-              />
+              <Image src="/images/icon__lock.svg" alt="Unlock adding diagram" width={16} height={23} className="h-4" />
             </span>
           </AppTooltip>
         </Button>

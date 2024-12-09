@@ -75,13 +75,7 @@ export default function CreateDropdown({ user }: { user: User | null }) {
             className="text-dark-electric-blue"
             onClick={() => handleMenuItemClick(item.href)}>
             <div className="flex items-center gap-3">
-              <Image
-                src={`/static/images/${item.iconSrc}`}
-                alt={item.label}
-                width={24}
-                height={24}
-                className="size-5"
-              />
+              <Image src={`/images/${item.iconSrc}`} alt={item.label} width={24} height={24} className="size-5" />
               <p>{item.label}</p>
             </div>
           </DropdownItem>

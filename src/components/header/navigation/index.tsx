@@ -120,7 +120,7 @@ export default function Navigation() {
                   onClick={() => handleMenuItemClick(item.href)}>
                   <div className="flex items-center gap-3">
                     <Image
-                      src={`/static/images/${item.iconSrc}`}
+                      src={`/images/${item.iconSrc}`}
                       alt={item.label}
                       width={24}
                       height={24}
@@ -140,7 +140,7 @@ export default function Navigation() {
                   onClick={() => handleMenuItemClick(item.href)}>
                   <div className="flex items-center gap-3">
                     <Image
-                      src={`/static/images/${item.iconSrc}`}
+                      src={`/images/${item.iconSrc}`}
                       alt={item.label}
                       width={24}
                       height={24}
@@ -196,7 +196,7 @@ export default function Navigation() {
             <IconButton
               borderless={true}
               className="lg:invisible"
-              iconSrc="/static/images/menu.svg"
+              iconSrc="/images/menu.svg"
               size="medium"
               title="Menu"
               onClick={toggleMenu}
@@ -209,7 +209,7 @@ export default function Navigation() {
           <div className="m-4 flex justify-end">
             <IconButton
               className={clsx(styles.nav__menu__button, 'rotate-45')}
-              iconSrc="/static/images/plus.svg"
+              iconSrc="/images/plus.svg"
               size="medium"
               title="Close menu"
               onClick={toggleMenu}

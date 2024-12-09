@@ -8,21 +8,21 @@ const menuItemsSectionOne = [
     id: 1,
     alt: 'Achievements',
     href: '/achievements',
-    imagePath: '/static/images/icon__achievement.png',
+    imagePath: '/images/icon__achievement.png',
     label: 'Achievements'
   },
   {
     id: 2,
     alt: 'Settings',
     href: '/achievements',
-    imagePath: '/static/images/icon__settings.png',
+    imagePath: '/images/icon__settings.png',
     label: 'Settings'
   },
   {
     id: 3,
     alt: 'Theme mode',
     href: '/achievements',
-    imagePath: '/static/images/icon__theme-mode.png',
+    imagePath: '/images/icon__theme-mode.png',
     label: 'Dark mode'
   }
 ];
@@ -52,7 +52,7 @@ export default function UserDropdown({ user, signOut }: { user: User; signOut?: 
   return (
     <Dropdown placement="bottom-end">
       <DropdownTrigger>
-        <Avatar as="button" className="transition-transform" src={user.avatar || '/static/images/default-avatar.svg'} />
+        <Avatar as="button" className="transition-transform" src={user.avatar || '/images/default-avatar.svg'} />
       </DropdownTrigger>
       <DropdownMenu aria-label="Profile Actions" variant="flat" className="text-dark-electric-blue">
         <DropdownSection showDivider>
@@ -60,7 +60,7 @@ export default function UserDropdown({ user, signOut }: { user: User; signOut?: 
             <div className="flex items-center gap-4">
               <Avatar
                 className="h-16 w-16 transition-transform"
-                src={user.avatar ? user.avatar : '/static/images/default-avatar.svg'}
+                src={user.avatar ? user.avatar : '/images/default-avatar.svg'}
               />
               <div>
                 <p className="font-semibold">{user.username}</p>

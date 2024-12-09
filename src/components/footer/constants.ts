@@ -233,27 +233,27 @@ export const COUNTRIES = [
 export const SOCIAL_LINKS = [
   {
     name: 'TikTok',
-    imageSrc: '/static/images/icon__tiktok.svg',
+    imageSrc: '/images/icon__tiktok.svg',
     url: ''
   },
   {
     name: 'Twitter',
-    imageSrc: '/static/images/icon__twitter.svg',
+    imageSrc: '/images/icon__twitter.svg',
     url: ''
   },
   {
     name: 'Facebook',
-    imageSrc: '/static/images/icon__facebook.svg',
+    imageSrc: '/images/icon__facebook.svg',
     url: ''
   },
   {
     name: 'Instagram',
-    imageSrc: '/static/images/icon__instagram.svg',
+    imageSrc: '/images/icon__instagram.svg',
     url: ''
   },
   {
     name: 'YouTube',
-    imageSrc: '/static/images/icon__youtube.svg',
+    imageSrc: '/images/icon__youtube.svg',
     url: ''
   }
 ];

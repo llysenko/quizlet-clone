@@ -44,28 +44,28 @@ export const Borderless: Story = {
 export const ButtonWithIcon: Story = {
   args: {
     label: 'Generate',
-    iconSrc: '/static/images/sparkles.png',
-    size: 'medium'
+    iconSrc: '/images/sparkles.png',
+    size: 'md'
   }
 };
 
 export const Large: Story = {
   args: {
-    size: 'large',
+    size: 'lg',
     label: 'Sign up now'
   }
 };
 
 export const Medium: Story = {
   args: {
-    size: 'medium',
+    size: 'md',
     label: 'Sign up now'
   }
 };
 
 export const Small: Story = {
   args: {
-    size: 'small',
+    size: 'sm',
     label: 'Button'
   }
 };

@@ -61,7 +61,7 @@ export default function Input({
             <IconButton
               borderless={true}
               className="hover:bg-bright-gray"
-              iconSrc="/static/images/icon__eye.svg"
+              iconSrc="/images/icon__eye.svg"
               onClick={togglePasswordVisibility}
             />
           )}

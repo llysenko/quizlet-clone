@@ -52,7 +52,7 @@ export default function SignUp({ switchTab, formAction, formState }: AuthProps) 
           <Button
             key={provider.name}
             label={provider.label}
-            iconSrc={`/static/images/${provider.iconSrc}`}
+            iconSrc={`/images/${provider.iconSrc}`}
             size="lg"
             width="full"
             mode="outlined"

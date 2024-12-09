@@ -7,7 +7,7 @@ import CarouselNavigation from '@/components/carousel/carousel-navigation';
 
 import styles from './styles.module.scss';
 
-const imagesPath = '/static/images/';
+const imagesPath = '/images/';
 const carouselData = [
   {
     title: 'Learn',

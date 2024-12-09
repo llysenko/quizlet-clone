@@ -45,14 +45,14 @@ export default function AuthModal({
             </Heading1>
           </div>
           <div className="p-11">
-            <Image src="/static/images/logo-full.svg" alt="Quizlet" width={160} height={37} quality={75} />
+            <Image src="/images/logo-full.svg" alt="Quizlet" width={160} height={37} quality={75} />
           </div>
         </div>
         <div className="h-screen shrink grow basis-1/2 overflow-y-auto">
           <div className="m-4 flex justify-end">
             <IconButton
               borderless={true}
-              iconSrc="/static/images/icon__close.svg"
+              iconSrc="/images/icon__close.svg"
               size="medium"
               title="Close menu"
               onClick={toggleMenu}

@@ -1,8 +1,8 @@
 'use client';
 
-import clsx from 'clsx';
 import Image from 'next/image';
 import Link from 'next/link';
+import clsx from 'clsx';
 
 import { useAuthDialogStore } from '@/store';
 
@@ -62,7 +62,7 @@ export default function Footer() {
                       <span>{link.name}</span>
                       {link.name === 'Privacy' && (
                         <Image
-                          src="/static/images/icon__shield.svg"
+                          src="/images/icon__shield.svg"
                           alt="Privacy"
                           width={16}
                           height={16}
@@ -103,7 +103,7 @@ export default function Footer() {
         </div>
       </div>
 
-      <div className="pb-6 pt-8 m-auto px-8 max-w-[76.25rem]">
+      <div className="m-auto max-w-[76.25rem] px-8 pb-6 pt-8">
         <div className="flex flex-wrap items-center justify-between">
           <div>
             <ul className="flex gap-4">
@@ -120,7 +120,7 @@ export default function Footer() {
           <div>
             <Link href="#">
               <Image
-                src="/static/images/coppa-seal.0efe00c1.avif"
+                src="/images/coppa-seal.0efe00c1.avif"
                 alt="COPPA Safe Harbor Certification seal"
                 width={140}
                 height={70}
