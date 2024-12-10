@@ -1,5 +1,3 @@
-'use client';
-
 import { ChangeEvent, useState } from 'react';
 
 import AddImageButton from '@/features/flashcards/components/create-set/add-image-button';
@@ -20,7 +18,7 @@ export default function SetListItem({ data, index, deleteCard, handleOnChange }:
   const [isAddImageSectionVisible, setIsAddImageSectionVisible] = useState<boolean>(false);
 
   function toggleAddImageSection() {
-    setIsAddImageSectionVisible(!isAddImageSectionVisible);
+    setIsAddImageSectionVisible(prevState => !prevState);
   }
 
   return (

@@ -155,3 +155,7 @@ export async function updateFlashcardSetWithCards(
     }
   })({ errors: '' }, formData);
 }
+
+export async function deleteCard(cardId: number) {
+  return db.flashcard.delete({ where: { id: cardId }, select: { id: true } });
+}

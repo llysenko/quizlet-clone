@@ -1,5 +1,3 @@
-import { useId } from 'react';
-
 import Card from '@/features/flashcards/components/create-set/card';
 
 import styles from '../../styles.module.scss';
@@ -10,8 +8,6 @@ type Props = {
 };
 
 export default function AddFlashcardButton({ next, addCard }: Props) {
-  const id = useId();
-
   return (
     <Card className={styles.addFlashcardBtn__container}>
       <p className="tetx-xl font-bold text-ghost-white">{next}</p>

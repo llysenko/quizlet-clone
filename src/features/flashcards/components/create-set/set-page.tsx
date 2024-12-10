@@ -9,7 +9,7 @@ import Container from '@/components/container';
 import Error from '@/components/error';
 import Heading2 from '@/components/headings/heading-2';
 
-import { createFlashcardSetWithCards, updateFlashcardSetWithCards } from '@/features/flashcards/actions';
+import { createFlashcardSetWithCards, deleteCard, updateFlashcardSetWithCards } from '@/features/flashcards/actions';
 import AddFlashcardButton from '@/features/flashcards/components/create-set/add-flashcard-button';
 import SetCreateControl from '@/features/flashcards/components/create-set/set-create-control';
 import SetHeader from '@/features/flashcards/components/create-set/set-header';
@@ -42,8 +42,9 @@ export default function SetPage({ set }: { set: FlashcardSet & { flashcards: Fla
     setFlashcards([...allFlashcards, { id: (lastId || 1) + 1 }]);
   }
 
-  function deleteCard(cardId: number) {
-    setFlashcards(allFlashcards.filter(card => card.id !== cardId));
+  async function deleteFlashcard(cardId: number) {
+    const deletedCard = await deleteCard(cardId);
+    setFlashcards(prevState => prevState.filter(card => card.id !== deletedCard.id));
   }
 
   function handleOnChange(event: ChangeEvent<HTMLInputElement>) {
@@ -99,7 +100,7 @@ export default function SetPage({ set }: { set: FlashcardSet & { flashcards: Fla
             key={card.id}
             data={card}
             index={index + 1}
-            deleteCard={deleteCard}
+            deleteCard={deleteFlashcard}
             handleOnChange={handleOnChange}
           />
         ))}
