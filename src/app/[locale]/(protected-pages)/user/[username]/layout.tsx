@@ -11,7 +11,7 @@ type Tab = {
 const tabs: Tab[] = [
   {
     href: '/sets',
-    title: 'Sets'
+    title: 'Flashcard sets'
   },
   {
     href: '/folders',

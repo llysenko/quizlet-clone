@@ -56,6 +56,25 @@ export async function getLatestFlashcardSets() {
   return result;
 }
 
+export async function getFlashcardSets() {
+  const session = await getSession();
+
+  if (!session) throw new AuthRequiredError();
+
+  const result = await db.flashcardSet.findMany({
+    where: { userId: session?.user.id },
+    include: {
+      _count: { select: { flashcards: true } },
+      user: { select: { avatar: true, username: true, role: true } }
+    },
+    orderBy: { createdAt: 'desc' }
+  });
+
+  if (!result.length) throw new NotFoundError();
+
+  return result;
+}
+
 export async function createFlashcardSetWithCards(formData: FormData, allFlashcards: Partial<Flashcard>[]) {
   const filledCards = allFlashcards.filter(card => card.term || card.definition);
   const validatedCards = FlashcardsSchema.safeParse(filledCards);
