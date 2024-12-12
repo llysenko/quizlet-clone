@@ -13,7 +13,7 @@ export default async function Page() {
       {sets?.length ? (
         <div className="flex flex-col gap-4">
           {sets.map(set => (
-            <AppCard href={`/${set.id}`} key={set.id} className="border-transparent bg-white">
+            <AppCard href={`/${set.id}/flash-cards`} key={set.id} className="border-transparent bg-white">
               <div className="flex items-center gap-4 text-sm font-semibold">
                 <p>{set._count.flashcards} Terms</p>
                 <span className="font-semibold text-ghost-white">|</span>

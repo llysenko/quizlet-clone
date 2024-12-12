@@ -13,7 +13,10 @@ export default async function FoldersPage() {
       {folders?.length ? (
         <div className="flex flex-col gap-4">
           {folders.map(folder => (
-            <AppCard href={`/${folder.id}`} key={folder.id} className="border-transparent bg-white">
+            <AppCard
+              href={`/user/${folder.user.username}/folders/${folder.id}`}
+              key={folder.id}
+              className="border-transparent bg-white">
               <div className="flex items-center gap-4 text-sm font-semibold">
                 <p>15 Items</p>
               </div>

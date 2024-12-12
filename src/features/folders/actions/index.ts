@@ -26,6 +26,7 @@ export async function getFolders() {
 
   return db.folder.findMany({
     where: { userId: session?.user.id },
+    include: { user: { select: { username: true } } },
     orderBy: { createdAt: 'desc' }
   });
 }
