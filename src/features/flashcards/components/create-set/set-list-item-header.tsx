@@ -15,7 +15,7 @@ export default function SetListItemHeader({ data, index, deleteCard }: Props) {
       <div className="text-base font-bold text-cadet-grey">{index}</div>
       <div></div>
       <div>
-        <Button isIconOnly variant="light" radius="full" aria-label="Delete" onClick={() => deleteCard(data.id)}>
+        <Button isIconOnly variant="light" radius="full" aria-label="Delete" onPress={() => deleteCard(data.id)}>
           <Image src="/images/icon__delete-bin.svg" alt="Delete" width={16} height={16} />
         </Button>
       </div>

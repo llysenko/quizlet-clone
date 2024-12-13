@@ -1,9 +1,9 @@
 'use client';
 
-import { Button } from '@nextui-org/react';
-import { useTranslations } from 'next-intl';
-import { useRouter } from 'next/navigation';
 import { useEffect } from 'react';
+import { Button } from '@nextui-org/react';
+import { useRouter } from 'next/navigation';
+import { useTranslations } from 'next-intl';
 
 import Container from '@/components/container';
 import Heading2 from '@/components/headings/heading-2';
@@ -26,21 +26,21 @@ export default function Error({ error, reset }: Props) {
   }
 
   return (
-    <Container className="text-center m-10">
+    <Container className="m-10 text-center">
       <p className="text-palatinate-blue">{t('title')}</p>
       <Heading2 className="my-8">{error.message}</Heading2>
       <p className="mb-10">{t('description')}</p>
-      <div className="flex gap-2 justify-center">
+      <div className="flex justify-center gap-2">
         <Button
           variant="ghost"
           size="lg"
           color="primary"
           radius="sm"
           className="border-palatinate-blue text-palatinate-blue"
-          onClick={reset}>
+          onPress={reset}>
           {t('reset')}
         </Button>
-        <Button variant="ghost" size="lg" radius="sm" className="" onClick={redirect}>
+        <Button variant="ghost" size="lg" radius="sm" className="" onPress={redirect}>
           {t('home')}
         </Button>
       </div>

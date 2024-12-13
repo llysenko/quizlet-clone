@@ -24,7 +24,7 @@ export default function AppButton({
       radius="sm"
       variant="solid"
       className="bg-ultramarine-blue text-white hover:bg-palatinate-blue"
-      onClick={handleClick}>
+      onPress={handleClick}>
       {props.label}
     </Button>
   );

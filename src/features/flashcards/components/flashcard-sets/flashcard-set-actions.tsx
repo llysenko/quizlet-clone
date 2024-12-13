@@ -31,7 +31,7 @@ export default function FlashcardSetActions({ set }: Props) {
           variant="ghost"
           radius="sm"
           className="bg-transparent hover:bg-bright-gray"
-          onClick={redirectToEditPage}>
+          onPress={redirectToEditPage}>
           <Image src="/images/icon__pencil.svg" alt="Edit the card" width={24} height={24} />
         </Button>
       </AppTooltip>

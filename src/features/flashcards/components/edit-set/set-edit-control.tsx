@@ -19,7 +19,7 @@ export default function SetEditControl({ backBtnVisibility = true, size = 'md', 
           radius="sm"
           variant="solid"
           className="bg-ultramarine-blue text-white"
-          onClick={handleOnClick}>
+          onPress={handleOnClick}>
           Back to set
         </Button>
       )}

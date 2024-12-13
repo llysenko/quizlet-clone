@@ -25,7 +25,7 @@ export default function FlashcardCarouselSettings({
           radius="full"
           variant="ghost"
           className={clsx(currentCardIndex === 1 && 'cursor-not-allowed opacity-25')}
-          onClick={moveToPrevCard}>
+          onPress={moveToPrevCard}>
           <Image src="/images/icon__arrow.svg" alt="Next" width={32} height={32} />
         </Button>
         <div className="font-semibold text-dark-electric-blue">
@@ -37,7 +37,7 @@ export default function FlashcardCarouselSettings({
           radius="full"
           variant="ghost"
           className={clsx(currentCardIndex === cardsTotalCount && 'cursor-not-allowed opacity-25')}
-          onClick={moveToNextCard}>
+          onPress={moveToNextCard}>
           <Image src="/images/icon__arrow.svg" alt="Next" width={32} height={32} className="rotate-180" />
         </Button>
       </div>

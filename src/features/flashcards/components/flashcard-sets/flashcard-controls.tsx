@@ -76,7 +76,7 @@ export default function FlashcardControls({ card, size = 'lg', edit }: Props) {
             aria-label={data.ariaLabel}
             radius="full"
             className="bg-transparent hover:bg-bright-gray"
-            onClick={
+            onPress={
               data.handler === Handler.Star ? toggleStarred : data.handler === Handler.Play ? play : setEditMode
             }>
             <Image
