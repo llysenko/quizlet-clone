@@ -2,7 +2,6 @@
 
 import { Flashcard } from '.prisma/client';
 import Image from 'next/image';
-import clsx from 'clsx';
 
 import FlashcardControls from '@/features/flashcards/components/flashcard-sets/flashcard-controls';
 
@@ -14,7 +13,7 @@ export default function FlashcardCarouselItemTerm({ card }: { card: Flashcard })
   }
 
   return (
-    <div className={clsx(styles.term, 'z-10')}>
+    <div className={styles.term}>
       <div className="flex h-full w-full flex-col justify-between">
         <div className="flex items-center justify-between">
           <div className="flex cursor-pointer items-center gap-2 text-xs font-semibold">

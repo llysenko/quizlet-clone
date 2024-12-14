@@ -17,7 +17,7 @@ export default function FlashcardCarouselSettings({
 }: Props) {
   return (
     <div className="flex items-center justify-between gap-2">
-      <div>1</div>
+      <div></div>
       <div className="flex items-center gap-4">
         <Button
           disabled={currentCardIndex === 1}
@@ -41,7 +41,7 @@ export default function FlashcardCarouselSettings({
           <Image src="/images/icon__arrow.svg" alt="Next" width={32} height={32} className="rotate-180" />
         </Button>
       </div>
-      <div>3</div>
+      <div></div>
     </div>
   );
 }

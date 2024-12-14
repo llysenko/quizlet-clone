@@ -53,10 +53,6 @@ export default function FlashcardList({ set }: Props) {
     setIsLoading(false);
   }
 
-  function calcStarredCount(isStarred: boolean) {
-    setStarredCount(isStarred ? starredCount + 1 : starredCount - 1);
-  }
-
   function redirectToEditPage() {
     router.push(`/${set.id}/edit`);
   }
@@ -87,7 +83,7 @@ export default function FlashcardList({ set }: Props) {
           variant="ghost"
           radius="sm"
           className="font-semibold text-dark-electric-blue hover:bg-bright-gray"
-          onClick={redirectToEditPage}>
+          onPress={redirectToEditPage}>
           Add or remove terms
           <Image src="/images/icon__pencil.svg" alt="Edit the set" width={16} height={16} />
         </Button>
