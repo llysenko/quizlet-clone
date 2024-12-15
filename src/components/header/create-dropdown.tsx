@@ -1,7 +1,6 @@
-import { useState } from 'react';
 import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure } from '@nextui-org/react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 
 import CreateFolderDialog from '@/components/header/create-folder-dialog';
 import { PlusIcon } from '@/components/icons/plus-icon';
@@ -93,9 +92,10 @@ export default function CreateDropdown({ user }: { user: User | null }) {
         <DropdownMenu aria-label="Create Actions" variant="flat" items={menuItems}>
           {item => (
             <DropdownItem
+              key={item.label}
               textValue={item.label}
               className="text-dark-electric-blue"
-              onClick={() => handleMenuItemClick(item)}>
+              onPress={() => handleMenuItemClick(item)}>
               <div className="flex items-center gap-3">
                 <Image src={`/images/${item.imagePath}`} alt={item.label} width={24} height={24} className="size-5" />
                 <p>{item.label}</p>

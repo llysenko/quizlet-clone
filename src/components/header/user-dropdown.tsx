@@ -80,7 +80,7 @@ export default function UserDropdown({ user, signOut }: { user: User; signOut?: 
           )}
         </DropdownSection>
         <DropdownSection showDivider>
-          <DropdownItem key="logout" onClick={signOut}>
+          <DropdownItem key="logout" onPress={signOut}>
             Log out
           </DropdownItem>
         </DropdownSection>

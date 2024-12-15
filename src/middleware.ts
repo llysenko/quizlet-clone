@@ -1,15 +1,16 @@
-import createMiddleware from 'next-intl/middleware';
 import { NextRequest, NextResponse } from 'next/server';
+// @ts-ignore
+import createMiddleware from 'next-intl/middleware';
 
 import { limit } from '@/lib/rate-limit';
 
 import { USER_SESSION_NAME } from '@/features/auth/lib/constants';
 import { deleteSession, signToken, verifyToken } from '@/features/auth/lib/session';
 
-import { locales, pathnames } from './config';
+import { routing } from './i18n/routing';
 
 const protectedRoutes = ['/create-set', '/latest', '/achievements', '/flash-cards', '/sets'];
-const nextIntlMiddleware = createMiddleware({ defaultLocale: 'en', locales, localePrefix: 'never', pathnames });
+const nextIntlMiddleware = createMiddleware(routing);
 
 export async function middleware(req: NextRequest) {
   const { pathname } = req.nextUrl;

@@ -2,7 +2,7 @@
 
 import { useLocale, useTranslations } from 'next-intl';
 
-import { locales } from '@/config';
+import { locales } from '@/i18n-config';
 
 import LocaleSwitcherSelect from '@/components/locale-switcher/locale-switcher-select';
 

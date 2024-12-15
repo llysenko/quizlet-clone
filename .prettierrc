@@ -29,6 +29,7 @@
     "^.prisma/(.*)$",
     "^react",
     "^@nextui-org/(.*)$",
+    "^next/navigation",
     "^next/(.*)$",
     "<BUILTIN_MODULES>",
     "<THIRD_PARTY_MODULES>",

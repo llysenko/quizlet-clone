@@ -1,5 +1,5 @@
-/** @type {import('next').NextConfig} */
-const withNextIntl = require('next-intl/plugin')();
+import createNextIntlPlugin from 'next-intl/plugin';
+
 const cspHeader = `
     default-src 'self';
     script-src 'self' 'unsafe-inline' 'unsafe-eval';
@@ -11,6 +11,7 @@ const cspHeader = `
     form-action 'self';
     frame-ancestors 'none';
     upgrade-insecure-requests;`;
+const withNextIntl = createNextIntlPlugin();
 const nextConfig = {
   reactStrictMode: true,
   async headers() {
@@ -60,4 +61,4 @@ const nextConfig = {
   }
 };
 
-module.exports = withNextIntl(nextConfig);
+export default withNextIntl(nextConfig);

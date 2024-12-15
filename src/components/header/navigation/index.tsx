@@ -2,8 +2,8 @@
 
 import React, { useContext, useState } from 'react';
 import { Dropdown, DropdownItem, DropdownMenu, DropdownSection, DropdownTrigger } from '@nextui-org/react';
-import Image from 'next/image';
 import { useRouter } from 'next/navigation';
+import Image from 'next/image';
 import clsx from 'clsx';
 import { useTranslations } from 'next-intl';
 
@@ -117,7 +117,7 @@ export default function Navigation() {
                   key={item.key}
                   textValue={item.label}
                   className="text-dark-electric-blue"
-                  onClick={() => handleMenuItemClick(item.href)}>
+                  onPress={() => handleMenuItemClick(item.href)}>
                   <div className="flex items-center gap-3">
                     <Image
                       src={`/images/${item.iconSrc}`}
@@ -137,7 +137,7 @@ export default function Navigation() {
                   key={item.key}
                   textValue={item.label}
                   className="text-dark-electric-blue"
-                  onClick={() => handleMenuItemClick(item.href)}>
+                  onPress={() => handleMenuItemClick(item.href)}>
                   <div className="flex items-center gap-3">
                     <Image
                       src={`/images/${item.iconSrc}`}
@@ -167,7 +167,7 @@ export default function Navigation() {
                 key={item.key}
                 textValue={item.label}
                 className="text-dark-electric-blue"
-                onClick={() => handleMenuItemClick(item.href)}>
+                onPress={() => handleMenuItemClick(item.href)}>
                 <div className="flex items-center gap-3">
                   <p>{item.label}</p>
                 </div>

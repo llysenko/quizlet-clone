@@ -33,7 +33,7 @@
     "jose": "5.9.6",
     "negotiator": "1.0.0",
     "next": "14.2.16",
-    "next-intl": "3.26.1",
+    "next-intl": "4.0.0-beta-db95243",
     "react": "18.3.1",
     "react-alice-carousel": "2.9.1",
     "react-dom": "18.3.1",
