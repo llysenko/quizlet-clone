@@ -63,7 +63,3 @@ export async function signOut() {
   await deleteSession();
   redirect('/');
 }
-
-export async function getUserByName(username: string) {
-  return db.user.findUnique({ where: { username } });
-}

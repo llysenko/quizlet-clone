@@ -1,5 +1,4 @@
-import { useState } from 'react';
-import { useFormState } from 'react-dom';
+import { useActionState, useState } from 'react';
 import { Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
 import { z } from 'zod';
 
@@ -20,7 +19,9 @@ export default function CreateFolderDialog({
 }) {
   const [title, setTitle] = useState('');
   const [isTitleInvalid, setIsTitleInvalid] = useState<boolean>(false);
-  const [formState, formAction] = useFormState<ActionState, FormData>(handleCreateFolder, { errors: '' });
+  const [formState, formAction, signUpPending] = useActionState<ActionState, FormData>(handleCreateFolder, {
+    error: ''
+  });
 
   async function handleCreateFolder(prevState: ActionState, formData: FormData) {
     const validatedTitle = TitleSchema.safeParse(title);

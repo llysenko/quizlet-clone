@@ -1,8 +1,8 @@
+import { ReactNode } from 'react';
+import { Prompt } from 'next/font/google';
 import clsx from 'clsx';
 import { NextIntlClientProvider } from 'next-intl';
 import { getLocale, getMessages } from 'next-intl/server';
-import { Prompt } from 'next/font/google';
-import { ReactNode } from 'react';
 
 import PageLayout from '@/components/page-layout';
 

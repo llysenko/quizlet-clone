@@ -1,7 +1,6 @@
 'use client';
 
-import { createContext, ReactNode } from 'react';
-import { useFormState } from 'react-dom';
+import { createContext, ReactNode, useActionState } from 'react';
 import { useRouter } from 'next/navigation';
 
 import { useAuthDialogStore } from '@/store';
@@ -16,8 +15,12 @@ export const UserContext = createContext(null);
 export default function PageLayout({ user, children }: { user: any; children: ReactNode }) {
   const router = useRouter();
   const { open, setOpen } = useAuthDialogStore();
-  const [signInFormState, signInFormAction] = useFormState<ActionState, FormData>(handleSignIn, { errors: '' });
-  const [signUpFormState, signUpFormAction] = useFormState<ActionState, FormData>(handleSignUp, { errors: '' });
+  const [signInFormState, signInFormAction, signInPending] = useActionState<ActionState, FormData>(handleSignIn, {
+    error: ''
+  });
+  const [signUpFormState, signUpFormAction, signUpPending] = useActionState<ActionState, FormData>(handleSignUp, {
+    error: ''
+  });
 
   async function handleSignIn(prevState: ActionState, formData: FormData) {
     const response = await signIn(prevState, formData);

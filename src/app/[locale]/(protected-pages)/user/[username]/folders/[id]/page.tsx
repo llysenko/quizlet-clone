@@ -3,8 +3,11 @@ import transformZodErrors from '@/utils/transform-zod-errors';
 import { IdentifierSchema } from '@/lib/definitions';
 import { ValidationError } from '@/lib/exceptions';
 
-export default function SingleFolderPage({ params }: { params: { id: number } }) {
-  const validatedParam = IdentifierSchema.safeParse(+params.id);
+type Params = Promise<{ id: string }>;
+
+export default async function SingleFolderPage({ params }: { params: Params }) {
+  const { id } = await params;
+  const validatedParam = IdentifierSchema.safeParse(+id);
 
   if (!validatedParam.success) {
     const errors = transformZodErrors(validatedParam.error);

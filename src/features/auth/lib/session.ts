@@ -1,6 +1,6 @@
+import { cookies } from 'next/headers';
 import { compare } from 'bcryptjs';
 import { jwtVerify, SignJWT } from 'jose';
-import { cookies } from 'next/headers';
 
 import { USER_SESSION_NAME } from '@/features/auth/lib/constants';
 import { SessionData, User } from '@/features/auth/lib/types';
@@ -19,8 +19,8 @@ export async function signToken(payload: SessionData) {
     .sign(secretKey);
 }
 
-export function getSession() {
-  const session = cookies().get(USER_SESSION_NAME)?.value;
+export async function getSession() {
+  const session = (await cookies()).get(USER_SESSION_NAME)?.value;
 
   if (!session) return null;
 
@@ -41,7 +41,7 @@ export async function createSession(user: Partial<User>) {
   };
   const encryptedSession = await signToken(session);
 
-  cookies().set(USER_SESSION_NAME, encryptedSession, {
+  (await cookies()).set(USER_SESSION_NAME, encryptedSession, {
     expires: expiresInOneDay,
     httpOnly: true,
     secure: true,
@@ -52,5 +52,5 @@ export async function createSession(user: Partial<User>) {
 }
 
 export async function deleteSession() {
-  cookies().delete(USER_SESSION_NAME);
+  (await cookies()).delete(USER_SESSION_NAME);
 }

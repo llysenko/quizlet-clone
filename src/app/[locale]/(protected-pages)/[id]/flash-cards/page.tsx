@@ -16,8 +16,11 @@ import FlashcardStudyModeList from '@/features/flashcards/components/flashcard-s
 import FlashcardStudlyModeListItem from '@/features/flashcards/components/flashcard-sets/flashcard-study-mode-list-item';
 import { STUDY_MODES } from '@/features/flashcards/lib/constants';
 
-export default async function Page({ params }: { params: { id: number } }) {
-  const validatedParam = IdentifierSchema.safeParse(+params.id);
+type Params = Promise<{ id: string }>;
+
+export default async function Page({ params }: { params: Params }) {
+  const { id } = await params;
+  const validatedParam = IdentifierSchema.safeParse(+id);
 
   if (!validatedParam.success) {
     const errors = transformZodErrors(validatedParam.error);
