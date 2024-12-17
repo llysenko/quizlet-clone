@@ -1,3 +1,5 @@
+'use client';
+
 import { useActionState, useState } from 'react';
 import { Input, Modal, ModalBody, ModalContent, ModalFooter, ModalHeader } from '@nextui-org/react';
 import { z } from 'zod';

@@ -1,5 +1,5 @@
-import { MouseEvent } from 'react';
 import { Button } from '@nextui-org/react';
+import { PressEvent } from '@react-types/shared';
 
 type Props = {
   label?: string;
@@ -8,13 +8,7 @@ type Props = {
   type?: 'button' | 'submit' | 'reset';
 };
 
-export default function AppButton({
-  props,
-  handleClick
-}: {
-  props: Props;
-  handleClick?: (event: MouseEvent<HTMLButtonElement>) => void;
-}) {
+export default function AppButton({ props, handleClick }: { props: Props; handleClick?: (event: PressEvent) => void }) {
   return (
     <Button
       aria-disabled={props.disabled}

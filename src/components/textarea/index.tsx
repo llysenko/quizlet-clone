@@ -1,3 +1,5 @@
+'use client';
+
 import { ChangeEvent, useId, useState } from 'react';
 import clsx from 'clsx';
 

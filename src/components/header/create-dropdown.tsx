@@ -1,3 +1,5 @@
+'use client';
+
 import { Button, Dropdown, DropdownItem, DropdownMenu, DropdownTrigger, useDisclosure } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
