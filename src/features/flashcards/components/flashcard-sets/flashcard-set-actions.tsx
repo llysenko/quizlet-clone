@@ -1,6 +1,7 @@
 'use client';
 
-import { Flashcard, FlashcardSet, User } from '.prisma/client';
+import { Flashcard, FlashcardSet, Folder, User } from '.prisma/client';
+import { Usable, use } from 'react';
 import {
   Button,
   Dropdown,
@@ -10,12 +11,12 @@ import {
   Modal,
   ModalBody,
   ModalContent,
-  ModalFooter,
   ModalHeader,
   useDisclosure
 } from '@nextui-org/react';
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
+import { PressEvent } from '@react-types/shared';
 
 import AppTooltip from '@/components/app-tooltip/app-tooltip';
 import Heading2 from '@/components/headings/heading-2';
@@ -38,19 +39,24 @@ const menuItems: MenuItem[] = [
 
 type Props = {
   set: Partial<FlashcardSet & { flashcards?: Flashcard[] } & { user: Partial<User> }> & { starred: number };
+  folders: Usable<Folder[]>;
 };
 
-export default function FlashcardSetActions({ set }: Props) {
+export default function FlashcardSetActions({ set, folders }: Props) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();
+  const existedFolders = use(folders);
 
   function redirectToEditPage() {
     router.push(`/${set.id}/edit`);
   }
 
-  function handleMenuItemClick(item: MenuItem) {
-    console.log(item);
-    alert('Not implemented yet!');
+  function handleMenuItemClick(event: PressEvent) {
+    const target = event.target as HTMLElement;
+
+    if (target?.dataset.key === 'addToFolder') {
+      onOpen();
+    }
   }
 
   return (
@@ -85,7 +91,11 @@ export default function FlashcardSetActions({ set }: Props) {
 
         <DropdownMenu aria-label="Edit Set Actions" variant="flat" items={menuItems}>
           {item => (
-            <DropdownItem key={item.label} textValue={item.label} className="text-dark-electric-blue" onPress={onOpen}>
+            <DropdownItem
+              key={item.key}
+              textValue={item.label}
+              className="text-dark-electric-blue"
+              onPress={handleMenuItemClick}>
               <div className="flex items-center gap-3">
                 <Image src={`/images/${item.imagePath}`} alt={item.label} width={24} height={24} className="size-5" />
                 <p>{item.label}</p>
@@ -99,6 +109,7 @@ export default function FlashcardSetActions({ set }: Props) {
         isOpen={isOpen}
         onOpenChange={onOpenChange}
         size="lg"
+        placement="top"
         closeButton={
           <Button isIconOnly size="lg" variant="light">
             <Image src="/images/icon__close.svg" alt="Close" width={24} height={24} />
@@ -110,14 +121,9 @@ export default function FlashcardSetActions({ set }: Props) {
               <ModalHeader className="flex flex-col gap-2">
                 <Heading2 className="whitespace-nowrap py-4 text-heading-2 font-bold">Add to folder</Heading2>
               </ModalHeader>
-              <ModalBody className="flex flex-col gap-4 px-6 py-0">
-                <FoldersList />
+              <ModalBody className="flex flex-col gap-4 px-8 pb-8">
+                {existedFolders && <FoldersList folders={existedFolders} />}
               </ModalBody>
-              <ModalFooter>
-                <Button color="primary" onPress={onClose} className="bg-ultramarine-blue" radius="sm">
-                  Close
-                </Button>
-              </ModalFooter>
             </>
           )}
         </ModalContent>

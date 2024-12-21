@@ -15,6 +15,7 @@ import FlashcardSetData from '@/features/flashcards/components/flashcard-sets/fl
 import FlashcardStudyModeList from '@/features/flashcards/components/flashcard-sets/flashcard-study-mode-list';
 import FlashcardStudlyModeListItem from '@/features/flashcards/components/flashcard-sets/flashcard-study-mode-list-item';
 import { STUDY_MODES } from '@/features/flashcards/lib/constants';
+import { getFolders } from '@/features/folders/actions';
 
 type Params = Promise<{ id: string }>;
 
@@ -32,6 +33,8 @@ export default async function Page({ params }: { params: Params }) {
 
   if (!set) throw new NotFoundError();
 
+  const folders = getFolders();
+
   return (
     <>
       <Container size="sm">
@@ -48,7 +51,7 @@ export default async function Page({ params }: { params: Params }) {
 
         <section className="flex flex-wrap items-center justify-between py-8">
           <FlashcardSetData set={set} />
-          <FlashcardSetActions set={set} />
+          <FlashcardSetActions set={set} folders={folders} />
         </section>
 
         <FlashcardList set={set} />
