@@ -130,7 +130,7 @@ export default function FlashcardSetActions({ set, folders }: Props) {
                 <Heading2 className="whitespace-nowrap py-4 text-heading-2 font-bold">Add to folder</Heading2>
               </ModalHeader>
               <ModalBody className="flex flex-col gap-4 px-8 pb-8">
-                {existedFolders && <FoldersList folders={existedFolders} handleClick={addSetToFolder} />}
+                {existedFolders && <FoldersList set={set} folders={existedFolders} handleClick={addSetToFolder} />}
               </ModalBody>
             </>
           )}
