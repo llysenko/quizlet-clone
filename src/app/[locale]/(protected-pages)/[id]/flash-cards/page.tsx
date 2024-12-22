@@ -1,3 +1,5 @@
+import { Suspense } from 'react';
+
 import transformZodErrors from '@/utils/transform-zod-errors';
 
 import Container from '@/components/container';
@@ -40,21 +42,23 @@ export default async function Page({ params }: { params: Params }) {
       <Container size="sm">
         <Heading2 className="mb-12">{set?.title}</Heading2>
 
-        <section>
-          <FlashcardStudyModeList>
-            {STUDY_MODES.map(mode => (
-              <FlashcardStudlyModeListItem key={mode.id} mode={mode} />
-            ))}
-          </FlashcardStudyModeList>
-          <FlashcardCarousel set={set} />
-        </section>
+        <Suspense fallback={<div>Loading...</div>}>
+          <section>
+            <FlashcardStudyModeList>
+              {STUDY_MODES.map(mode => (
+                <FlashcardStudlyModeListItem key={mode.id} mode={mode} />
+              ))}
+            </FlashcardStudyModeList>
+            <FlashcardCarousel set={set} />
+          </section>
 
-        <section className="flex flex-wrap items-center justify-between py-8">
-          <FlashcardSetData set={set} />
-          <FlashcardSetActions set={set} folders={folders} />
-        </section>
+          <section className="flex flex-wrap items-center justify-between py-8">
+            <FlashcardSetData set={set} />
+            <FlashcardSetActions set={set} folders={folders} />
+          </section>
 
-        <FlashcardList set={set} />
+          <FlashcardList set={set} />
+        </Suspense>
       </Container>
 
       <Footer />

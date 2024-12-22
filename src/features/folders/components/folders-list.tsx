@@ -1,17 +1,20 @@
 import { Folder } from '.prisma/client';
-import Image from 'next/image';
+import { PressEvent } from '@react-types/shared';
 
-export default function FoldersList({ folders }: { folders: Folder[] }) {
+import FoldersListItem from '@/features/folders/components/folders-list-item';
+
+export default function FoldersList({
+  folders,
+  handleClick
+}: {
+  folders: Folder[];
+  handleClick: (event: PressEvent, id: number) => void;
+}) {
   return (
-    <ul>
+    <>
       {folders.map(folder => (
-        <li
-          key={folder.id}
-          className="flex cursor-pointer items-center gap-2 px-6 py-4 text-sm font-semibold text-dark-electric-blue transition-background hover:bg-ghost-white">
-          <Image src="/images/icon__folder.svg" alt="folder" width={24} height={24} />
-          {folder.title}
-        </li>
+        <FoldersListItem key={folder.id} folder={folder} handleClick={handleClick} />
       ))}
-    </ul>
+    </>
   );
 }

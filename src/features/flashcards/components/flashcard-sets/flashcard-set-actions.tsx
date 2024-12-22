@@ -17,10 +17,12 @@ import {
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { PressEvent } from '@react-types/shared';
+import { id } from 'postcss-selector-parser';
 
 import AppTooltip from '@/components/app-tooltip/app-tooltip';
 import Heading2 from '@/components/headings/heading-2';
 
+import { updateFlashcardSet } from '@/features/flashcards/actions';
 import FoldersList from '@/features/folders/components/folders-list';
 
 type MenuItem = {
@@ -46,6 +48,12 @@ export default function FlashcardSetActions({ set, folders }: Props) {
   const { isOpen, onOpen, onOpenChange } = useDisclosure();
   const router = useRouter();
   const existedFolders = use(folders);
+
+  async function addSetToFolder(event: PressEvent, folderId: number) {
+    if (set.id) {
+      await updateFlashcardSet(set.id, { folderId });
+    }
+  }
 
   function redirectToEditPage() {
     router.push(`/${set.id}/edit`);
@@ -122,7 +130,7 @@ export default function FlashcardSetActions({ set, folders }: Props) {
                 <Heading2 className="whitespace-nowrap py-4 text-heading-2 font-bold">Add to folder</Heading2>
               </ModalHeader>
               <ModalBody className="flex flex-col gap-4 px-8 pb-8">
-                {existedFolders && <FoldersList folders={existedFolders} />}
+                {existedFolders && <FoldersList folders={existedFolders} handleClick={addSetToFolder} />}
               </ModalBody>
             </>
           )}

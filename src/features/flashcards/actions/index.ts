@@ -1,6 +1,7 @@
 'use server';
 
 import { Flashcard, FlashcardSet } from '.prisma/client';
+import { id } from 'postcss-selector-parser';
 
 import transformZodErrors from '@/utils/transform-zod-errors';
 
@@ -119,6 +120,13 @@ export async function createFlashcardSetWithCards(formData: FormData, allFlashca
 
 export async function updateFlashcard(id: number, data: Partial<Flashcard>) {
   return db.flashcard.update({
+    where: { id },
+    data: { ...data }
+  });
+}
+
+export async function updateFlashcardSet(id: number, data: Partial<FlashcardSet>) {
+  return db.flashcardSet.update({
     where: { id },
     data: { ...data }
   });
