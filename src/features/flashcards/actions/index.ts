@@ -45,16 +45,12 @@ export async function getLatestFlashcardSets() {
 
   if (!session) throw new AuthRequiredError();
 
-  const result = await db.flashcardSet.findMany({
+  return db.flashcardSet.findMany({
     where: { userId: session?.user.id },
     include: { _count: { select: { flashcards: true } }, user: { select: { username: true } } },
     orderBy: { createdAt: 'desc' },
     take: 3
   });
-
-  if (!result.length) throw new NotFoundError();
-
-  return result;
 }
 
 export async function getFlashcardSets() {

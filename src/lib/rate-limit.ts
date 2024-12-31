@@ -1,24 +1,15 @@
-const idToRequestCount = new Map<string, number>();
-const rateLimiter = {
-  windowStart: Date.now(),
-  windowSize: 10000,
-  maxRequests: 10
-};
+import { Ratelimit } from '@upstash/ratelimit';
+import { Redis } from '@upstash/redis';
 
-export function limit(ip: string) {
-  const now = Date.now();
-  const isNewWindow = now - rateLimiter.windowStart > rateLimiter.windowSize;
-
-  if (isNewWindow) {
-    rateLimiter.windowStart = now;
-    idToRequestCount.set(ip, 0);
-  }
-
-  const currentRequestCount = idToRequestCount.get(ip) ?? 0;
-
-  if (currentRequestCount >= rateLimiter.maxRequests) return true;
-
-  idToRequestCount.set(ip, currentRequestCount + 1);
-
-  return false;
+if (!process.env.KV_REST_API_URL || !process.env.KV_REST_API_TOKEN) {
+  throw new Error('Please link a Vercel KV instance or populate `KV_REST_API_URL` and `KV_REST_API_TOKEN`');
 }
+
+const redis = new Redis({ url: process.env.KV_REST_API_URL, token: process.env.KV_REST_API_TOKEN });
+
+export const rateLimit = new Ratelimit({
+  redis,
+  limiter: Ratelimit.slidingWindow(1, '15 m'),
+  analytics: true,
+  prefix: 'ratelimit'
+});

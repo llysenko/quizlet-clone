@@ -1,8 +1,9 @@
+import { headers } from 'next/headers';
 import { NextRequest, NextResponse } from 'next/server';
 // @ts-ignore
 import createMiddleware from 'next-intl/middleware';
 
-import { limit } from '@/lib/rate-limit';
+import { rateLimit } from '@/lib/rate-limit';
 
 import { USER_SESSION_NAME } from '@/features/auth/lib/constants';
 import { deleteSession, signToken, verifyToken } from '@/features/auth/lib/session';
@@ -43,10 +44,12 @@ export async function middleware(req: NextRequest) {
 
   // Rate limit
   if (req.method === 'POST') {
-    const ip = req.ip ?? req.headers.get('X-Forwarded-For') ?? 'unknown';
-    const isRateLimited = limit(ip);
+    const ip = (await headers()).get('x-real-ip') ?? 'local';
+    const rateLimitResponse = await rateLimit.limit(ip);
 
-    if (isRateLimited) return NextResponse.json({ error: 'rate limited' }, { status: 429 });
+    if (!rateLimitResponse.success) {
+      return NextResponse.json({ error: 'rate limited' }, { status: 429 });
+    }
   }
 
   return nextIntlMiddleware(req);
