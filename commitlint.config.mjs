@@ -15,6 +15,7 @@ const Configuration = {
         'build',
         'components',
         'config',
+        'db',
         'features',
         'flashcards',
         'folders',

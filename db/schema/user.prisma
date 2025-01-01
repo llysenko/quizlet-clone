@@ -1,0 +1,22 @@
+enum UserRole {
+  student
+  teacher
+}
+
+model User {
+  id                Int      @id @default(autoincrement())
+  avatar            String?
+  email             String   @unique
+  username          String   @unique
+  birthday          DateTime
+  password          String
+  policyAccepted    Boolean
+  remindersAccepted Boolean  @default(false)
+  role              UserRole @default(student)
+
+  flashcardSets FlashcardSet[]
+  folders Folder[]
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}

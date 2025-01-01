@@ -1,0 +1,33 @@
+model FlashcardSet {
+  id          Int         @id @default(autoincrement())
+  title       String
+  description String?
+
+  flashcards  Flashcard[]
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+  folder   Folder? @relation(fields: [folderId], references: [id])
+  folderId Int?
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([folderId, userId])
+}
+
+model Flashcard {
+  id             Int           @id @default(autoincrement())
+  term           String
+  definition     String
+  imagePath      String?
+
+  isStarred Boolean @default(false)
+
+  flashcardSet   FlashcardSet @relation(fields: [flashcardSetId], references: [id])
+  flashcardSetId Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+
+  @@index([flashcardSetId])
+}

@@ -1,0 +1,11 @@
+model Folder {
+  id Int @id @default(autoincrement())
+  title String
+
+  flashcardSets FlashcardSet[]
+  user   User @relation(fields: [userId], references: [id])
+  userId Int
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
