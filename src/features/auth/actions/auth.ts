@@ -4,6 +4,8 @@ import { Prisma } from '@prisma/client';
 import { redirect } from 'next/navigation';
 import bcrypt from 'bcryptjs';
 
+import { parsedEnv } from '@/env';
+
 import db from '@/lib/db';
 
 import { SignInFormSchema, SignUpFormSchema } from '@/features/auth/lib/definitions';
@@ -24,7 +26,7 @@ export const signUp = validateAction(SignUpFormSchema, async (data, formData) =>
           query: (args: Prisma.MiddlewareParams['args']) => Promise<any>;
         }) {
           if (['create', 'update'].includes(operation) && args.data['password']) {
-            args.data['password'] = bcrypt.hashSync(args.data['password'], Number(process.env.SALT_ROUNDS));
+            args.data['password'] = bcrypt.hashSync(args.data['password'], Number(parsedEnv.SALT_ROUNDS));
           }
           return query(args);
         }

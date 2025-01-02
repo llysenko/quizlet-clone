@@ -1,5 +1,7 @@
 import { PrismaClient } from '@prisma/client';
 
+import { parsedEnv } from '@/env';
+
 const prismaClientSingleton = () =>
   new PrismaClient({
     omit: {
@@ -17,4 +19,4 @@ const db = globalThis.prismaGlobal ?? prismaClientSingleton();
 
 export default db;
 
-if (process.env.NODE_ENV !== 'production') globalThis.prismaGlobal = db;
+if (parsedEnv.NODE_ENV !== 'production') globalThis.prismaGlobal = db;

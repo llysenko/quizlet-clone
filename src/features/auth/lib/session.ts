@@ -1,11 +1,13 @@
 import { cookies } from 'next/headers';
 import { compare } from 'bcryptjs';
-import { jwtVerify, SignJWT } from 'jose';
+import { SignJWT, jwtVerify } from 'jose';
+
+import { parsedEnv } from '@/env';
 
 import { USER_SESSION_NAME } from '@/features/auth/lib/constants';
 import { SessionData, User } from '@/features/auth/lib/types';
 
-const secretKey = new TextEncoder().encode(process.env.AUTH_SECRET);
+const secretKey = new TextEncoder().encode(parsedEnv.AUTH_SECRET);
 
 export async function comparePasswords(plainTextPassword: string, hashedPassword: string) {
   return compare(plainTextPassword, hashedPassword);

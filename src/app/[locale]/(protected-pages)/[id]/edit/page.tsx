@@ -5,12 +5,13 @@ import { NotFoundError, ValidationError } from '@/lib/exceptions';
 
 import { getSetById } from '@/features/flashcards/actions';
 import SetPage from '@/features/flashcards/components/create-set/set-page';
+import { FlashcardSetSchema } from '@/features/flashcards/lib/definitions';
 
 type Params = Promise<{ id: string }>;
 
 export default async function EditPage({ params }: { params: Params }) {
   const { id } = await params;
-  const validatedParam = IdentifierSchema.safeParse(+id);
+  const validatedParam = IdentifierSchema.safeParse(id);
 
   if (!validatedParam.success) {
     const errors = transformZodErrors(validatedParam.error);
@@ -22,5 +23,7 @@ export default async function EditPage({ params }: { params: Params }) {
 
   if (!set) throw new NotFoundError();
 
-  return <SetPage set={set} />;
+  const validatedSet = FlashcardSetSchema.safeParse(set);
+
+  return <>{validatedSet.success ? <SetPage set={validatedSet.data} /> : <p>Error</p>}</>;
 }
