@@ -5,7 +5,7 @@ import Link from 'next/link';
 import AppTooltip from '@/components/app-tooltip/app-tooltip';
 
 type Props = {
-  set: Partial<FlashcardSet & { flashcards?: Flashcard[] } & { user: Partial<User> }> & { starred: number };
+  set: FlashcardSet & { flashcards?: Flashcard[] } & { user: Partial<User> } & { starred: number };
 };
 
 export default function FlashcardSetData({ set }: Props) {

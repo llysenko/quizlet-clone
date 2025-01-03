@@ -17,7 +17,6 @@ import {
 import { useRouter } from 'next/navigation';
 import Image from 'next/image';
 import { PressEvent } from '@react-types/shared';
-import { id } from 'postcss-selector-parser';
 
 import AppTooltip from '@/components/app-tooltip/app-tooltip';
 import Heading2 from '@/components/headings/heading-2';

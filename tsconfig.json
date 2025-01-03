@@ -28,7 +28,7 @@
       ],
       "@/components/*": [
         "./src/components/*"
-      ]
+      ],
     },
     "forceConsistentCasingInFileNames": true
   },

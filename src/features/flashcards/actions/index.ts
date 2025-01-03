@@ -1,7 +1,6 @@
 'use server';
 
 import { Flashcard, FlashcardSet } from '.prisma/client';
-import { id } from 'postcss-selector-parser';
 
 import transformZodErrors from '@/utils/transform-zod-errors';
 

@@ -17,6 +17,7 @@ import FlashcardSetData from '@/features/flashcards/components/flashcard-sets/fl
 import FlashcardStudyModeList from '@/features/flashcards/components/flashcard-sets/flashcard-study-mode-list';
 import FlashcardStudlyModeListItem from '@/features/flashcards/components/flashcard-sets/flashcard-study-mode-list-item';
 import { STUDY_MODES } from '@/features/flashcards/lib/constants';
+import { FlashcardSetWithCardsGetSchema } from '@/features/flashcards/lib/definitions';
 import { getFolders } from '@/features/folders/actions';
 
 type Params = Promise<{ id: string }>;
@@ -35,12 +36,20 @@ export default async function Page({ params }: { params: Params }) {
 
   if (!set) throw new NotFoundError();
 
+  const validatedSet = FlashcardSetWithCardsGetSchema.safeParse(set);
+
+  if (!validatedSet.success) {
+    const errors = transformZodErrors(validatedSet.error);
+
+    throw new ValidationError(Object.values(errors).at(0) as string);
+  }
+
   const folders = getFolders();
 
   return (
     <>
       <Container size="sm">
-        <Heading2 className="mb-12">{set?.title}</Heading2>
+        <Heading2 className="mb-12">{validatedSet.data?.title}</Heading2>
 
         <Suspense fallback={<div>Loading...</div>}>
           <section>
@@ -49,15 +58,15 @@ export default async function Page({ params }: { params: Params }) {
                 <FlashcardStudlyModeListItem key={mode.id} mode={mode} />
               ))}
             </FlashcardStudyModeList>
-            <FlashcardCarousel set={set} />
+            <FlashcardCarousel set={validatedSet.data} />
           </section>
 
           <section className="flex flex-wrap items-center justify-between py-8">
-            <FlashcardSetData set={set} />
-            <FlashcardSetActions set={set} folders={folders} />
+            <FlashcardSetData set={validatedSet.data} />
+            <FlashcardSetActions set={validatedSet.data} folders={folders} />
           </section>
 
-          <FlashcardList set={set} />
+          <FlashcardList set={validatedSet.data} />
         </Suspense>
       </Container>
 
