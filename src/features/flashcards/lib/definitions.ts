@@ -32,9 +32,9 @@ export const FlashcardSetGetSchema = z
   .object({
     id: z.number().int().positive(),
     title: z.string().min(1, { message: 'Title is required.' }),
-    description: z.string(),
+    description: z.string().optional().nullable(),
     userId: z.number().int().positive(),
-    folderId: z.number().int().positive().optional(),
+    folderId: z.number().int().positive().optional().nullable(),
     createdAt: z.date(),
     updatedAt: z.date()
   })

@@ -1,10 +1,18 @@
+import { Suspense } from 'react';
+
 import Container from '@/components/container';
 
 import { getLatestFlashcardSets } from '@/features/flashcards/actions';
 import RecentSets from '@/features/flashcards/components/create-set/recent-sets';
 
-export default async function LatestPage() {
-  const sets = await getLatestFlashcardSets();
+export default function LatestPage() {
+  const sets = getLatestFlashcardSets();
 
-  return <Container>{sets?.length ? <RecentSets sets={sets} /> : <div>No data yet.</div>}</Container>;
+  return (
+    <Container>
+      <Suspense fallback={<div>Loading...</div>}>
+        <RecentSets sets={sets} />
+      </Suspense>
+    </Container>
+  );
 }
