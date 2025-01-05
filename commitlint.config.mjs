@@ -21,6 +21,7 @@ const Configuration = {
         'folders',
         'intl',
         'security',
+        'sets',
         'styles',
       ]
     ],
