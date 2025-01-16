@@ -15,7 +15,7 @@ export default async function Page() {
           {sets.map(set => (
             <AppCard href={`/${set.id}/flash-cards`} key={set.id} className="border-transparent bg-white">
               <div className="flex items-center gap-4 text-sm font-semibold">
-                <p>{set._count.flashcards} Terms</p>
+                <p>{set._count?.flashcards} Terms</p>
                 <span className="font-semibold text-ghost-white">|</span>
                 <div className="flex items-center gap-2">
                   <Avatar src={set?.user?.avatar || '/images/default-avatar.svg'} className="h-4 w-4 text-tiny" />
